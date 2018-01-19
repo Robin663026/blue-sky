@@ -53,16 +53,18 @@
       @{name}: @px / @baseFontSize * 1rem;
   }
 .main{
-  .px2rem(height,1071);
+  .px2rem(height,1102);
   .px2rem(width,750);
   .px2rem(padding-left,30);
 
 
+
   .con1{
-    .px2rem(padding-right,30);
+
+    .px2rem(padding-right,31);
     .px2rem(padding-bottom,40);
     .px2rem(padding-top,40);
-    .px2rem(height,230);
+    .px2rem(height,231);
     border-bottom:1px solid #E2E4E6;
     .left1{
       float:left;
@@ -90,11 +92,12 @@
   }
 
   .con2{
+
     border-bottom:1px solid #E2E4E6;
-    .px2rem(height,439);
+    .px2rem(height,440);
+    .px2rem(padding-top,40);
     .con2-top{
       .px2rem(height,32);
-      .px2rem(margin-top,40);
       .px2rem(margin-bottom,20);
     }
     .con2-middle{
@@ -108,25 +111,28 @@
       }
     }
     .con2-bottom{
-      .px2rem(height,22);
-      .px2rem(margin-bottom,40);
+      .px2rem(height,62);
+      .px2rem(padding-bottom,40);
     }
 
   }
   .con3{
-    border-bottom:1px solid #E2E4E6;
-    .px2rem(height,169);
+
+    .px2rem(height,200);
     .px2rem(padding-top,40);
-    .px2rem(padding-bottom,40);
+    .px2rem(padding-bottom,30);
     .con3-top{
       .px2rem(height,42);
       .px2rem(margin-bottom,25);
     }
     .con3-bottom{
-      .px2rem(height,22);
+      .px2rem(height,62);
+      .px2rem(padding-bottom,40);
+      border-bottom:1px solid #E2E4E6;
 
     }
   }
+
 
 }
 </style>

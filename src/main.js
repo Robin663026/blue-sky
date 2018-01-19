@@ -2,15 +2,14 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
-import news from './components/news/news'
-import me from './components/me/me'
-import order from './components/order/order'
 import VueResource from 'vue-resource'
 import  'lib-flexible'
 import  'px2rem-loader'
-import  'jquery'
+import news from './components/news/news'
+import me from './components/me/me'
+import order from './components/order/order'
 
-let app=Vue.extend(App);
+
 Vue.use(VueRouter)
 Vue.use(VueResource)
 let router =new VueRouter({

@@ -1,5 +1,5 @@
 <template>
-  <div class="main"></div>
+    <div class="main"></div>
 </template>
 
 <script>
@@ -15,7 +15,8 @@
   .px2rem(@name, @px){
       @{name}: @px / @baseFontSize * 1rem;
   }
-.main {
-  height: 20px;
-}
+  .main{
+    .px2rem(height,40);
+  }
+
 </style>

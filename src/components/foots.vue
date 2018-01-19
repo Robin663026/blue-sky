@@ -36,16 +36,37 @@
   .px2rem(@name, @px){
       @{name}: @px / @baseFontSize * 1rem;
   }
+  .px2px(@name, @px){
+      @{name}: round(@px / 2) * 1px;
+    [data-dpr="2"] & {
+        @{name}: @px * 1px;
+    }
+    // for mx3
+    [data-dpr="2.5"] & {
+        @{name}: round(@px * 2.5 / 2) * 1px;
+    }
+    // for 小米note
+    [data-dpr="2.75"] & {
+        @{name}: round(@px * 2.75 / 2) * 1px;
+    }
+    [data-dpr="3"] & {
+        @{name}: round(@px / 2 * 3) * 1px
+    }
+    // for 三星note4
+    [data-dpr="4"] & {
+        @{name}: @px * 2px;
+    }
+  }
   .main {
 
     border-top: 1px solid #E2E4E6;
-    .px2rem(height,100);
+    .px2rem(height,101);
     .px2rem(width,750);
 
 
     .tab1 {
       .px2rem(margin-top,14);
-      .px2rem(margin-bottom,7);
+      .px2rem(margin-bottom,6);
       .px2rem(margin-left,146);
       .px2rem(margin-right,150);
       .px2rem(height,48);
@@ -77,7 +98,8 @@
         .px2rem(width,45);
         .px2rem(margin-right,160);
         font-family: PingFangSC-Regular;
-        font-size:22px;
+        /*font-size:22px;*/
+        .px2px(font-size,22);
         color: #A5A5A5;
         & > a {
 
@@ -85,18 +107,19 @@
           color: #A5A5A5;
         }
       }
-      [data-dpr="2"].tab-item4{
-        font-size:44px;
-      }
-      [data-dpr="3"].tab-item4{
-        font-size:66px;
-      }
+      /*[data-dpr="2"].tab-item4{*/
+        /*font-size:44px;*/
+      /*}*/
+      /*[data-dpr="3"].tab-item4{*/
+        /*font-size:66px;*/
+      /*}*/
       .tab-item5 {
         float:left;
         .px2rem(width,45);
         .px2rem(margin-right,167);
         font-family: PingFangSC-Regular;
-        font-size:22px;
+        /*font-size:22px;*/
+        .px2px(font-size,22);
         color: #A5A5A5;
         & > a {
 
@@ -104,29 +127,30 @@
           color: #A5A5A5;
         }
       }
-      [data-dpr="2"].tab-item5{
-        font-size:44px;
-      }
-      [data-dpr="3"].tab-item5{
-        font-size:66px;
-      }
+      /*[data-dpr="2"].tab-item5{*/
+        /*font-size:44px;*/
+      /*}*/
+      /*[data-dpr="3"].tab-item5{*/
+        /*font-size:66px;*/
+      /*}*/
       .tab-item6 {
         float:left;
         .px2rem(width,23);
         font-family: PingFangSC-Regular;
-        font-size:22px;
+        /*font-size:22px;*/
+        .px2px(font-size,22);
         color: #A5A5A5;
         & > a {
           text-decoration: none;
           color: #A5A5A5;
         }
       }
-      [data-dpr="2"].tab-item6{
-        font-size:44px;
-      }
-      [data-dpr="3"].tab-item6{
-        font-size:66px;
-      }
+      /*[data-dpr="2"].tab-item6{*/
+        /*font-size:44px;*/
+      /*}*/
+      /*[data-dpr="3"].tab-item6{*/
+        /*font-size:66px;*/
+      /*}*/
     }
   }
 
