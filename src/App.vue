@@ -1,27 +1,28 @@
 <template>
   <div id="app">
-    <div class="header">
-      i am header
-    </div>
-    <div class="tab">
-      i am nav
-    </div>
-    <div class="content">
-      i am content
-    </div>
-  </div>
+
+ <router-view></router-view>
+
+</div>
 </template>
 
 <script>
+
 export default{
   data(){
     return {
-
+      seller:{}
     }
+  },
+  methods:{
+
+  },
+  created(){
+    this.$http.get('/api/')
   }
 }
 </script>
 
-<style>
+<style scoped lang="less">
 
 </style>

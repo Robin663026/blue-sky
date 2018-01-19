@@ -1,14 +1,48 @@
 
 import Vue from 'vue'
 import App from './App'
-import Init from './components/init'
+import VueRouter from 'vue-router'
+import news from './components/news/news'
+import me from './components/me/me'
+import order from './components/order/order'
+import './assets/css/bootstrap.min.css'
+import VueResource from 'vue-resource'
+import  'lib-flexible'
+import  'px2rem-loader'
+import  'jquery'
 
+let app=Vue.extend(App);
+Vue.use(VueRouter)
+Vue.use(VueResource)
+let router =new VueRouter({
+  linkActiveClass:'active',
+  mode:'history',
+  routes:[
+    {
+      path:'/',
+      redirect:'/news'
+    },
+    {
+      path:'/news',
+      component:news
+    },
+    {
+      path:'/me',
+      component:me
+    },
+    {
+      path:'/order',
+      component:order
+    }
 
+  ]
+})
 
-
-/* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  components: { Init },
-  template:'<Init/>'
+  el:'#app',
+  router,
+  render:h=>h(App)
 });
+
+
+

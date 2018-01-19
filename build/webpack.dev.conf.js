@@ -10,6 +10,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+
+
+const appData=require('../news1.json')
+
+
+
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -22,7 +28,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+
+    before(app){
+      app.get('/api/news',(req,res)=>{
+        res.json({
+          errno:0,
+          data:appData
+        })
+      })
+    },
     clientLogLevel: 'warning',
+
     historyApiFallback: {
       rewrites: [
         { from: /.*/, to: path.join(config.dev.assetsPublicPath, 'index.html') },
