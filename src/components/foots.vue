@@ -1,5 +1,5 @@
 <template>
-  <div class="main container">
+  <div class="main">
   <div class="tab1">
     <div class="tab-item1 ">
       <router-link class="change1" to="/news"><img src="../assets/img/8_icon_news_blue.png" alt=""></router-link>
@@ -27,7 +27,7 @@
     }
 </script>
 
-<style  lang="less">
+<style  scoped lang="less">
   @font-face{
     font-family:PingFangSC-Semibold;
     src:url('../assets/fonts/pfs.ttf');
@@ -37,9 +37,12 @@
       @{name}: @px / @baseFontSize * 1rem;
   }
   .main {
+
     border-top: 1px solid #E2E4E6;
     .px2rem(height,100);
     .px2rem(width,750);
+
+
     .tab1 {
       .px2rem(margin-top,14);
       .px2rem(margin-bottom,7);
@@ -60,14 +63,10 @@
       .tab-item3{
         float:left;
         .px2rem(width,48);
-
-
-
       }
     }
 
     .tab {
-
       .px2rem(margin-bottom,10);
       .px2rem(margin-left,148);
       .px2rem(margin-right,162);
@@ -94,7 +93,6 @@
       }
       .tab-item5 {
         float:left;
-
         .px2rem(width,45);
         .px2rem(margin-right,167);
         font-family: PingFangSC-Regular;

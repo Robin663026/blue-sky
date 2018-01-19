@@ -1,7 +1,7 @@
 <template>
 <div  >
 
-  <heads class="row clearfix">
+  <heads >
 
   </heads>
  <cont_dt>
@@ -15,24 +15,15 @@
   import foots from '../foots'
   import heads from '../heads'
   import cont_dt from './con_dt'
-
-  const ERR_0K=0;
   export default{
-    name:'news',
+
     data(){
       return {
-        news:{}
+
       };
     },
     created(){
-//      this.$http.get('./api/news').then((response)=>{
-//        response=response.body;
-//        //console.log(response.data)
-//        if(response.errno===ERR_0K){
-//          this.news=response.data;
-//
-//        }
-//      });
+
     },
     components:{
       heads,

@@ -31,7 +31,6 @@
     .px2rem(padding-bottom,23);
     .px2rem(width,750);
     border-bottom: 1px solid #E2E4E6;
-
     .news-header1 {
       float: left;
       .px2rem(margin-left,343);
@@ -54,7 +53,7 @@
       .px2rem(width,32);
       .px2rem(height,32);
       .px2rem(margin-right,30);
-      
+
     }
   }
 
