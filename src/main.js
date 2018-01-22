@@ -8,6 +8,7 @@ import  'px2rem-loader'
 import news from './components/news/news'
 import me from './components/me/me'
 import order from './components/order/order'
+import './assets/css/main.less'
 
 
 Vue.use(VueRouter)

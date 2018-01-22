@@ -16,42 +16,14 @@
 </script>
 
 <style scoped lang="less">
-  @font-face{
-    font-family:PingFangSC-Semibold;
-    src:url('../assets/fonts/pfs.ttf');
-  }
-
-  @baseFontSize: 75;
-  .px2rem(@name, @px){
-      @{name}: @px / @baseFontSize * 1rem;
-  }
-  .px2px(@name, @px){
-      @{name}: round(@px / 2) * 1px;
-    [data-dpr="2"] & {
-        @{name}: @px * 1px;
-    }
-    // for mx3
-    [data-dpr="2.5"] & {
-        @{name}: round(@px * 2.5 / 2) * 1px;
-    }
-    // for 小米note
-    [data-dpr="2.75"] & {
-        @{name}: round(@px * 2.75 / 2) * 1px;
-    }
-    [data-dpr="3"] & {
-        @{name}: round(@px / 2 * 3) * 1px
-    }
-    // for 三星note4
-    [data-dpr="4"] & {
-        @{name}: @px * 2px;
-    }
-  }
+  @import '../assets/css/common.less';
+  @import '../assets/css/border-1px.less';
   .tab {
     .px2rem(height,91);
     .px2rem(padding-top,35);
     .px2rem(padding-bottom,23);
     .px2rem(width,750);
-    border-bottom: 1px solid #E2E4E6;
+    .border-1px(#E2E4E6);
     .news-header1 {
       float: left;
       .px2rem(margin-left,343);

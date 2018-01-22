@@ -12,7 +12,7 @@ const portfinder = require('portfinder')
 
 
 
-const appData=require('../news1.json')
+const appData=require('../newslist.json')
 
 
 
@@ -34,8 +34,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         res.json({
           errno:0,
           data:appData
-        })
-      })
+        });
+      });
+      // app.use('/api',apiRoutes);
     },
     clientLogLevel: 'warning',
 
