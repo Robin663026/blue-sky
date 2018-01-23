@@ -34,7 +34,7 @@
 
     .border-1px(#E2E4E6);
     .px2rem(height, 101);
-    .px2rem(width, 750);
+    width:100%;
 
     .tab1 {
       .px2rem(margin-top, 14);
