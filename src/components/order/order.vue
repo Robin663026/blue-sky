@@ -1,8 +1,9 @@
 <template>
-  <div  class="container">
-    <heads >
+  <div  class="main">
+    <time_display></time_display>
+    <order_header >
 
-  </heads>
+  </order_header>
   <order_dt>
 
   </order_dt>
@@ -12,9 +13,10 @@
   </div>
 </template>
 <script>
-  import heads from '../heads'
+  import order_header from './order_header'
   import foots from '../foots'
   import order_dt from './order_dt'
+  import time_display from '../time_display'
   export default {
     data() {
       return {
@@ -22,9 +24,10 @@
       }
     },
     components:{
-      heads,
+      order_header,
       foots,
-      order_dt
+      order_dt,
+      time_display
     }
   }
 </script>

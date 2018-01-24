@@ -1,35 +1,35 @@
 <template>
-<div class="main" ref="newsColumn">
-  <ul>
-    <li v-for="(item,index) in press">
-      <div v-if="item.image.position==='right'" class="con1">
+<div class="news-column"  ref="newsColumn">
+  <ul class="content">
+    <li   v-for="(news,index) in press" @click="selectNews(news,$event)">
+      <div v-if="news.image.position==='right'" class="con1">
         <div class="left1">
           <div class="row1">
-            <span>{{item.titile}}</span>
+            <span>{{news.titile}}</span>
           </div>
           <div class="row2">
-            <span v-if="item.top===true" class="top" >
+            <span v-if="news.top===true" class="top" >
               置顶
             </span>
             <span class="datetme">123</span>
-            <span class="source">{{item.source}}</span>
+            <span class="source">{{news.source}}</span>
             <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""></span>
-            <span class="comment" v-if="item.comments.count<=999">{{item.comments.count}}</span>
+            <span class="comment" v-if="news.comments.count<=999">{{news.comments.count}}</span>
             <span class="comment" v-else>999</span>
             <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""></span>
-            <span class="like" v-if="item.comments.thumbUp<=999">{{item.comments.thumbUp}}</span>
+            <span class="like" v-if="news.comments.thumbUp<=999">{{news.comments.thumbUp}}</span>
             <span class="like" v-else>999</span>
           </div>
         </div>
         <div class="right1">
-          <img :src="item.image.url">
+          <img :src="news.image.url">
         </div>
       </div>
       <div v-else class="con2">
         <div class="con2-top">
-          <span>{{item.titile}}</span>
+          <span>{{news.titile}}</span>
         </div>
-        <div class="con2-middle"><img :src="item.image.url"></div>
+        <div class="con2-middle"><img :src="news.image.url"></div>
         <div class="con2-bottom"></div>
       </div>
     </li>
@@ -40,15 +40,21 @@
     <!--<div class="con3-top"></div>-->
     <!--<div class="con3-bottom"></div>-->
   <!--</div>-->
-  <!--&lt;!&ndash;<details :datails="selectedNews" ref="details"></details>&ndash;&gt;-->
+  <news :news="selectedNews" ref="news"></news>
 </div>
 </template>
 
 <script>
   import BScroll from 'better-scroll';
-  import details from './details.vue';
+  import news from './news.vue';
   const ERR_OK=0;
     export default {
+      data() {
+        return {
+          press:[],
+          selectedNews:{}
+        };
+      },
       props:{
         news:{
           type:Object
@@ -60,35 +66,24 @@
           if(response.errno===ERR_OK){
             this.press=response.data;
             this.$nextTick(()=>{
-              this._initScroll();
-            });
+              this.scroll=new BScroll(this.$refs.newsColumn,{})
+            })
           }
         });
       },
-        data() {
-            return {
-              press:[],
-              selectedNews:{}
-            };
-        },
-      methods:{
-          _initScroll(){
-            this.menuScroll=new BScroll(this.$refs.newsColumn,{
-              click:true
-            });
+      methods: {
+        selectNews(news, event) {
+          if (!event._constructed) {
+            return;
+          }
+          this.selectedNews = news;
+          this.$refs.news.show();
 
-          },
-//          selectNews(details,event){
-//            if(!event._constructed){
-//              return;
-//            }
-//            this.selectedDetail=details;
-//            this.$refs.details.show();
-//          },
-
+        }
       },
+
       components:{
-//          details
+          news
       }
     };
 </script>
@@ -96,10 +91,12 @@
 <style scoped lang="less">
   @import '../../assets/css/common.less';
   @import '../../assets/css/border-1px.less';
-.main{
+.news-column{
 
   width:100%;
   .px2rem(padding-left,30);
+  overflow:hidden;
+  .px2rem(height,1103);
 
 
 

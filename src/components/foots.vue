@@ -2,7 +2,7 @@
   <div class="main">
   <div class="tab1">
     <div class="tab-item1 ">
-      <router-link class="change1" to="/news"><img src="../assets/img/8_icon_news_blue.png" alt=""></router-link>
+      <router-link class="change1" to="/newspaper"><img src="../assets/img/8_icon_news_blue.png" alt=""></router-link>
     </div>
     <div class="tab-item2">
       <router-link class='change2' to="/order"><img src="../assets/img/9_icon_order_grey.png" alt=""></router-link>
@@ -33,7 +33,7 @@
   .main {
 
     .border-1px(#E2E4E6);
-    .px2rem(height, 101);
+    .px2rem(height, 100);
     width:100%;
 
     .tab1 {
@@ -47,15 +47,27 @@
         float: left;
         .px2rem(width, 48);
         .px2rem(margin-right, 157);
+        img{
+          .px2rem(width,48);
+          .px2rem(height,48);
+        }
       }
       .tab-item2 {
         float: left;
         .px2rem(width, 48);
         .px2rem(margin-right, 153);
+        img{
+          .px2rem(width,48);
+          .px2rem(height,48);
+        }
       }
       .tab-item3 {
         float: left;
         .px2rem(width, 48);
+        img{
+          .px2rem(width,48);
+          .px2rem(height,48);
+        }
       }
     }
 

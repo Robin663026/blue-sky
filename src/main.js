@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import  'lib-flexible'
 import  'px2rem-loader'
-import news from './components/news/news'
+import newspaper from './components/newspaper/newspaper'
 import me from './components/me/me'
 import order from './components/order/order'
 import './assets/css/main.less'
@@ -19,11 +19,11 @@ let router =new VueRouter({
   routes:[
     {
       path:'/',
-      redirect:'/news'
+      redirect:'/newspaper'
     },
     {
-      path:'/news',
-      component:news
+      path:'/newspaper',
+      component:newspaper
     },
     {
       path:'/me',
