@@ -1,35 +1,35 @@
 <template>
 <div class="main">
   <ul class="content">
-    <li   v-for="(news,index) in press" @click="selectNews(news,$event)">
-      <div v-if="news.image.position==='right'" class="con1">
+    <li>
+      <div  class="con1">
         <div class="left1">
           <div class="row1">
-            <span>{{news.titile}}</span>
+            <span></span>
           </div>
           <div class="row2">
-            <span v-if="news.top===true" class="top" >
+            <span class="top" >
               置顶
             </span>
             <span class="datetme">123</span>
-            <span class="source">{{news.source}}</span>
-            <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""></span>
-            <span class="comment" v-if="news.comments.count<=999">{{news.comments.count}}</span>
-            <span class="comment" v-else>999</span>
-            <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""></span>
-            <span class="like" v-if="news.comments.thumbUp<=999">{{news.comments.thumbUp}}</span>
-            <span class="like" v-else>999</span>
+            <span class="source"></span>
+            <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" ></span>
+            <span class="comment" ></span>
+            <span class="comment" >999</span>
+            <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" ></span>
+            <span class="like" ></span>
+            <span class="like">999</span>
           </div>
         </div>
         <div class="right1">
-          <img :src="news.image.url">
+          <img src="">
         </div>
       </div>
-      <div v-else class="con2">
+      <div  class="con2">
         <div class="con2-top">
-          <span>{{news.titile}}</span>
+          <span></span>
         </div>
-        <div class="con2-middle"><img :src="news.image.url"></div>
+        <div class="con2-middle"><img src=""></div>
         <div class="con2-bottom"></div>
       </div>
     </li>

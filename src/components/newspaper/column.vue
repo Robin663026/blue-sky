@@ -46,7 +46,8 @@
 
 <script>
   import BScroll from 'better-scroll';
-  import news from './news.vue';
+  import news from './news';
+  import data from '../../../newslist.json';
   const ERR_OK=0;
     export default {
       data() {
@@ -66,7 +67,9 @@
           if(response.errno===ERR_OK){
             this.press=response.data;
             this.$nextTick(()=>{
-              this.scroll=new BScroll(this.$refs.newsColumn,{})
+              this.scroll=new BScroll(this.$refs.newsColumn,{
+                click:true,
+              });
             })
           }
         });
@@ -75,7 +78,8 @@
         selectNews(news, event) {
           if (!event._constructed) {
             return;
-          }
+          };
+          console.log(news,event.timeStamp);
           this.selectedNews = news;
           this.$refs.news.show();
 
@@ -83,7 +87,7 @@
       },
 
       components:{
-          news
+         news
       }
     };
 </script>
