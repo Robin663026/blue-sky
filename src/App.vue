@@ -1,7 +1,10 @@
 <template>
-  <div >
+  <div class="main">
+    <keep-alive >
+      <router-view></router-view>
+    </keep-alive>
 
- <router-view></router-view>
+
 
 </div>
 </template>
@@ -22,7 +25,6 @@ export default{
       response=response.body;
       if(response.errno===ERR_OK){
         this.news=response.data;
-        console.log(this.news);
       }
     });
   }
@@ -30,5 +32,10 @@ export default{
 </script>
 
 <style  lang="less">
+  @import './assets/css/common';
+  .main{
+    width:100%;
+
+  }
 
 </style>

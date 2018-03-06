@@ -1,35 +1,38 @@
 <template>
-  <div  class="main">
-    <time_display></time_display>
-    <order_header >
+<div class="order">
+<header>
 
-  </order_header>
-  <order_dt>
-
-  </order_dt>
-  <foots>
-
-  </foots>
-  </div>
+</header>
+  lalala
+  <v-footer></v-footer>
+</div>
 </template>
+
 <script>
-  import order_header from './order_header'
-  import foots from '../foots'
-  import order_dt from './order_dt'
-  import time_display from '../time_display'
+  import footer from '../footer/footer.vue'
   export default {
     data() {
       return {
 
       }
     },
+    props:{
+
+
+    },
     components:{
-      order_header,
-      foots,
-      order_dt,
-      time_display
+      'v-footer':footer
     }
   }
 </script>
-<style scoped lang="less">
+
+<style lang="less">
+  .order{
+    position:absolute;
+    top: 20px;
+    bottom:50px;
+    left:0;
+    width:100%;
+
+  }
 </style>
