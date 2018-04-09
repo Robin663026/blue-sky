@@ -97,7 +97,7 @@
     padding:40px 0 105px 0;
     text-align:center;
     background-image:url('../../assets/img/22_img_login.png') ;
-    .border-1px(#E2E4E6);
+    .border-1px(bc);
   }
   .collect{
     padding:1px 0 20px 0;
@@ -138,7 +138,7 @@
     }
     .module{
       font-size:0;
-      .border-1px(#E2E4E6);
+      .border-1px(bc);
       .message{
         display:inline-block;
         vertical-align: top;
@@ -185,7 +185,7 @@
       padding:15px 0 16px 0;
       width:100%;
       font-size:0;
-      .border-1px(#E2E4E6);
+      .border-1px(bc);
       .thumb1{
         display:inline-block;
         vertical-align: top;
@@ -205,7 +205,7 @@
       font-size:0;
       padding:15px 0 16px 0;
       width:100%;
-      .border-1px(#E2E4E6);
+      .border-1px(bc);
       .now1{
         display:inline-block;
         vertical-align: top;

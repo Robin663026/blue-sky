@@ -1,19 +1,19 @@
 <template>
   <div  class="news" >
     <header></header>
-    <div class="back "><router-link to="/news" @click="dele" ><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></div>
+    <div class="back "><router-link to="/news" ><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></div>
     <div class="content border-1px">
       <div class="title">{{detail.titile}}</div>
       <div class="some">
         <span class="left"><img src="../../assets/img/35_img_54X54.png" width="27" height="27"></span>
         <span class="middle">
-          <div class="top">UC新闻</div>
+          <div class="top">{{detail.source}}</div>
           <div class="bot">
 
-            <div class="time">刚刚更新{{uid}}</div>
+            <div class="time">{{time}}</div>
           </div>
         </span>
-        <span class="order"  :class="{'active':order}" @click="toggleOrder($event)"><span class="text2">订阅</span></span>
+        <span class="order"  :class="{active:order}" @click="changeOrder($event)"><span class="text2">订阅</span></span>
       </div>
       <div class="contents">
         <ul>
@@ -21,7 +21,7 @@
             <div class="h1" v-if="content.type='h1'">{{content.text}}</div>
             <div class="p" v-else-if="content.type='p'">{{content.text}}</div>
             <div class="image" v-else="content.type='image'">
-              <img :src="content.text" alt=""width="345" height="235">
+              <img :src="content.text"width="345"height="235" >
             </div>
           </li>
         </ul>
@@ -35,7 +35,7 @@
       </div>
       <div class="right">
         <span class="comment"><img src="../../assets/img/13_comment.png" alt=""width="20"height="20"@click="seeComment"></span>
-        <span class="collect"><img src="../../assets/img/14_collect.png" alt=""width="20"height="20"@click="collected"></span>
+        <span :class='[collectC]'><img src="../../assets/img/14_collect.png" alt=""width="20"height="20"@click="collected"></span>
         <span class="share"><img src="../../assets/img/13_share.png" alt=""width="20"height="20" @click="shareIcon"></span>
         <div class="num">{{detail.comments.length}}</div>
       </div>
@@ -119,12 +119,15 @@
 
 <script>
   import {saveToLocal,loadFromLocal} from '../../assets/js/store'
+  let orders=[];
+  let collects=[];
   export default {
     data() {
       return {
         detail:{
           type:Object
         },
+        collectC:'collect',
         showComment:false,
         showIcon:false,
         showWrite:false,
@@ -143,11 +146,8 @@
         if(!event._constructed){
           return;
         }
-        this.order = !this.order;
-        saveToLocal(this.uid, 'order', this.order);
-      },
-      dele(){
-        uid='';
+        orders.push(this.uid);
+
       },
 
       seeComment(){
@@ -157,7 +157,11 @@
         this.showComment=false;
       },
       collected(){
-
+        if(!event._constructed){
+          return;
+        }
+        this.collectC='collect1';
+        collects.push(this.uid);
       },
       shareIcon(){
         this.showIcon=true;
@@ -187,7 +191,44 @@
         console.log('服务器请求失败');
       });
     },
+  computed:{
+    time(){
+      let date=new Date();
+      let year=date.getFullYear();
+      let month=date.getMonth()+1;
+      let day=date.getDate();
+      let hour=date.getHours();
+      let minu=date.getMinutes();
+      let get="2017-12-22 11:20:56";
+      let year1=get.slice(0,4);
+      let month1=get.slice(5,7);
+      let day1=get.slice(8,10);
+      let hour1=get.slice(11,13);
+      let minu1=get.slice(14,16);
+      if(year-year1>0){
+        let a=year-year1;
+        return  a+"年前";
+      }else{
+        if(month-month1>0){
+          let b=month-month1;
+          return  {b}+"月前";
+        }else{
+          if(day-day1>0){
+            let c=day-day1;
+            return  c+"天前 ";
+          }else{
+            if(hour-hour1>0){
+              let d=hour-hour1;
+              return  d+"小时前 ";
+            }else{
+              return  `刚刚 `;
+            }
+          }
+        }
+      }
 
+    }
+  },
     components:{
 
     }
@@ -223,7 +264,7 @@
     padding:15px 15px 0 15px;
     height:551px;
     overflow:hidden;
-    .border-1px(#E2E4E6);
+    .border-1px(bc);
     .title{
       height:52px;
       font-family:PingFangSC-Semibold;
@@ -246,12 +287,15 @@
       .middle{
         flex:1;
         float:left;
-        .top{
-          font-family:PingFangSC-Semibold;
+        .top {
+          font-family: PingFangSC-Semibold;
           font-size: 12px;
           color: #333333;
-          padding-top:1px;
-          padding-bottom:3px;
+          padding-top: 1px;
+          padding-bottom: 3px;
+          width: 45px;
+          overflow: hidden;
+          height: 12px;
         }
         .bot{
 
@@ -287,15 +331,14 @@
         background:#008CFF;
         border:1px solid #fff;
         border-radius: 6px;
+        color: #ffffff;
         &.active{
           background:#A5A5A5;
         }
-
         text2{
-
           font-family:PingFangSC-Semibold;
           font-size: 12px;
-          color: #ffffff;
+
 
         }
       }
@@ -368,6 +411,10 @@
       .collect{
         padding:0px 5px 0px 5px;
       }
+      .collect1{
+        padding:0px 5px 0px 5px;
+        background-image:url("../../assets/img/14_collect2.png");
+      }
       .share{
         padding:0px 5px 0px 5px;
       }
@@ -409,7 +456,7 @@
       padding:15px 15px 0 15px;
       height:551px;
       overflow:hidden;
-      .border-1px(#E2E4E6);
+      .border-1px(bc);
       .title{
         height:52px;
         font-family:PingFangSC-Semibold;
@@ -445,7 +492,7 @@
         display:flex;
         width:100%;
         height:144px;
-        .border-1px(#E2E4E6);
+        .border-1px(bc);
         .icon{
           float:left;
           flex:0 0 49px;
@@ -456,7 +503,7 @@
         .content{
           float:left;
           flex:1;
-          .border-1px(#E2E4E6);
+          .border-1px(bc);
           padding:15px 0;
           height:144px;
           .line1{
@@ -610,7 +657,7 @@
         width:100%;
         padding:15px 0 14px 0;
         text-align:center;
-        .border-1px(#E2E4E6);
+        .border-1px(bc);
         p{
           font-family: PingFangSC-Regular;
           font-size: 16px;

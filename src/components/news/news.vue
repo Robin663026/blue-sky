@@ -18,13 +18,13 @@
             <span v-if="news.top===true" class="top" >
               置顶
             </span>
-              <span class="datetme">123</span>
-              <span class="source">{{news.source}}</span>
+              <span class="datetme">{{time}}</span>
+              <span class="sour">{{news.source}}</span>
               <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
-              <span class="comment" v-if="news.comments.count<=999">{{news.comments.count}}</span>
+              <span class="comment" v-if="news.comments[0].count<=999">{{news.comments[0].count}}</span>
               <span class="comment" v-else>999</span>
               <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
-              <span class="like" v-if="news.comments.thumbUp<=999">{{news.comments.thumbUp}}</span>
+              <span class="like" v-if="news.comments[0].thumbUp<=999">{{news.comments[0].thumbUp}}</span>
               <span class="like" v-else>999</span>
             </div>
           </div>
@@ -41,13 +41,13 @@
             <span v-if="news.top===true" class="top" >
               置顶
             </span>
-            <span class="datetme">123</span>
-            <span class="source">123</span>
+            <span class="datetme">{{time}}</span>
+            <span class="sour">{{news.source}}</span>
             <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
-            <span class="comment" v-if="news.comments.count<=999">{{news.comments.count}}</span>
+            <span class="comment" v-if="news.comments[0].count<=999">{{news.comments[0].count}}</span>
             <span class="comment" v-else>999</span>
             <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
-            <span class="like" v-if="news.comments.thumbUp<=999">{{news.comments.thumbUp}}</span>
+            <span class="like" v-if="news.comments[0].thumbUp<=999">{{news.comments[0].thumbUp}}</span>
             <span class="like" v-else>999</span>
           </div>
         </div>
@@ -105,7 +105,42 @@
 
       },
       computed:{
+        time(){
+          let date=new Date();
+          let year=date.getFullYear();
+          let month=date.getMonth()+1;
+          let day=date.getDate();
+          let hour=date.getHours();
+          let minu=date.getMinutes();
+          let get="2017-12-22 11:20:56";
+          let year1=get.slice(0,4);
+          let month1=get.slice(5,7);
+          let day1=get.slice(8,10);
+          let hour1=get.slice(11,13);
+          let minu1=get.slice(14,16);
+          if(year-year1>0){
+            let a=year-year1;
+            return  a+"年前";
+          }else{
+            if(month-month1>0){
+              let b=month-month1;
+              return  {b}+"月前";
+            }else{
+              if(day-day1>0){
+                let c=day-day1;
+                return  c+"天前 ";
+              }else{
+                if(hour-hour1>0){
+                  let d=hour-hour1;
+                  return  d+"小时前 ";
+                }else{
+                  return  `刚刚 `;
+                }
+              }
+            }
+          }
 
+        }
       },
       filters:{
 
@@ -154,12 +189,12 @@
     width:100%;
     height:551px;
     overflow:hidden;
-    .border-1px(#E2E4E6);
+    .border-1px(bc);
     .title1{
       height:115px;
       width:100%;
       padding:20px 0;
-      .border-1px(#E2E4E6);
+      .border-1px(bc);
 
       .left{
         float:left;
@@ -186,14 +221,17 @@
           }
           .datetme{
             padding-right:5px;
+            width:45px;
             font-family:PingFangSC-Regular;
             font-size: 11px;
             color: #A5A5A5;
           }
-          .source{
-            padding-right:10px;
+          .sour{
             width:45px;
+            padding-right:10px;
+            height:11px;
             overflow: hidden;
+            background:red;
             font-family:PingFangSC-Regular;
             font-size: 11px;
             color: #A5A5A5;
@@ -227,7 +265,7 @@
       }
     }
     .title2 {
-      .border-1px(#E2E4E6);
+      .border-1px(bc);
       height:220px;
       padding:20px 15px 20px 0;
       .top{
@@ -241,9 +279,11 @@
         margin-bottom:7px;
       }
       .bottom{
+
         height:11px;
         display:inline-block;
         vertical-align:top;
+        font-size:0;
         .top{
           padding-right:2px;
           font-family:PingFangSC-Regular;
@@ -256,14 +296,17 @@
           font-size: 11px;
           color: #A5A5A5;
         }
-        .source{
+        .sour{
+          width:45px;
           padding-right:10px;
+          background:blue;
+          height:11px;
           overflow: hidden;
           font-family:PingFangSC-Regular;
           font-size: 11px;
           color: #A5A5A5;
           overflow: hidden;
-          width:45px;
+
         }
         .comments_img{
           padding-right:1px;

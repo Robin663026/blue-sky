@@ -122,7 +122,7 @@
     }
   }
   .contents{
-    .border-1px(#E2E4E6;);
+    .border-1px(bc);
     width:100%;
     padding:13px 15px 40px 15px;
     .line1,.line2{
@@ -187,7 +187,7 @@
     }
     .more{
       height:45px;
-      .border-1px(#E2E4E6);
+      .border-1px(bc);
       padding:15px 0;
       font-family: PingFangSC-Semibold;
       font-size: 15px;

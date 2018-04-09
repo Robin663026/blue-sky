@@ -2,7 +2,7 @@
   <div class="bottomB border-1px">
     <div class="tab-image">
       <div class="tab-item item1">
-        <router-link class="" to="/news"><img  src="../../assets/img/8_icon_news_grey.png" width="24" height="24"></router-link>
+        <router-link  to="/news"><img src="../../assets/img/8_icon_news_grey.png" alt=""width="24" height="24"></router-link>
       </div>
       <div class="tab-item item2">
         <router-link  to="/order"><img  src="../../assets/img/9_icon_order_grey.png" alt=""width="24" height="24"></router-link>
@@ -38,7 +38,7 @@
     width: 100%;
     padding: 7px 39px 5px 39px;
     height: 50px;
-    .border-1px(#E2E4E6);
+    .border-1px(bc);
     .tab-image {
       display: flex;
       height: 24px;
@@ -47,27 +47,35 @@
         flex: 1;
         text-align: center;
 
-
-
       }
       .item1{
+
+
         &>a{
+          text-decoration: none;
           &.active{
-            image: url("../../assets/img/8_icon_news_blue.png");
+            background-image: url("../../assets/img/8_icon_news_blue.png");
+            background-size:100% 100%;
           }
         }
       }
       .item2{
         &>a{
+
+          text-decoration: none;
           &.active{
-            image: url("../../assets/img/9_icon_order_blue.png");
+            background-image: url("../../assets/img/9_icon_order_blue.png");
+            background-size:100% 100%;
           }
         }
       }
       .item3{
         &>a{
+
+          text-decoration: none;
           &.active{
-            image: url("../../assets/img/10_icon_me_blue.png");
+            background-image: url("../../assets/img/10_icon_me_blue.png");
+            background-size:100% 100%;
           }
         }
       }
@@ -85,10 +93,10 @@
         font-size: 11px;
         color: #A5A5A5;
         font-family: PingFangSC-Regular;
-        & > a {
+        &>a {
           text-decoration: none;
           &.active {
-            color: #333333
+            color: #333333;
           }
         }
       }
