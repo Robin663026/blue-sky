@@ -1,14 +1,20 @@
 <template>
   <div class="bottomB border-1px">
     <div class="tab-image">
-      <div class="tab-item item1">
-        <router-link  to="/news"><img src="../../assets/img/8_icon_news_grey.png" alt=""width="24" height="24"></router-link>
+      <div class="tab-item ">
+        <router-link  to="/news">
+          <div class="icon_1"></div>
+        </router-link>
       </div>
-      <div class="tab-item item2">
-        <router-link  to="/order"><img  src="../../assets/img/9_icon_order_grey.png" alt=""width="24" height="24"></router-link>
+      <div class="tab-item ">
+        <router-link  to="/order">
+          <div class="icon_2"></div>
+        </router-link>
       </div>
-      <div class="tab-item item3">
-        <router-link  to="/me"><img  src="../../assets/img/10_icon_me_grey.png" alt=""width="24" height="24"></router-link>
+      <div class="tab-item ">
+        <router-link  to="/me">
+          <div class="icon_3"></div>
+        </router-link>
       </div>
     </div>
     <div class="tab-wrapper">
@@ -46,39 +52,34 @@
       .tab-item {
         flex: 1;
         text-align: center;
-
-      }
-      .item1{
-
-
-        &>a{
-          text-decoration: none;
-          &.active{
-            background-image: url("../../assets/img/8_icon_news_blue.png");
-            background-size:100% 100%;
-          }
+        .icon_1{
+          background:url(../../assets/img/8_icon_news_grey.png)no-repeat;
+          background-size:24px 24px;
+        }
+        .icon_2{
+          background:url(../../assets/img/9_icon_order_grey.png)no-repeat;
+          background-size:24px 24px;
+        }
+        .icon_3{
+          background:url(../../assets/img/10_icon_me_grey.png)no-repeat;
+          background-size:24px 24px;
         }
       }
-      .item2{
-        &>a{
-
-          text-decoration: none;
-          &.active{
-            background-image: url("../../assets/img/9_icon_order_blue.png");
-            background-size:100% 100%;
-          }
+      .router-link-active{
+        .icon_1{
+          background:url(../../assets/img/8_icon_news_blue.png)no-repeat;
+          background-size:24px 24px;
+        }
+        .icon_2{
+          background:url(../../assets/img/9_icon_order_blue.png)no-repeat;
+          background-size:24px 24px;
+        }
+        .icon_3{
+          background:url(../../assets/img/10_icon_me_blue.png)no-repeat;
+          background-size:24px 24px;
         }
       }
-      .item3{
-        &>a{
 
-          text-decoration: none;
-          &.active{
-            background-image: url("../../assets/img/10_icon_me_blue.png");
-            background-size:100% 100%;
-          }
-        }
-      }
 
     }
     .tab-wrapper {

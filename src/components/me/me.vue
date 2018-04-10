@@ -29,7 +29,10 @@
     <div class="about">
       <div class="about1">
         <span class="about2" >关于</span>
-        <span class="icon" ><router-link to="/me/about"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></span>
+
+        <span class="icon" >
+
+          <router-link to="/me/about" v-if="showflag" @click="judge" ><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link><router-link  to="/me/about1"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></v-else></router-link></span>
       </div>
       <div class="thumb border-1px">
         <span class="thumb1">赞过的</span>
@@ -53,13 +56,20 @@
   import footer from '../footer/footer.vue'
 
     export default {
+
         data() {
             return {
-
+              showflag:false
             }
         },
       methods:{
-
+        judge(){
+          if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))){
+            this.showflag=true;
+          }else{
+            this.showflag=false;
+          }
+            }
       },
       components: {
         'v-footer': footer

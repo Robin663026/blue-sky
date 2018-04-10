@@ -12,8 +12,9 @@ import comments from './components/me/comments.vue'
 import message from './components/me/message/message.vue'
 import collects from './components/me/collects/collects.vue'
 import about from './components/me/about/about.vue'
+import about from './components/me/about/about1.vue'
 import editC from './components/me/collects/editC.vue'
-import search from './components/searcj/search.vue'
+import search from './components/search/search.vue'
 import detail from './components/news-detail/detail.vue'
 import de from './components/news-detail/de.vue'
 
@@ -50,6 +51,10 @@ let router =new VueRouter({
         path:'/me/about',
         component:about
      },{
+        path:'me/about1',
+        component:about1
+      },
+        {
         path:'/me/comments',
         component:comments
       },{

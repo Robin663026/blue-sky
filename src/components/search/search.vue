@@ -15,23 +15,14 @@
               </li>
             </ul>
           </div>
-          <div class="search-history" v-show="searchHistory.length">
-            <h1 class="title">
-              <span class="text">搜索历史</span>
-              <span @click="showConfirm" class="clear">
-                <i class="icon-clear"></i>
-              </span>
-            </h1>
-            <search-list @delete="deleteSearchHistory" @select="addQuery" :searches="searchHistory"></search-list>
-          </div>
         </div>
       </scroll>
     </div>
     <div class="search-result" v-show="query" ref="searchResult">
       <search-column @listScroll="blurInput" @select="saveSearch" ref="suggest":query="query"></search-column>
     </div>
-    <confirm ref="confirm" @confirm="clearSearchHistory"text="是否清空所有搜索历史" conformBtnText="清空"></confirm>
-    <router-view></router-view>
+
+
     <div class="noResult" v-if="emptyResult">
       <div class="icon"><img src="../../assets/img/55_load_fail.png" alt=""width="150" height="149"></div>
       <div class="text">无相关关键词文章</div>
@@ -42,9 +33,7 @@
 
 <script>
 
-import SearchBox from './search-box.vue'
-import SearchList from './search-list.vue'
-import SearchColumn from './search-column.vue'
+import Scroll from '../scroll/scroll.vue'
     export default {
       data() {
         return {
@@ -79,7 +68,8 @@ import SearchColumn from './search-column.vue'
       components:{
         SearchBox,
         SearchList,
-        SearchColumn
+        SearchColumn,
+        Scroll
       }
     }
 </script>
