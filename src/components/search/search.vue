@@ -2,27 +2,82 @@
   <div class="searchNews" >
     <header></header>
     <div class="search-line">
-     <search-box ref="searchBox"@query="onQueryChange"></search-box>
+      <div class="textV">
+        <input v-model='searchValue'type="search" placeholder="请输入关键字"  autofocus="autofocus">
+      </div>
+      <!--<div class="delete" ><router-link to="/news">取消</router-link>-->
+      <div class="delete" @click.prevent="searchTarget('')">搜索</div>
+
+
     </div>
-    <div ref="shortcutWrapper"class="shortcut-wrapper" v-show="!query">
-      <scroll :refreshDelay="refreshDelay" ref="shortcut" class="shortcut" :dta="shortcut">
-        <div>
-          <div class="hot-key">
-            <div class="title">热门搜索关键字</div>
-            <ul>
-              <li @click="addQuery(item.k)" class="item" v-for="item in hotKey">
-                <span>{{item.k}}</span>
-              </li>
-            </ul>
+    <div>
+      <div class="hot-key">
+        <div class="title">热门搜索关键字</div>
+        <ul>
+          <li @click="addQuery(item.k)" class="item" v-for="item in hotKey">
+            <span>{{item.k}}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="search-history" v-show="searchHistory.length">
+        <h1 class="title">
+          <span class="text">搜索历史</span>
+          <span @click="showConfirm" class="clear">
+                <i class="icon-clear"></i>
+              </span>
+        </h1>
+        <search-list @delete="deleteSearchHistory" @select="addQuery" :searches="searchHistory"></search-list>
+      </div>
+    </div>
+
+    <div class="searchResult" v-if="searchList.length>0">
+      <ul>
+        <li v-for="list in searchList">
+          <div v-if="list.image.position==='right'" class="title1 border-1px">
+            <div class="left">
+              <div class="row1">
+                <span>{{list.titile}}</span>
+              </div>
+              <div class="row2">
+            <span v-if="list.top===true" class="top" >
+              置顶
+            </span>
+                <span class="datetme">123</span>
+                <span class="source">{{list.source}}</span>
+                <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
+                <span class="comment" v-if="list.comments[0].count<=999">{{news.comments.count}}</span>
+                <span class="comment" v-else>999</span>
+                <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
+                <span class="like" v-if="list.comments.length.thumbUp<=999">{{news.comments.thumbUp}}</span>
+                <span class="like" v-else>999</span>
+              </div>
+            </div>
+            <div class="right">
+              <img :src="list.image.url" width="100" height="75">
+            </div>
           </div>
-        </div>
-      </scroll>
+          <div v-else class="title2 ">
+            <div class="top">
+              <span>{{list.titile}}</span>
+            </div>
+            <div class="middle"><img :src="list.image.url"width="345"height="135"></div>
+            <div class="bottom">
+            <span v-if="list.top===true" class="top" >
+              置顶
+            </span>
+              <span class="datetme">123</span>
+              <span class="source">123</span>
+              <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
+              <span class="comment" v-if="list.comments.count<=999">{{news.comments.count}}</span>
+              <span class="comment" v-else>999</span>
+              <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
+              <span class="like" v-if="list.comments.thumbUp<=999">{{news.comments.thumbUp}}</span>
+              <span class="like" v-else>999</span>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="search-result" v-show="query" ref="searchResult">
-      <search-column @listScroll="blurInput" @select="saveSearch" ref="suggest":query="query"></search-column>
-    </div>
-
-
     <div class="noResult" v-if="emptyResult">
       <div class="icon"><img src="../../assets/img/55_load_fail.png" alt=""width="150" height="149"></div>
       <div class="text">无相关关键词文章</div>
@@ -32,46 +87,59 @@
 </template>
 
 <script>
-
-import Scroll from '../scroll/scroll.vue'
-    export default {
-      data() {
-        return {
-          hotKey:[]
-        }
-      },
-      computed:{
-        shortcut(){
-          return this.hotKey.concat(this.searchHistory)
-        }
-      },
-
-      method:{
-
-      },
-      methods:{
-
-
-      },
-      mounted(){
-        this.news=this.$router.query.id;
-      },
-      watch:{
-        query(newQuery){
-          if(!newQuery){
-            setTimeout(()=>{
-              this.$refs.shortcut.refresh()
-            },20)
-          }
-        }
-      },
-      components:{
-        SearchBox,
-        SearchList,
-        SearchColumn,
-        Scroll
+ 
+  export default {
+    data() {
+      return {
+        searchValue:'',
+        emptyResult:false,
+        searchList:[],//搜索内容
+        news:[],
+        searchHistory: [],
       }
+    },
+    method:{
+
+    },
+    methods:{
+      async searchTarget(historyValue){
+        if (historyValue) {
+          this.searchValue = historyValue;
+        }else if (!this.searchValue) {
+          return
+        }
+        //隐藏历史记录
+        this.showHistory = false;
+        //获取搜索结果
+        this.searchList = await searchNews(this.news, this.searchValue);
+        this.emptyResult = !this.searchList.length;
+        /**
+         * 点击搜索结果进入下一页面时进行判断是否已经有一样的历史记录
+         * 如果没有则新增，如果有则不做重复储存，判断完成后进入下一页
+         */
+        let history = getStore('searchHistory');
+        if (history) {
+          let checkrepeat = false;
+          this.searchHistory = JSON.parse(history);
+          this.searchHistory.forEach(item => {
+            if (item == this.searchValue) {
+              checkrepeat = true;
+            }
+          })
+          if (!checkrepeat) {
+            this.searchHistory.push(this.searchValue)
+          }
+        }else {
+          this.searchHistory.push(this.searchValue)
+        }
+        setStore('searchHistory',this.searchHistory)
+      }
+
+    },
+    mounted(){
+      this.news=this.$router.query.id;
     }
+  }
 </script>
 
 <style lang="less">
@@ -87,7 +155,30 @@ import Scroll from '../scroll/scroll.vue'
       height:20px;
     }
     .search-line{
-      margin:0px;
+      height:45px;
+      width:100%;
+      padding:5px 10px;
+      .textV{
+        display:inline-block;
+        vertical-align:top;
+        width:300px;
+        background: #F1F3F5;
+        border-radius: 10px;
+        padding:10px 0px 10px 9px;
+        input{
+          width:100%;
+          height:100%;
+          background:#F1F3F5;
+        }
+      }
+      .delete{
+        display:inline-block;
+        vertical-align:top;
+        padding:10px 0 11px 16px;
+        font-family:PingFangSC-Regular;
+        font-size: 14px;
+        color: #333333;
+      }
     }
     .hot-key{
       height:276px;

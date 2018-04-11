@@ -1,8 +1,13 @@
 
 import Vue from 'vue'
+import Vuex from 'vuex'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import state from './assets/js/state'
+import mutations from './store/mutations'
+import * as actions from './store/actions'
+import * as getters from './store/getters'
 import news from './components/news/news.vue'
 import order from './components/order/order.vue'
 import me from './components/me/me.vue'
@@ -12,16 +17,17 @@ import comments from './components/me/comments.vue'
 import message from './components/me/message/message.vue'
 import collects from './components/me/collects/collects.vue'
 import about from './components/me/about/about.vue'
-import about from './components/me/about/about1.vue'
+import about1 from './components/me/about/about1.vue'
 import editC from './components/me/collects/editC.vue'
 import search from './components/search/search.vue'
 import detail from './components/news-detail/detail.vue'
 import de from './components/news-detail/de.vue'
-
+import createLogger from 'vuex/dist/logger'
 
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.use(Vuex)
 let router =new VueRouter({
   linkActiveClass:'active',
   mode:'history',
@@ -83,6 +89,13 @@ new Vue({
   router,
   render:h=>h(App)
 });
-
-
+const debug = process.env.NODE_ENV !== 'production'
+export default new Vuex.Store({
+  actions,
+  getters,
+  state,
+  mutations,
+  strict: debug,
+  plugins: debug ? [createLogger()] : []
+})
 

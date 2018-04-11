@@ -2,17 +2,17 @@
   <div class="bottomB border-1px">
     <div class="tab-image">
       <div class="tab-item ">
-        <router-link  to="/news">
+        <router-link  to="/news" class="tab-item1 ">
           <div class="icon_1"></div>
         </router-link>
       </div>
       <div class="tab-item ">
-        <router-link  to="/order">
-          <div class="icon_2"></div>
+        <router-link  to="/order" class="tab-item1">
+          <div class=" icon_2"></div>
         </router-link>
       </div>
       <div class="tab-item ">
-        <router-link  to="/me">
+        <router-link  to="/me" class="tab-item1 ">
           <div class="icon_3"></div>
         </router-link>
       </div>
@@ -51,34 +51,68 @@
       line-height: 24px;
       .tab-item {
         flex: 1;
+
         text-align: center;
-        .icon_1{
-          background:url(../../assets/img/8_icon_news_grey.png)no-repeat;
-          background-size:24px 24px;
+        .tab-item1{
+          display:inline-block;
+
+          width:90px;
+          height:30px;
+          .icon_1{
+            height:30px;
+            background:url(../../assets/img/8_icon_news_grey.png) no-repeat center center;
+
+            background-size:24px 24px;
+          }
+          .icon_2{
+            height:30px;
+            background:url(../../assets/img/9_icon_order_grey.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+          .icon_3{
+            height:30px;
+            background:url(../../assets/img/10_icon_me_grey.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+
         }
-        .icon_2{
-          background:url(../../assets/img/9_icon_order_grey.png)no-repeat;
-          background-size:24px 24px;
-        }
-        .icon_3{
-          background:url(../../assets/img/10_icon_me_grey.png)no-repeat;
-          background-size:24px 24px;
+
+        .router-link-exact-active{
+
+          .icon_1{
+            height:30px;
+            background:url(../../assets/img/8_icon_news_blue.png) no-repeat center center;
+
+            background-size:24px 24px;
+          }
+          .icon_2{
+            height:30px;
+            background:url(../../assets/img/9_icon_order_blue.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+          .icon_3{
+            height:30px;
+            background:url(../../assets/img/10_icon_me_blue.png) no-repeat center center;
+            background-size:24px 24px;
+          }
         }
       }
-      .router-link-active{
-        .icon_1{
-          background:url(../../assets/img/8_icon_news_blue.png)no-repeat;
-          background-size:24px 24px;
-        }
-        .icon_2{
-          background:url(../../assets/img/9_icon_order_blue.png)no-repeat;
-          background-size:24px 24px;
-        }
-        .icon_3{
-          background:url(../../assets/img/10_icon_me_blue.png)no-repeat;
-          background-size:24px 24px;
-        }
-      }
+
+        /*color: #d43d3d;*/
+        /*!*.icon_1{*!*/
+
+          /*!*background:  url(../../assets/img/8_icon_news_blue.png) no-repeat center center;*!*/
+          /*!*background-size:24px 24px;*!*/
+        /*!*}*!*/
+        /*!*.icon_2{*!*/
+          /*!*background:url(../../assets/img/9_icon_order_blue.png) no-repeat center center;*!*/
+          /*!*background-size:24px 24px;*!*/
+        /*!*}*!*/
+        /*!*.icon_3{*!*/
+          /*!*background:url(../../assets/img/10_icon_me_blue.png) no-repeat center center;*!*/
+          /*!*background-size:24px 24px;*!*/
+        /*!*}*!*/
+      /*}*/
 
 
     }

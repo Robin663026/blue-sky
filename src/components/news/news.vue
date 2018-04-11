@@ -185,7 +185,7 @@
     }
   }
   .news-list{
-    padding:0px 0 0 15px ;
+    padding:0px 15px 0 15px ;
     width:100%;
     height:551px;
     overflow:hidden;
@@ -193,11 +193,13 @@
     .title1{
       height:115px;
       width:100%;
+      display:flex;
       padding:20px 0;
       .border-1px(bc);
 
       .left{
         float:left;
+        flex:1;
         padding-right:18px;
         width:230px;
         .row1{
@@ -209,11 +211,13 @@
           line-height: 21px;
         }
         .row2{
+
           padding-top:22px;
           height:11px;
           display:inline-block;
           vertical-align:top;
           .top{
+
             padding-right:2px;
             font-family:PingFangSC-Regular;
             font-size: 8px;
@@ -227,11 +231,12 @@
             color: #A5A5A5;
           }
           .sour{
+            display:inline-block;
             width:45px;
             padding-right:10px;
             height:11px;
             overflow: hidden;
-            background:red;
+
             font-family:PingFangSC-Regular;
             font-size: 11px;
             color: #A5A5A5;
@@ -261,6 +266,7 @@
       }
       .right{
         float:left;
+        flex:0 0 100px;
 
       }
     }
@@ -268,6 +274,7 @@
       .border-1px(bc);
       height:220px;
       padding:20px 15px 20px 0;
+
       .top{
         height:16px;
         font-family: PingFangSC-Semibold;
@@ -276,6 +283,7 @@
         margin-bottom:5px;
       }
       .middle{
+        text-align:center;
         margin-bottom:7px;
       }
       .bottom{
@@ -297,9 +305,10 @@
           color: #A5A5A5;
         }
         .sour{
+          display:inline-block;
           width:45px;
           padding-right:10px;
-          background:blue;
+
           height:11px;
           overflow: hidden;
           font-family:PingFangSC-Regular;

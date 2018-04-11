@@ -80,6 +80,7 @@
 
 <style lang="less">
   @import '../../assets/css/border-1px';
+  @import '../../assets/css/common';
 .me{
   position:absolute;
   top: 0;
