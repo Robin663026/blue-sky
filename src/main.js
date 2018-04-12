@@ -1,13 +1,9 @@
 
-import Vue from 'vue'
-import Vuex from 'vuex'
+import store from './store'
 import App from './App.vue'
 import VueRouter from 'vue-router'
+import Vue from 'vue'
 import VueResource from 'vue-resource'
-import state from './assets/js/state'
-import mutations from './store/mutations'
-import * as actions from './store/actions'
-import * as getters from './store/getters'
 import news from './components/news/news.vue'
 import order from './components/order/order.vue'
 import me from './components/me/me.vue'
@@ -22,12 +18,18 @@ import editC from './components/me/collects/editC.vue'
 import search from './components/search/search.vue'
 import detail from './components/news-detail/detail.vue'
 import de from './components/news-detail/de.vue'
-import createLogger from 'vuex/dist/logger'
+
+import VueLazyLoad from 'vue-lazyload'
+import FastClick from 'fastclick'
+// FastClick.attach(document.body);
 
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
-Vue.use(Vuex)
+
+Vue.use(VueLazyLoad,{
+  loading:require('./assets/img/gif_loading.gif')
+})
 let router =new VueRouter({
   linkActiveClass:'active',
   mode:'history',
@@ -87,15 +89,7 @@ let router =new VueRouter({
 new Vue({
   el:'#app',
   router,
+  store,
   render:h=>h(App)
 });
-const debug = process.env.NODE_ENV !== 'production'
-export default new Vuex.Store({
-  actions,
-  getters,
-  state,
-  mutations,
-  strict: debug,
-  plugins: debug ? [createLogger()] : []
-})
 

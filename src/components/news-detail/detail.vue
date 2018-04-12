@@ -13,7 +13,7 @@
             <div class="time">{{time}}</div>
           </div>
         </span>
-        <span :class="getOrderClass(event)" @click="toggleOrder($event)"><span class="text2">订阅</span></span>
+        <span class="order"@click="addSubscribe"><span class="text2">订阅</span></span>
       </div>
       <div class="contents">
         <ul>
@@ -41,30 +41,28 @@
       </div>
     </div>
     <div class="seeComment" v-show="showComment">
-      <div class="backs "@click="hideComment"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height-16></div>
+      <div class="backs "@click="hideComment"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></div>
       <div class="commentCon border-1px">
         <div class="title">{{detail.titile}}</div>
         <div class="wrapper">
-
-
           <span class="time">{{detail.dateTme}}</span>
           <span class="top">{{detail.source}}</span>
         </div>
         <div class="num">全部评论（{{detail.comments.length}}）</div>
         <div class="detail1 border-1px " v-if="detail.comments.length>0" >
           <ul>
-            <li v-for="comments in detail.comments ">
+            <li v-for="cmt in detail.comments ">
               <div class="icon">
-                <img :src="comments.icon" alt=""width="27"height="27">
+                <img :src="cmt.icon" alt=""width="27"height="27">
               </div>
               <div class="content border-1px">
                 <div class="line1">
-                  <span class="name">{{comments.name}}</span>
-                  <span class="num">{{comments.thumbUp}}</span>
-                  <span class="thum" ><img src="../../assets/img/15_icon_26X26_good.png" alt=""width="13" height="13"></span>
+                  <span class="name">{{cmt.name}}</span>
+                  <span class="num">{{cmt.thumbUp}}</span>
+                  <span class="thum" @click="thum"><img src="../../assets/img/15_icon_26X26_good.png" alt=""width="13" height="13"></span>
                 </div>
-                <div class="text33">{{comments.text}}</div>
-                <div class="time">{{comments.dateTime}}</div>
+                <div class="text33">{{cmt.text}}</div>
+                <div class="time">{{cmt.dateTime}}</div>
               </div>
             </li>
           </ul>
@@ -118,8 +116,8 @@
 </template>
 
 <script>
-  import {mapGetters,mapMutations,mapActions} from 'vuex';
-
+  import {mapGetters,mapMutations,mapActions,mapState} from 'vuex';
+  import store from '../../store'
   let collects=[];
   export default {
     data() {
@@ -134,46 +132,110 @@
         text:'',
         uid:this.$route.query.id,
 
+
       };
     },
     props: {
     },
     methods:{
-      ...mapActions(['savefavoriteList','delfavoriteList']),
-      toggleOrder(news){
-        if(this._isOrder(news)){
-          this.delfavoriteList(news)
-        }else{
-          this.savefavoriteList(news)
-        }
-      },
-      _isOrder(news){
-        let index=this.favoriteList.findIndex((item)=>{
-          return news.id ===item.id
+
+      ...mapMutations(['ADD_SUBSCRIBE','REMOVE_SUBSCRIBE','ADD_COLLECTION','REMOVE_COLLECTION','ADD_THUM','REMOVE_THUM']),
+      addSubscribe () {
+        let id = this.$route.query.id;
+        let name=this.detail.titile;
+        let source=this.detail.source;
+        let time=this.time;
+        let img=this.detail.content.text;
+        let index = this.localSubscribe.findIndex(item => {
+          return item.id === id
         })
-        return index>-1
-      },
-      getOrderClass(news){
-        if(this._isOrder(news)){
-          return 'order'
-        }else{
-          return 'no-order'
+        if (index === -1) {
+          this.ADD_SUBSCRIBE({
+            id,
+            name,
+            img,
+            time,
+            source
+
+          })
+
+        } else {
+          this.REMOVE_SUBSCRIBE(id)
+
         }
+        console.log(this.localSubscribe);
+      },
+      thum(){
+//        let img=this.cmt.icon;
+        let name=this.cmt.name;
+        let text=this.cmt.text;
+        let index=this.localThum.findIndex(item=>{
+          return item.id ===id
+        })
+        if(index ===-1){
+          this.ADD_THUM({
+         //   img,
+            name,
+            text
+          })
+        }else{
+          this.REMOVE_THUM(img,name,text)
+        }
+        console.log(thos.localThum);
       },
 
+//      toggleOrder(news){
+//        if(this._isOrder(news)){
+//          this.deletecollectList(news)
+//        }else{
+//          this.savecollectList(news)
+//        }
+//      },
+//      _isOrder(news){
+//        let index=this.collectList.findIndex((item)=>{
+//          return news.id ===item.id
+//        })
+//        return index>-1
+//      },
+//      getOrderClass(news){
+//        if(this._isOrder(news)){
+//          return 'order'
+//        }else{
+//          return 'no-order'
+//        }
+//      },
+      collected(){
+        let id = this.$route.query.id;
+        let name=this.detail.titile;
+        let source=this.detail.source;
+        let time=this.time;
+        let img=this.detail.content.text;
+        let index = this.localCollection.findIndex(item => {
+          return item.id === id
+        })
+        if (index === -1) {
+          this.ADD_COLLECTION({
+            id,
+            name,
+            img,
+            time,
+            source
+
+          })
+
+        } else {
+          this.REMOVE_COLLECTION(id)
+
+        }
+        console.log(this.localCollection);
+      },
       seeComment(){
         this.showComment=true;
       },
       hideComment(){
         this.showComment=false;
       },
-      collected(){
-        if(!event._constructed){
-          return;
-        }
-        this.collectC='collect1';
-        collects.push(this.uid);
-      },
+
       shareIcon(){
         this.showIcon=true;
       },
@@ -197,7 +259,7 @@
       });
     },
     computed:{
-      ...mapGetters(['favoriteList']),
+      ...mapState(['localSubscribe','localCollection']),
       time(){
         let date=new Date();
         let year=date.getFullYear();
@@ -231,6 +293,17 @@
               }
             }
           }
+        }
+      }
+    },
+    watch:{
+      currentNews(newVal,oldVal){
+        console.log(this.currentNews);
+        if (!newVal.id) {
+          return
+        }
+        if (newVal.id === oldVal.id) {
+          return
         }
       }
     },
@@ -329,6 +402,7 @@
           width:53px;
           height:26px;
           text-align:center;
+          box-sizing:border-box;
           background:#008CFF;
           border:1px solid #fff;
           border-radius: 6px;
@@ -336,7 +410,7 @@
           &.active{
             background:#A5A5A5;
           }
-          text2{
+          .text2{
             font-family:PingFangSC-Semibold;
             font-size: 12px;
           }

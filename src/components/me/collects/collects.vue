@@ -6,7 +6,7 @@
     <span class="collects">收藏</span>
     <span class="history">历史</span>
     <span class="edit" ><router-link to="/me/collects/editC">编辑</router-link></span>
-    <div class="line"></div>
+    <span class="active" ref="active"></span>
   </div>
   <div class="content">
     <div  v-if="contents">
@@ -124,11 +124,15 @@
       font-size: 14px;
       color: #6F7379;
     }
-    .line{
+    .active{
+      display:inline-block;
       padding-right:151px;
       width:20px;
       height:4px;
       background: #A2A4A6;
+      left:0;
+      bottom:0;
+      transition:transform 0.6s ease;
     }
   }
   .contents{

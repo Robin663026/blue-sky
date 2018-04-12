@@ -7,7 +7,7 @@
   </div>
   <div class="news-list border-1px"  ref="newsColumn" >
     <ul >
-      <li   v-for="(news,index) in press" >
+      <li   v-for="(news,index) in press"  >
 
         <div v-if="news.image.position==='right'" class="title1 border-1px">
           <div class="left">
@@ -29,14 +29,14 @@
             </div>
           </div>
           <div class="right">
-            <router-link :to="{path:'/news/detail',query:{id:news.id}}"><img :src="news.image.url" width="100" height="75"></router-link>
+            <router-link :to="{path:'/news/detail',query:{id:news.id}}"><img v-lazy="news.image.url" width="100" height="75"></router-link>
           </div>
         </div>
         <div v-else class="title2 ">
           <div class="top">
             <router-link :to="{path:'/news/detail',query:{id:news.id}}"> <span>{{news.titile}}</span></router-link>
           </div>
-          <div class="middle"><router-link :to="{path:'/news/detail',query:{id:news.id}}"><img :src="news.image.url"width="345"height="135"></router-link></div>
+          <div class="middle"><router-link :to="{path:'/news/detail',query:{id:news.id}}"><img v-lazy="news.image.url"width="345"height="135"></router-link></div>
           <div class="bottom">
             <span v-if="news.top===true" class="top" >
               置顶

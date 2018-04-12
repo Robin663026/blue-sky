@@ -1,1 +1,4 @@
-export const favoriteList = state => state.favoriteList
+
+export const collection=state=>state.collection;
+
+
