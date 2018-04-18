@@ -1,5 +1,11 @@
 import * as types from './mutation-types'
 const mutations={
+  //获取文章
+  [types.GET_ARTICLE] (state, payload) {
+    for (let key in payload) {
+      state.article[key] = payload[key]
+    }
+  },
   //获取收藏
   [types.GET_COLLECTION](state,data){
     state.collection=data
@@ -51,6 +57,36 @@ const mutations={
     })
     state.localThum.splice(index2,1);
     localStorage.setItem('thu_collection',JSON.stringify(state.localThum))
+  },
+  // 记录从主页离开时的新闻类型
+  [types.LOG_TYPE] (state, type) {
+    state.type = type
+  },
+  // 保存网页离开时的位置
+  [types.SAVE_POSITION] (state, {name, position}) {
+    state.positions[name] = position
+  },
+  // 添加历史
+  [types.ADD_HISTORY] (state, content) {
+    const item = {
+      id: state.history.count++,
+      content
+    }
+    state.history.items.unshift(item)
+    localStorage.setItem('chan_history', JSON.stringify(state.history))
+  },
+  // 删除历史
+  [types.REMOVE_HISTORY] (state, id) {
+    let index = state.history.items.findIndex(item => {
+      return item.id === id
+    })
+    state.history.items.splice(index, 1)
+    localStorage.setItem('chan_history', JSON.stringify(state.history))
+  },
+  // 清空历史
+  [types.CLEAR_HISTORY] (state) {
+    state.history.items = []
+    localStorage.setItem('chan_history', JSON.stringify(state.history))
   }
 };
 export default mutations

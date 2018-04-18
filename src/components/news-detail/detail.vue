@@ -2,25 +2,26 @@
   <div  class="news" >
     <header></header>
     <div class="back "><router-link to="/news" ><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></div>
-    <div class="content border-1px">
-      <div class="title">{{detail.titile}}</div>
+    <div class="content border-1px" >
+      <div class="title">{{article.title}}</div>
       <div class="some">
         <span class="left"><img src="../../assets/img/35_img_54X54.png" width="27" height="27"></span>
         <span class="middle">
-          <div class="top">{{detail.source}}</div>
+          <div class="top">{{article.source}}</div>
           <div class="bot">
 
-            <div class="time">{{time}}</div>
+            <div class="time">{{article.time|dateFormat}}</div>
           </div>
         </span>
-        <span class="order"@click="addSubscribe"><span class="text2">订阅</span></span>
+        <span  @click="addSubscribe"  :class="{ 'order':true,'active':subscribeflag}"><span class="text2" >订阅</span></span>
       </div>
-      <div class="contents">
+      <div class="contents" >
+
         <ul>
-          <li v-for="content in detail.content">
-            <div class="h1" v-if="content.type='h1'">{{content.text}}</div>
-            <div class="p" v-else-if="content.type='p'">{{content.text}}</div>
-            <div class="image" v-else="content.type='image'">
+          <li v-for="content in article.content">
+            <div class="h1" v-if="content.type==='h1'">{{content.text}}</div>
+            <div class="p" v-else-if="content.type==='p'">{{content.text}}</div>
+            <div class="image" v-else="content.type==='image'">
               <img :src="content.text"width="345"height="235" >
             </div>
           </li>
@@ -35,41 +36,57 @@
       </div>
       <div class="right">
         <span class="comment"><img src="../../assets/img/13_comment.png" alt=""width="20"height="20"@click="seeComment"></span>
-        <span :class='[collectC]'><img src="../../assets/img/14_collect.png" alt=""width="20"height="20"@click="collected"></span>
+        <span class="collect" v-if="article.like==true"><img src="../../assets/img/14_collect.png" alt=""width="20"height="20"@click="collected"></span>
+        <span class="nocollect" v-else><img src="../../assets/img/14_collect2.png" alt=""width="20"height="20"@click="collected"></span>
         <span class="share"><img src="../../assets/img/13_share.png" alt=""width="20"height="20" @click="shareIcon"></span>
-        <div class="num">{{detail.comments.length}}</div>
+        <div class="num">{{article.comment.length}}</div>
       </div>
     </div>
     <div class="seeComment" v-show="showComment">
       <div class="backs "@click="hideComment"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></div>
       <div class="commentCon border-1px">
-        <div class="title">{{detail.titile}}</div>
+        <div class="title">{{article.title}}</div>
         <div class="wrapper">
-          <span class="time">{{detail.dateTme}}</span>
-          <span class="top">{{detail.source}}</span>
+          <span class="time">{{article.time|dateFormat}}</span>
+          <span class="top">{{article.source}}</span>
         </div>
-        <div class="num">全部评论（{{detail.comments.length}}）</div>
-        <div class="detail1 border-1px " v-if="detail.comments.length>0" >
-          <ul>
-            <li v-for="cmt in detail.comments ">
-              <div class="icon">
-                <img :src="cmt.icon" alt=""width="27"height="27">
-              </div>
-              <div class="content border-1px">
-                <div class="line1">
-                  <span class="name">{{cmt.name}}</span>
-                  <span class="num">{{cmt.thumbUp}}</span>
-                  <span class="thum" @click="thum"><img src="../../assets/img/15_icon_26X26_good.png" alt=""width="13" height="13"></span>
+        <div class="num">全部评论（{{article.comment.length}}）</div>
+        <div class="detail" v-if="article.comment.length>0">
+          <div class="detail1 border-1px "  >
+            <ul>
+              <li v-for="cmt in article.comment ">
+                <div class="icon">
+                  <img :src="cmt.icon" alt=""width="27"height="27">
                 </div>
-                <div class="text33">{{cmt.text}}</div>
-                <div class="time">{{cmt.dateTime}}</div>
-              </div>
-            </li>
-          </ul>
+                <div class="content border-1px">
+                  <div class="line1">
+                    <span class="name">{{cmt.name}}</span>
+                    <span class="num">{{cmt.thumbUp}}</span>
+                    <span class="thum" @click="thum"><img src="../../assets/img/15_icon_26X26_good.png" alt=""width="13" height="13"></span>
+                  </div>
+                  <div class="text33">{{cmt.text}}</div>
+                  <div class="time">{{cmt.dateTime|dateFormat}}</div>
+                </div>
+              </li>
+            </ul>
+
+          </div>
         </div>
         <div class="detail2" v-else>
           <img src="../../assets/img/56_no_comment.png" alt=""width="150"height="145">
           <div class="text44">暂无评论</div>
+        </div>
+        <div class="bottom">
+          <div class="left">
+            <span class="icon"><img src="../../assets/img/12_write_comment.png" alt=""width="20"height="20"></span>
+            <span class="write" @click="writeComment">写评论</span>
+          </div>
+          <div class="right">
+            <span class="comment"><img src="../../assets/img/17_backnews.png" alt=""width="20"height="20"@click="hideComment"></span>
+            <span class="back" @click="hideComment">正文</span>
+            <span class="share"><img src="../../assets/img/13_share.png" alt=""width="20"height="20" @click="shareIcon"></span>
+
+          </div>
         </div>
       </div>
     </div>
@@ -118,8 +135,15 @@
 <script>
   import {mapGetters,mapMutations,mapActions,mapState} from 'vuex';
   import store from '../../store'
+  import moment from 'moment'
+
   let collects=[];
   export default {
+    filters: {
+      dateFormat (time) {
+        return moment(time).startOf('mimute').fromNow()
+      }
+    },
     data() {
       return {
         detail:{
@@ -131,7 +155,7 @@
         showWrite:false,
         text:'',
         uid:this.$route.query.id,
-
+        subscribeflag:true
 
       };
     },
@@ -140,26 +164,33 @@
     methods:{
 
       ...mapMutations(['ADD_SUBSCRIBE','REMOVE_SUBSCRIBE','ADD_COLLECTION','REMOVE_COLLECTION','ADD_THUM','REMOVE_THUM']),
+      ...mapActions(['getArticle']),
       addSubscribe () {
-        let id = this.$route.query.id;
-        let name=this.detail.titile;
-        let source=this.detail.source;
-        let time=this.time;
-        let img=this.detail.content.text;
+        let id = this.article.id;
+        let title=this.article.title;
+        let source=this.article.source;
+        let time=this.article.time;
+        let img=this.article.content;
+        let comment=this.article.comment;
+        let lengthC=this.article.lengthC;
         let index = this.localSubscribe.findIndex(item => {
           return item.id === id
         })
         if (index === -1) {
+          this.subscribeflag=!this.subscribeflag;
           this.ADD_SUBSCRIBE({
             id,
-            name,
+            title,
             img,
             time,
-            source
+            source,
+            comment,
+            lengthC
 
           })
 
         } else {
+          this.subscribeflag=!this.subscribeflag;
           this.REMOVE_SUBSCRIBE(id)
 
         }
@@ -174,7 +205,7 @@
         })
         if(index ===-1){
           this.ADD_THUM({
-         //   img,
+            img,
             name,
             text
           })
@@ -183,47 +214,37 @@
         }
         console.log(thos.localThum);
       },
-
-//      toggleOrder(news){
-//        if(this._isOrder(news)){
-//          this.deletecollectList(news)
-//        }else{
-//          this.savecollectList(news)
-//        }
-//      },
-//      _isOrder(news){
-//        let index=this.collectList.findIndex((item)=>{
-//          return news.id ===item.id
-//        })
-//        return index>-1
-//      },
-//      getOrderClass(news){
-//        if(this._isOrder(news)){
-//          return 'order'
-//        }else{
-//          return 'no-order'
-//        }
-//      },
       collected(){
-        let id = this.$route.query.id;
-        let name=this.detail.titile;
-        let source=this.detail.source;
-        let time=this.time;
-        let img=this.detail.content.text;
+        let id = this.article.id;
+        let title=this.article.title;
+        let source=this.article.source;
+        let time=this.article.time;
+        let img=this.article.content;
+        let lengthC=this.article.lengthC;
+        let comment=this.article.comment;
+        let like=this.article.like;
+        let content=this.article.content;
         let index = this.localCollection.findIndex(item => {
           return item.id === id
-        })
+        });
         if (index === -1) {
+          this.article.like=!this.article.like;
           this.ADD_COLLECTION({
             id,
-            name,
+            title,
             img,
             time,
-            source
+            source,
+            like,
+            lengthC,
+            comment,
+            content
+
 
           })
 
         } else {
+          this.article.like=!this.article.like;
           this.REMOVE_COLLECTION(id)
 
         }
@@ -250,49 +271,25 @@
       }
     },
     created(){
-      var url='../../../static/date/'+this.uid+'.json';
-      this.$http.get(url).then((response)=>{
-        this.detail=response.data;
-        console.log(url)
-      },(response)=>{
-        console.log('服务器请求失败');
-      });
+      let id = this.$route.params.id
+      this.getArticle({id: id})
+    },
+    beforeRouteEnter(to,from,next){
+      const id=to.params.id;
+      if(!id)return false;
+      next(vm=>{
+        vm.getArticle({id})
+      })
     },
     computed:{
-      ...mapState(['localSubscribe','localCollection']),
-      time(){
-        let date=new Date();
-        let year=date.getFullYear();
-        let month=date.getMonth()+1;
-        let day=date.getDate();
-        let hour=date.getHours();
-        let minu=date.getMinutes();
-        let get="2017-12-22 11:20:56";
-        let year1=get.slice(0,4);
-        let month1=get.slice(5,7);
-        let day1=get.slice(8,10);
-        let hour1=get.slice(11,13);
-        let minu1=get.slice(14,16);
-        if(year-year1>0){
-          let a=year-year1;
-          return  a+"年前";
-        }else{
-          if(month-month1>0){
-            let b=month-month1;
-            return  {b}+"月前";
-          }else{
-            if(day-day1>0){
-              let c=day-day1;
-              return  c+"天前 ";
-            }else{
-              if(hour-hour1>0){
-                let d=hour-hour1;
-                return  d+"小时前 ";
-              }else{
-                return  `刚刚 `;
-              }
-            }
-          }
+      ...mapState(['localSubscribe','localCollection','article','ifReturnMsg','loading']),
+      text(){
+        let ex=/http/;
+        let result=ex.exec(this.article.content.text);
+        if(result.length===1){
+          return article.content.type==image;
+        }else {
+          return article.content.type=h1;
         }
       }
     },
@@ -308,7 +305,8 @@
       }
     },
     components:{
-    }
+    },
+
   }
 </script>
 <style lang="less">
@@ -339,7 +337,7 @@
     .content{
       padding:15px 15px 0 15px;
       height:551px;
-      overflow:hidden;
+      overflow:auto;
       .border-1px(bc);
       .title{
         height:52px;
@@ -369,7 +367,7 @@
             color: #333333;
             padding-top: 1px;
             padding-bottom: 3px;
-            width: 45px;
+            width: 65px;
             overflow: hidden;
             height: 12px;
           }
@@ -415,6 +413,27 @@
             font-size: 12px;
           }
         }
+        .active{
+          position:absolute;
+          top:9px;
+          right:15px;
+          width:53px;
+          height:26px;
+          text-align:center;
+          box-sizing:border-box;
+          background:orange;
+          border:1px solid #fff;
+          border-radius: 6px;
+          color: #ffffff;
+          &.active{
+            background:#A5A5A5;
+          }
+          .text2{
+            font-family:PingFangSC-Semibold;
+            font-size: 12px;
+          }
+
+        }
       }
     }
     .contents{
@@ -440,6 +459,7 @@
       }
     }
     .bottom{
+      display:flex;
       position:absolute;
       right:0px;
       bottom:0px;
@@ -447,6 +467,7 @@
       padding:10px;
       width:100%;
       .left{
+        flex:0 0 150px;
         float:left;
         background: #F1F3F5;
         border-radius: 50px;
@@ -472,6 +493,7 @@
         }
       }
       .right{
+        flex:1;
         position:relative;
         float:left;
         height:30px;
@@ -483,9 +505,9 @@
         .collect{
           padding:0px 5px 0px 5px;
         }
-        .collect1{
+        .nocollect{
           padding:0px 5px 0px 5px;
-          background-image:url("../../assets/img/14_collect2.png");
+
         }
         .share{
           padding:0px 5px 0px 5px;
@@ -539,79 +561,79 @@
         .wrapper{
           height:56px;
           padding:15px 0 30px 0;
-          .red{
-            padding-right:3px;
-            font-family:PingFangSC-Regular;
-            font-size: 8px;
-            color: #FF0000;
-            background: #FFFFFF;
-            border: 1px solid #FF0000;
-          }
           .time,.top{
             padding-right:5px;
             font-family: PingFangSC-Regular;
             font-size: 11px;
             color: #A5A5A5;
           }
+
         }
         .num{
           font-family: PingFangSC-Semibold;
           font-size: 13px;
           color: #333333;
         }
-        .detail1{
-          display:flex;
-          width:100%;
-          height:144px;
-          .border-1px(bc);
-          .icon{
-            float:left;
-            flex:0 0 49px;
-            width:49px;
-            padding:15px 7px 0 15px;
-          }
-          .content{
-            float:left;
-            flex:1;
-            .border-1px(bc);
-            padding:15px 0;
+        .detail{
+          height:410px;
+          overflow:auto;
+          .detail1{
+            display:flex;
+            width:100%;
             height:144px;
-            .line1{
-              padding-bottom:5px;
-              .name{
-                padding-right:180px;
-                font-family: PingFangSC-Semibold;
-                font-size: 13px;
-                color: #333333;
+            .border-1px(bc);
+            .icon{
+              float:left;
+              flex:0 0 49px;
+              width:49px;
+              padding:15px 7px 0 15px;
+            }
+            .content{
+              float:left;
+              flex:1;
+              .border-1px(bc);
+              padding:15px 0;
+              height:144px;
+              .line1{
+                padding-bottom:5px;
+                .name{
+                  padding-right:180px;
+                  font-family: PingFangSC-Semibold;
+                  font-size: 13px;
+                  color: #333333;
+                }
+                .num{
+                  padding-right:3px;
+                  font-family: PingFangSC-Regular;
+                  font-size: 13px;
+                  color: #6F7379;
+                }
+                .thum{
+                  padding-right:15px;
+                }
               }
-              .num{
-                padding-right:3px;
+              .text33{
+                height:75px;
                 font-family: PingFangSC-Regular;
-                font-size: 13px;
-                color: #6F7379;
+                font-size: 16px;
+                color: #333333;
+                letter-spacing: 0.35px;
+                line-height: 25px;
+                overflow:hidden;
               }
-              .thum{
-                padding-right:15px;
+              .time{
+                padding-top:4px;
+                font-family: PingFangSC-Regular;
+                font-size: 11px;
+                color: #A5A5A5;
               }
-            }
-            .text33{
-              height:75px;
-              font-family: PingFangSC-Regular;
-              font-size: 16px;
-              color: #333333;
-              letter-spacing: 0.35px;
-              line-height: 25px;
-              overflow:hidden;
-            }
-            .time{
-              padding-top:4px;
-              font-family: PingFangSC-Regular;
-              font-size: 11px;
-              color: #A5A5A5;
             }
           }
         }
+
         .detail2{
+          height:410px;
+          overflow:auto;
           padding-top:74px;
           text-align:center;
           text44{
@@ -619,6 +641,63 @@
             font-family: PingFangSC-Regular;
             font-size: 16px;
             color: #A5A5A5;
+          }
+        }
+        .bottom{
+          display:flex;
+          position:fixed;
+          right:0px;
+          bottom:0px;
+          height:50px;
+          padding:10px;
+          width:100%;
+          background:white;
+          .left{
+            flex:0 0 150px;
+            float:left;
+            background: #F1F3F5;
+            border-radius: 50px;
+            width:150px;
+            height:30px;
+            .icon{
+              display:inline-block;
+              vertical-align:top;
+              padding:5px 5px 5px 15px;
+            }
+            .write{
+              display:inline-block;
+              vertical-align:top;
+              padding:7px 0px 5px 0px;
+              font-family: PingFangSC-Regular;
+              font-size: 14px;
+              color: #A5A5A5;
+            }
+            .comment{
+              display:inline-block;
+              vertical-align:top;
+              padding:7px 0px 9px 5px;
+            }
+          }
+          .right{
+            flex:1;
+            position:relative;
+            float:left;
+            height:30px;
+            width:205px;
+            padding:5px 0px;
+            .comment{
+              padding:0px 5px 0px 100px;
+            }
+            .back{
+              padding:0 5px 0px 5px;
+              font-family: PingFangSC-Semibold;
+              font-size: 14px;
+              color: #008BFF;
+            }
+            .share{
+              padding:0px 5px 0px 5px;
+            }
+
           }
         }
       }

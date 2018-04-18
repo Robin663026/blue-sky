@@ -5,7 +5,6 @@
       <div class="textV">
         <input v-model='searchValue'type="search" placeholder="请输入关键字"  autofocus="autofocus">
       </div>
-      <!--<div class="delete" ><router-link to="/news">取消</router-link>-->
       <div class="delete" @click.prevent="searchTarget('')">搜索</div>
 
 

@@ -20,9 +20,12 @@
         <span class="icon"><router-link to="/me/message"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></span>
 
       </div>
-      <div class="module border-1px">
-        <span class="message">夜间模式</span>
-        <span class="icon"></span>
+      <div class="module border-1px" >
+        <div  class="message">夜间模式</div>
+        <div :class="{'white':true,'black':black}" @click="toggleModel">
+          <span class="left"></span>
+          <span class="right"></span>
+        </div>
       </div>
     </div>
     <div class="white1"></div>
@@ -30,9 +33,11 @@
       <div class="about1">
         <span class="about2" >关于</span>
 
-        <span class="icon" >
+        <span class="icon" @click="judge" >
 
-          <router-link to="/me/about" v-if="showflag" @click="judge" ><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link><router-link  to="/me/about1"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></v-else></router-link></span>
+          <router-link to="/me/about" v-if="showflag" ><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link>
+          <router-link  v-else to="/me/about1"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link>
+        </span>
       </div>
       <div class="thumb border-1px">
         <span class="thumb1">赞过的</span>
@@ -59,7 +64,8 @@
 
         data() {
             return {
-              showflag:false
+              showflag:false,
+              black:false
             }
         },
       methods:{
@@ -69,7 +75,16 @@
           }else{
             this.showflag=false;
           }
-            }
+        },
+        toggleModel(){
+          this.black=!this.black;
+        }
+      },
+//      created(){
+//          this.judge();
+//      },
+      mounted(){
+        this.judge();
       },
       components: {
         'v-footer': footer
@@ -157,10 +172,39 @@
         font-size: 14px;
         color: #333333;
       }
-      .icon{
+      .white{
         display:inline-block;
         vertical-align: top;
-        padding:0 236px 0 15px;
+        padding:0 225px 0 15px;
+        width:25px;
+        background: #A5A5A5;
+        border-radius: 9px;
+        .left{
+          display:inline-block;
+          vertical-align: top;
+          width:13px;
+        }
+        .right{
+          display:inline-block;
+          vertical-align: top;
+        }
+      }
+      .black{
+        display:inline-block;
+        vertical-align: top;
+        padding:0 225px 0 15px;
+        width:25px;
+        background: #4FD262;
+        border-radius: 9px;
+        .left{
+          display:inline-block;
+          vertical-align: top;
+
+        }
+        .right{
+          display:inline-block;
+          vertical-align: top;
+        }
       }
     }
   }

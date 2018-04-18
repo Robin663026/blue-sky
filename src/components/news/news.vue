@@ -7,18 +7,19 @@
   </div>
   <div class="news-list border-1px"  ref="newsColumn" >
     <ul >
-      <li   v-for="(news,index) in press"  >
-
+      <router-link v-for="(news,index) in press"
+      :key="index" :to="{path:'/detail/'+news.id}" tag="li" v-if="news.titile"
+      >
         <div v-if="news.image.position==='right'" class="title1 border-1px">
           <div class="left">
             <div class="row1">
-              <span><router-link :to="{path:'/news/detail',query:{id:news.id}}">{{news.titile}}</router-link></span>
+              <span>{{news.titile}}</span>
             </div>
             <div class="row2">
             <span v-if="news.top===true" class="top" >
               置顶
             </span>
-              <span class="datetme">{{time}}</span>
+              <span class="datetme">{{news.dateTme|dateFormat}}</span>
               <span class="sour">{{news.source}}</span>
               <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
               <span class="comment" v-if="news.comments[0].count<=999">{{news.comments[0].count}}</span>
@@ -29,19 +30,19 @@
             </div>
           </div>
           <div class="right">
-            <router-link :to="{path:'/news/detail',query:{id:news.id}}"><img v-lazy="news.image.url" width="100" height="75"></router-link>
+            <img v-lazy="news.image.url" width="100" height="75">
           </div>
         </div>
         <div v-else class="title2 ">
           <div class="top">
-            <router-link :to="{path:'/news/detail',query:{id:news.id}}"> <span>{{news.titile}}</span></router-link>
+             <span>{{news.titile}}</span>
           </div>
-          <div class="middle"><router-link :to="{path:'/news/detail',query:{id:news.id}}"><img v-lazy="news.image.url"width="345"height="135"></router-link></div>
+          <div class="middle"><img v-lazy="news.image.url"width="345"height="135"></div>
           <div class="bottom">
             <span v-if="news.top===true" class="top" >
               置顶
             </span>
-            <span class="datetme">{{time}}</span>
+            <span class="datetme">{{news.dateTme|dateFormat}}</span>
             <span class="sour">{{news.source}}</span>
             <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
             <span class="comment" v-if="news.comments[0].count<=999">{{news.comments[0].count}}</span>
@@ -51,7 +52,7 @@
             <span class="like" v-else>999</span>
           </div>
         </div>
-      </li>
+      </router-link>
     </ul>
 
 
@@ -68,11 +69,13 @@
 <script>
   const ERR_OK=0;
   import footer from '../footer/footer.vue'
-  import BScroll from 'better-scroll'
+  import moment from 'moment'
+  import axios from 'axios'
     export default {
       data() {
         return {
-          press:[]
+          press:[],
+          touchPosition:0
 
         }
       },
@@ -82,7 +85,7 @@
         }
       },
       created(){
-        this.$http.get('../../../static/date/newsList.json').then((response)=>{
+        axios.get('../../../static/date/newsList.json').then((response)=>{
           this.press=response.data;
         },(response)=>{
           console.log('服务器请求失败');
@@ -96,57 +99,20 @@
           this.selectedNews = news;
           this.$refs.news.show();
         },
-        _initScroll (){
-          this.newsScroll = new BScroll(this.$refs.newsColumn, {
-            click:true
-          })
-        },
-
-
       },
       computed:{
-        time(){
-          let date=new Date();
-          let year=date.getFullYear();
-          let month=date.getMonth()+1;
-          let day=date.getDate();
-          let hour=date.getHours();
-          let minu=date.getMinutes();
-          let get="2017-12-22 11:20:56";
-          let year1=get.slice(0,4);
-          let month1=get.slice(5,7);
-          let day1=get.slice(8,10);
-          let hour1=get.slice(11,13);
-          let minu1=get.slice(14,16);
-          if(year-year1>0){
-            let a=year-year1;
-            return  a+"年前";
-          }else{
-            if(month-month1>0){
-              let b=month-month1;
-              return  {b}+"月前";
-            }else{
-              if(day-day1>0){
-                let c=day-day1;
-                return  c+"天前 ";
-              }else{
-                if(hour-hour1>0){
-                  let d=hour-hour1;
-                  return  d+"小时前 ";
-                }else{
-                  return  `刚刚 `;
-                }
-              }
-            }
-          }
 
-        }
       },
-      filters:{
+      watch:{
 
       },
       components:{
         'v-footer':footer
+      },
+      filters: {
+        dateFormat (time) {
+          return moment(time).startOf('mimute').fromNow()
+        }
       }
     }
 </script>
@@ -159,7 +125,6 @@
   bottom:50px;
   left:0;
   width:100%;
-  height:667px;
   header{
     height:20px;
   }
@@ -188,7 +153,7 @@
     padding:0px 15px 0 15px ;
     width:100%;
     height:551px;
-    overflow:hidden;
+    overflow:auto;
     .border-1px(bc);
     .title1{
       height:115px;
@@ -232,7 +197,7 @@
           }
           .sour{
             display:inline-block;
-            width:45px;
+            width:65px;
             padding-right:10px;
             height:11px;
             overflow: hidden;
@@ -306,16 +271,13 @@
         }
         .sour{
           display:inline-block;
-          width:45px;
+          width:65px;
           padding-right:10px;
-
           height:11px;
           overflow: hidden;
           font-family:PingFangSC-Regular;
           font-size: 11px;
           color: #A5A5A5;
-          overflow: hidden;
-
         }
         .comments_img{
           padding-right:1px;

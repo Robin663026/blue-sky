@@ -7,17 +7,31 @@
     </div>
     <div class="news-list border-1px"  ref="newsColumn" >
       <ul  v-if="localSubscribe.length">
-        <li   v-for="(news,index) in localSubscribe"  >
-            <div class="title1 border-1px">
-              <div class="left">
-                <div class="row1">
-                  {{news.name}}
-                </div>
+        <router-link   v-for="(news,index) in localSubscribe"  :key="index" :to="{path:'/detail/'+news.id}" tag="li">
+          <div class="title1 border-1px">
+            <div class="left">
+              <div class="row1">
+                <span>{{news.title}}</span>
+              </div>
+              <div class="row2">
+                <span class="datetme">{{news.time|dateFormat}}</span>
+                <span class="sour">{{news.source}}</span>
+                <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
+                <span class="comment" v-if="news.lengthC<=999">{{news.lengthC}}</span>
+                <span class="comment" v-else>999</span>
+                <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
+                <span class="like" v-if="news.lengthC<=999">{{news.lengthC}}</span>
+                <span class="like" v-else>999</span>
               </div>
             </div>
+            <div class="right">
+              <img v-lazy='news.img[0].text' width="100" height="75">
+            </div>
+          </div>
 
 
-        </li>
+
+        </router-link>
       </ul>
       <div v-else>
         空空如也，快去收藏
@@ -26,7 +40,9 @@
     </div>
 
 
-
+    <keep-alive >
+      <router-view></router-view>
+    </keep-alive>
     <v-footer></v-footer>
 
 
@@ -38,26 +54,44 @@
   import footer from '../footer/footer.vue'
   import BScroll from 'better-scroll'
   import {mapState,mapMutations} from 'vuex'
+  import moment from 'moment'
   export default {
+
     data() {
       return {
-        press:[]
+        url:''
 
       }
     },
     props:{
-      news:{
-        type:Object
-      }
+
     },
     created(){
-      this.$http.get('../../../static/date/newsList.json').then((response)=>{
-        this.press=response.data;
-      },(response)=>{
-        console.log('服务器请求失败');
-      });
+      var that=this;
+      this.$nextTick(()=>{
+        that.getImage(that);
+      })
     },
     methods: {
+      getImage(){
+        for(let i=0;i<this.localSubscribe.length;i++){
+          for(let j=0;j<this.localSubscribe[i].img.length;j++){
+            if(this.localSubscribe[i].img[j].type=='image'){
+              if(j>0){
+                let temp;
+                temp=this.localSubscribe[i].img[0];
+                this.localSubscribe[i].img[0]=this.localSubscribe[i].img[j];
+                this.localSubscribe[i].img[j]=temp;
+              }else{
+                return
+              }
+
+
+            }
+          }
+
+        }
+      },
       ...mapMutations([
         'REMOVE_SUBSCRIBE'
       ]),
@@ -84,48 +118,15 @@
     },
     computed:{
       ...mapState(['subscribes','localSubscribe']),
-      time(){
-        let date=new Date();
-        let year=date.getFullYear();
-        let month=date.getMonth()+1;
-        let day=date.getDate();
-        let hour=date.getHours();
-        let minu=date.getMinutes();
-        let get="2017-12-22 11:20:56";
-        let year1=get.slice(0,4);
-        let month1=get.slice(5,7);
-        let day1=get.slice(8,10);
-        let hour1=get.slice(11,13);
-        let minu1=get.slice(14,16);
-        if(year-year1>0){
-          let a=year-year1;
-          return  a+"年前";
-        }else{
-          if(month-month1>0){
-            let b=month-month1;
-            return  {b}+"月前";
-          }else{
-            if(day-day1>0){
-              let c=day-day1;
-              return  c+"天前 ";
-            }else{
-              if(hour-hour1>0){
-                let d=hour-hour1;
-                return  d+"小时前 ";
-              }else{
-                return  `刚刚 `;
-              }
-            }
-          }
-        }
-
-      }
-    },
-    filters:{
 
     },
     components:{
       'v-footer':footer
+    },
+    filters: {
+      dateFormat (time) {
+        return moment(time).startOf('mimute').fromNow()
+      }
     }
   }
 </script>
@@ -167,7 +168,7 @@
       padding:0px 15px 0 15px ;
       width:100%;
       height:551px;
-      overflow:hidden;
+      overflow:auto;
       .border-1px(bc);
       .title1{
         height:115px;
@@ -211,7 +212,7 @@
             }
             .sour{
               display:inline-block;
-              width:45px;
+              width:65px;
               padding-right:10px;
               height:11px;
               overflow: hidden;

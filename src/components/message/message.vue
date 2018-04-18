@@ -2,12 +2,12 @@
   <div class="cmessage" >
     <header></header>
     <div class="wrapper">
-      <div class="icon"><router-link to="/me"><img src="../../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></div>
+      <div class="icon"><router-link to="/me"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></div>
       <div class="text">消息通知</div>
     </div>
     <div class="content">
       <div class="list">
-        <span class="icon"><img src="../../../assets/img/27-女头像.png" alt=""width="32" height="32"></span>
+        <span class="icon"><img src="../../assets/img/27-女头像.png" alt=""width="32" height="32"></span>
         <span class="middle">
             <div class="name">蓝小穹</div>
             <div class="message">欢迎使用蓝穹APP阅读时事金融新闻，一手掌握最新金融资讯</div>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import footer from '../../footer/footer.vue'
+  import footer from '../footer/footer.vue'
     export default {
         data() {
             return {}
