@@ -4,13 +4,14 @@ import news from './../components/news/news.vue'
 import order from './../components/order/order.vue'
 import me from './../components/me/me.vue'
 import comments from './../components/me/comments.vue'
-import message from './../components/message/message.vue'
-import collects from './../components/collects/collects.vue'
-import about from './../components/about/about.vue'
-import about1 from './../components/about/about1.vue'
-import editC from './../components/collects/editC.vue'
+import message from './../components/me/message.vue'
+import collects from './../components/me/collects.vue'
+import about from './../components/me/about.vue'
+import about1 from './../components/me/about1.vue'
+import editC from './../components/me/editC.vue'
 import search from './../components/search/search.vue'
 import detail from './../components/news-detail/detail.vue'
+import image from './../components/news-detail/image.vue'
 import store from '../store/index'
 import * as type from '../store/mutation-types'
 
@@ -65,6 +66,11 @@ let router =new Router({
       path:'/detail/:id',
       name:'detail',
       component:detail
+    },
+    {
+      path:'/image/:text',
+      name:'image',
+      component:image
     }
 
   ]

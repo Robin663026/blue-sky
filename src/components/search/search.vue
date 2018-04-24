@@ -143,15 +143,17 @@
 
 <style lang="less">
   @import '../../assets/css/border-1px';
+   @import '../../assets/css/common';
   .searchNews{
     position:absolute;
     top:0;
     left: 0;
     width:100%;
     height:667px;
-    background: #ffffff;
+    background: @bg;
     .header{
       height:20px;
+      background:rgba(0,0,0,0.00);
     }
     .search-line{
       height:45px;
@@ -161,13 +163,13 @@
         display:inline-block;
         vertical-align:top;
         width:300px;
-        background: #F1F3F5;
+        background: @input;
         border-radius: 10px;
         padding:10px 0px 10px 9px;
         input{
           width:100%;
           height:100%;
-          background:#F1F3F5;
+          background:@33;
         }
       }
       .delete{
@@ -176,7 +178,7 @@
         padding:10px 0 11px 16px;
         font-family:PingFangSC-Regular;
         font-size: 14px;
-        color: #333333;
+        color: @33;
       }
     }
     .hot-key{
@@ -186,7 +188,7 @@
         padding:15px 0px 10px 20px;
         ont-family:PingFangSC-Semibold;
         font-size: 14px;
-        color: #333333;
+        color: @33;
       }
       .place1{
         padding:0 0 15px 20px;
@@ -197,27 +199,27 @@
           vertical-align:top;
           width:77px;
           padding:8px 0;
-          background: #FFFFFF;
-          border: 1px solid #A5A5A5;
+          background: @bg;
+          border: 1px solid @light;
           border-radius: 100px;
 
           font-family:PingFangSC-Regular;
           font-size: 14px;
           text-align:center;
-          color: #A5A5A5;
+          color: @light;
         }
         .tip1{
           display:inline-block;
           vertical-align:top;
           width:105px;
           padding:8px 0;
-          background: #FFFFFF;
-          border: 1px solid #A5A5A5;
+          background: @bg;
+          border: 1px solid @light;
           border-radius: 100px;
           font-family:PingFangSC-Regular;
           font-size: 14px;
           text-align:center;
-          color: #A5A5A5;
+          color: @light;
         }
       }
       .place2{
@@ -230,13 +232,13 @@
           vertical-align:top;
           width:77px;
           padding:8px 0;
-          background: #FFFFFF;
-          border: 1px solid #A5A5A5;
+          background: @bg;
+          border: 1px solid @light;
           border-radius: 100px;
           font-family:PingFangSC-Regular;
           font-size: 14px;
           text-align:center;
-          color: #A5A5A5;
+          color: @light;
         }
       }
     }
@@ -246,7 +248,7 @@
       left:0;
       bottom:45px;
       width:100%;
-      background:#f7f7f7;
+      background:@bg;
       text-align:center;
       .icon{
         padding:150px 0 10px 0;
@@ -254,7 +256,7 @@
       .text{
         font-family: PingFangSC-Regular;
         font-size: 16px;
-        color: #A5A5A5;
+        color: @light;
       }
     }
     .searchResult{
@@ -266,7 +268,7 @@
         height:115px;
         width:100%;
         padding:20px 0;
-        .border-1px(bc);
+        .border-1px(@line);
 
         .left{
           float:left;
@@ -277,7 +279,7 @@
             overflow:hidden;
             font-family:PingFangSC-Semibold;
             font-size: 16px;
-            color: #333333;
+            color: @33;
             line-height: 21px;
           }
           .row2{
@@ -289,13 +291,13 @@
               padding-right:2px;
               font-family:PingFangSC-Regular;
               font-size: 8px;
-              color: #FF0000;
+              color: @red;
             }
             .datetme{
               padding-right:5px;
               font-family:PingFangSC-Regular;
               font-size: 11px;
-              color: #A5A5A5;
+              color: @light;
             }
             .source{
               padding-right:10px;
@@ -303,7 +305,7 @@
               overflow: hidden;
               font-family:PingFangSC-Regular;
               font-size: 11px;
-              color: #A5A5A5;
+              color: @light;
 
 
             }
@@ -314,7 +316,7 @@
               padding-right:12px;
               font-family: PingFangSC-Regular;
               font-size: 11px;
-              color: #A5A5A5;
+              color: @light;
             }
             .thumbUp{
               padding-right:1px;
@@ -323,7 +325,7 @@
               padding-right:12px;
               font-family: PingFangSC-Regular;
               font-size: 11px;
-              color: #A5A5A5;
+              color: @light;
             }
 
           }
@@ -334,14 +336,14 @@
         }
       }
       .title2 {
-        .border-1px(bc);
+        .border-1px(@line);
         height:220px;
         padding:20px 15px 20px 0;
         .top{
           height:16px;
           font-family: PingFangSC-Semibold;
           font-size: 16px;
-          color: #333333;
+          color: @33;
           margin-bottom:5px;
         }
         .middle{
@@ -355,20 +357,20 @@
             padding-right:2px;
             font-family:PingFangSC-Regular;
             font-size: 8px;
-            color: #FF0000;
+            color: @red;
           }
           .datetme{
             padding-right:5px;
             font-family:PingFangSC-Regular;
             font-size: 11px;
-            color: #A5A5A5;
+            color: @light;
           }
           .source{
             padding-right:10px;
             overflow: hidden;
             font-family:PingFangSC-Regular;
             font-size: 11px;
-            color: #A5A5A5;
+            color: @light;
             overflow: hidden;
             width:45px;
           }
@@ -379,7 +381,7 @@
             padding-right:12px;
             font-family: PingFangSC-Regular;
             font-size: 11px;
-            color: #A5A5A5;
+            color: @light;
           }
           .thumbUp{
             padding-right:1px;
@@ -388,7 +390,7 @@
             padding-right:12px;
             font-family: PingFangSC-Regular;
             font-size: 11px;
-            color: #A5A5A5;
+            color: @light;
           }
 
         }

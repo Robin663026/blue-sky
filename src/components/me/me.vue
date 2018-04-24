@@ -69,6 +69,14 @@
             }
         },
       methods:{
+        addDarkTheme(){
+          var link = document.createElement('link');
+          link.type = 'text/css';
+          link.id = "theme-css-dark";  // 加上id方便后面好查找到进行删除
+          link.rel = 'stylesheet';
+          link.href = '/css/nutzbs_dark.css';
+          document.getElementsByTagName("head")[0].appendChild(link);
+        },
         judge(){
           if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))){
             this.showflag=true;
@@ -103,9 +111,10 @@
   left:0;
   width:100%;
   height:667px;
-  background: #ffffff;
+  background: @bg;
   header{
     height:20px;
+    background:rgba(0,0,0,0.00);
   }
   .title{
     width:100%;
@@ -115,7 +124,7 @@
     .name{
       font-family: PingFangSC-Semibold;
       font-size: 16px;
-      color: #333333;
+      color: @33;
     }
 
   }
@@ -123,7 +132,7 @@
     padding:40px 0 105px 0;
     text-align:center;
     background-image:url('../../assets/img/22_img_login.png') ;
-    .border-1px(bc);
+    .border-1px(@line);
   }
   .collect{
     padding:1px 0 20px 0;
@@ -136,7 +145,7 @@
     .history{
       font-family:PingFangSC-Regular;
       font-size: 12px;
-      color: #333333;
+      color: @33;
     }
   }
   .model{
@@ -151,33 +160,33 @@
         vertical-align: top;
         font-family: PingFangSC-Regular;
         font-size: 14px;
-        color: #333333;
+        color: @33;
       }
       .icon{
         display:inline-block;
         vertical-align: top;
         padding:0 236px 0 15px;
         transform: rotate(180deg);
-        color:#A5A5A5;
+        color:@light;
       }
 
     }
     .module{
       font-size:0;
-      .border-1px(bc);
+      .border-1px(@line);
       .message{
         display:inline-block;
         vertical-align: top;
         font-family: PingFangSC-Regular;
         font-size: 14px;
-        color: #333333;
+        color: @33;
       }
       .white{
         display:inline-block;
         vertical-align: top;
         padding:0 225px 0 15px;
         width:25px;
-        background: #A5A5A5;
+        background: @light;
         border-radius: 9px;
         .left{
           display:inline-block;
@@ -211,7 +220,7 @@
   .white1{
     height:5px;
     width:100%;
-    background:#F1F3F5;
+    background:@input;
   }
   .about{
     height:137px;
@@ -226,48 +235,48 @@
         vertical-align: top;
         font-family: PingFangSC-Regular;
         font-size: 14px;
-        color: #333333;
+        color: @33;
       }
       .icon{
         display:inline-block;
         vertical-align: top;
         padding:0 265px 0 15px;
         transform: rotate(180deg);
-        color:#A5A5A5;
+        color:@light;
       }
     }
     .thumb{
       padding:15px 0 16px 0;
       width:100%;
       font-size:0;
-      .border-1px(bc);
+      .border-1px(@line);
       .thumb1{
         display:inline-block;
         vertical-align: top;
         font-family: PingFangSC-Regular;
         font-size: 14px;
-        color: #333333;
+        color: @33;
       }
       .icon{
         display:inline-block;
         vertical-align: top;
         padding:0 250px 0 15px;
         transform: rotate(180deg);
-        color:#A5A5A5;
+        color:@light;
       }
     }
     .now{
       font-size:0;
       padding:15px 0 16px 0;
       width:100%;
-      .border-1px(bc);
+      .border-1px(@line);
       .now1{
         display:inline-block;
         vertical-align: top;
         padding:0 233px 15px 0;
         font-family: PingFangSC-Regular;
         font-size: 14px;
-        color: #333333;
+        color: @33;
       }
       .now2{
         display:inline-block;
@@ -275,7 +284,7 @@
 
         font-family: PingFangSC-Regular;
         font-size: 14px;
-        color: #333333;
+        color: @33;
       }
     }
   }
@@ -283,7 +292,7 @@
   .white2{
     height:16px;
     width:100%;
-    background:#F1F3F5;
+    background:@input;
   }
 }
 </style>

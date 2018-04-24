@@ -1,21 +1,40 @@
 <template>
   <div class="main">
-    <div class="image">
-      <img src="" alt="" width="375" height="175">
+  照片
+    <!-- <div class="image" v-if="article.content.type==='image'">
+      <img :src='article.content.text'  width="375" height="175">
+    </div>
+    <div v-else>
+      没有照片
     </div>
     <div class="down">
       <span class="num"></span>
       <span class="icon"><img src="../../assets/img/33_save.png" alt=""width="21" height="21"></span>
-    </div>
+    </div> -->
 
   </div>
 </template>
 
 <script>
     export default {
-        data() {
-            return {}
+      data() {
+        return {
+          list:[]
         }
+      },
+      // props:{
+      //   ["article"]
+      // }
+      // computed:{
+      //   getimgList(){
+      //     console.log(1);
+      //     for(let i=0;i<this.article.content.length;i++){
+      //       if(this.article.content.type==='image'){
+      //         list.push(this.article.content.text);
+      //       }
+      //     }
+      //   }
+      // }
     }
 </script>
 
@@ -26,8 +45,8 @@
   left:0;
   width: 100%;
   height: 100%;
-  z-index:200;
-  background: #333333;
+  z-index:300;
+
   padding:492px 0;
   .down{
     position:absolute;

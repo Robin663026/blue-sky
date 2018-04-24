@@ -8,29 +8,7 @@
     <div class="news-list border-1px"  ref="newsColumn" >
       <ul  v-if="localSubscribe.length">
         <router-link   v-for="(news,index) in localSubscribe"  :key="index" :to="{path:'/detail/'+news.id}" tag="li">
-          <div class="title1 border-1px">
-            <div class="left">
-              <div class="row1">
-                <span>{{news.title}}</span>
-              </div>
-              <div class="row2">
-                <span class="datetme">{{news.time|dateFormat}}</span>
-                <span class="sour">{{news.source}}</span>
-                <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
-                <span class="comment" v-if="news.lengthC<=999">{{news.lengthC}}</span>
-                <span class="comment" v-else>999</span>
-                <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
-                <span class="like" v-if="news.lengthC<=999">{{news.lengthC}}</span>
-                <span class="like" v-else>999</span>
-              </div>
-            </div>
-            <div class="right">
-              <img v-lazy='news.img[0].text' width="100" height="75">
-            </div>
-          </div>
-
-
-
+          <newlist :news="news"></newlist>
         </router-link>
       </ul>
       <div v-else>
@@ -55,6 +33,7 @@
   import BScroll from 'better-scroll'
   import {mapState,mapMutations} from 'vuex'
   import moment from 'moment'
+  import newlist from './newList'
   export default {
 
     data() {
@@ -121,7 +100,8 @@
 
     },
     components:{
-      'v-footer':footer
+      'v-footer':footer,
+      'newlist':newlist
     },
     filters: {
       dateFormat (time) {
@@ -132,7 +112,7 @@
 </script>
 
 <style lang="less">
-  @import '../../assets/css/border-1px';
+   @import '../../assets/css/common';
   .news{
     position:absolute;
     top: 0px;
@@ -142,6 +122,7 @@
     height:667px;
     header{
       height:20px;
+      background:rgba(0,0,0,0.00);
     }
     .tab{
       position:relative;
@@ -155,7 +136,7 @@
         vertical-align:top;
         font-family: PingFangSC-Semibold;
         font-size: 16px;
-        color: #333333;
+        color: @33;
       }
       .search{
         display:inline-block;
@@ -169,158 +150,7 @@
       width:100%;
       height:551px;
       overflow:auto;
-      .border-1px(bc);
-      .title1{
-        height:115px;
-        width:100%;
-        display:flex;
-        padding:20px 0;
-        .border-1px(bc);
-
-        .left{
-          float:left;
-          flex:1;
-          padding-right:18px;
-          width:230px;
-          .row1{
-            height:42px;
-            overflow:hidden;
-            font-family:PingFangSC-Semibold;
-            font-size: 16px;
-            color: #333333;
-            line-height: 21px;
-          }
-          .row2{
-
-            padding-top:22px;
-            height:11px;
-            display:inline-block;
-            vertical-align:top;
-            .top{
-
-              padding-right:2px;
-              font-family:PingFangSC-Regular;
-              font-size: 8px;
-              color: #FF0000;
-            }
-            .datetme{
-              padding-right:5px;
-              width:45px;
-              font-family:PingFangSC-Regular;
-              font-size: 11px;
-              color: #A5A5A5;
-            }
-            .sour{
-              display:inline-block;
-              width:65px;
-              padding-right:10px;
-              height:11px;
-              overflow: hidden;
-
-              font-family:PingFangSC-Regular;
-              font-size: 11px;
-              color: #A5A5A5;
-
-
-            }
-            .comments_img{
-              padding-right:1px;
-            }
-            .comment{
-              padding-right:12px;
-              font-family: PingFangSC-Regular;
-              font-size: 11px;
-              color: #A5A5A5;
-            }
-            .thumbUp{
-              padding-right:1px;
-            }
-            .like{
-              padding-right:12px;
-              font-family: PingFangSC-Regular;
-              font-size: 11px;
-              color: #A5A5A5;
-            }
-
-          }
-        }
-        .right{
-          float:left;
-          flex:0 0 100px;
-
-        }
-      }
-      .title2 {
-        .border-1px(bc);
-        height:220px;
-        padding:20px 15px 20px 0;
-
-        .top{
-          height:16px;
-          font-family: PingFangSC-Semibold;
-          font-size: 16px;
-          color: #333333;
-          margin-bottom:5px;
-        }
-        .middle{
-          text-align:center;
-          margin-bottom:7px;
-        }
-        .bottom{
-
-          height:11px;
-          display:inline-block;
-          vertical-align:top;
-          font-size:0;
-          .top{
-            padding-right:2px;
-            font-family:PingFangSC-Regular;
-            font-size: 8px;
-            color: #FF0000;
-          }
-          .datetme{
-            padding-right:5px;
-            font-family:PingFangSC-Regular;
-            font-size: 11px;
-            color: #A5A5A5;
-          }
-          .sour{
-            display:inline-block;
-            width:45px;
-            padding-right:10px;
-
-            height:11px;
-            overflow: hidden;
-            font-family:PingFangSC-Regular;
-            font-size: 11px;
-            color: #A5A5A5;
-            overflow: hidden;
-
-          }
-          .comments_img{
-            padding-right:1px;
-          }
-          .comment{
-            padding-right:12px;
-            font-family: PingFangSC-Regular;
-            font-size: 11px;
-            color: #A5A5A5;
-          }
-          .thumbUp{
-            padding-right:1px;
-          }
-          .like{
-            padding-right:12px;
-            font-family: PingFangSC-Regular;
-            font-size: 11px;
-            color: #A5A5A5;
-          }
-
-        }
-
-
-      }
-
+      .border-1px(@line);
     }
 
   }

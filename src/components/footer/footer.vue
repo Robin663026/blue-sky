@@ -109,12 +109,12 @@
         flex: 1;
         text-align: center;
         font-size: 11px;
-        color: #A5A5A5;
+        color: @tab;
         font-family: PingFangSC-Regular;
         &>a {
           text-decoration: none;
           &.active {
-            color: #333333;
+            color: @tab1;
           }
         }
       }

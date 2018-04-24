@@ -1,7 +1,5 @@
 <template>
-<div class="ma">
-  这里是测
-</div>
+<div class="hea"></div>
 </template>
 
 <script>
@@ -13,12 +11,9 @@
 </script>
 
 <style lang="less">
-.ma{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background:red;
+@import '../../assets/css/common';
+.hea{
+	height:20px;
+	background:@bg1;
 }
 </style>

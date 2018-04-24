@@ -1,14 +1,28 @@
 import * as type from './mutation-types.js'
 import axios from 'axios'
 
-
-
 export default {
+  getNews({commit,state}){
+    state.loading=true
+    state.ifReturnMsg=true
+    axios.get('http://rap2api.taobao.org/app/mock/3894/data/newsList').then((response)=>{
+      state.loading=false
+      if(err||response.data.length===0){
+        state.ifReturnMsg=false
+        return false
+      }
+      state.ifReturnMsg=true
+      commit(type.GET_NEWSLIST),{
+        data:response.data.newsList
+      }
+    })
+  },
   getArticle({commit,state},payload){
     state.loading=true;
-    let url='../../../static/date/'+payload.id+'.json';
+    let id=payload.id;
+    let url='http://rap2api.taobao.org/app/mock/3894/data/detailList';
     axios.get(url).then((response)=>{
-      let data=response.data;
+      let data=response.data.detailList[payload.id-1];
       console.log(data);
       state.ifReturnMsg=true;
       commit(type.GET_ARTICLE, {
@@ -19,10 +33,8 @@ export default {
         time:data.dateTme,
         comment:data.comments,
         like:data.like,
-        // thumbUP:data.comments.thumbUP,
         lengthC:data.comments.length,
-        // image:data.image.url,
-        // position:data.image.position
+        
       })
     },(response)=>{
       console.log('服务器请求失败');
@@ -41,6 +53,22 @@ export default {
         keyword
       })
     })
+  },
+    // 获取更多新闻
+  getMoreNews ({commit, state}) {
+    state.loadmore = true
+    axios.get().then((response)=>{
+      if(err){
+        console.log(err)
+          state.ifReturnMore = false
+          return false
+      }
+      state.ifReturnMore = true
+        commit(type.GET_NEWSLIST, {
+          data: res.data
+        })
+    })
+   
   }
 }
 

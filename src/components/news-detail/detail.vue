@@ -16,18 +16,19 @@
         <span  @click="addSubscribe"  :class="{ 'order':true,'active':subscribeflag}"><span class="text2" >订阅</span></span>
       </div>
       <div class="contents" >
-
         <ul>
           <li v-for="content in article.content">
             <div class="h1" v-if="content.type==='h1'">{{content.text}}</div>
             <div class="p" v-else-if="content.type==='p'">{{content.text}}</div>
-            <div class="image" v-else="content.type==='image'">
-              <img :src="content.text"width="345"height="235" >
+            <div class="image"  v-else="content.type==='image'" >
+                <router-link :to="{path:'/image',query:{url:content.text}}">
+                 <img :src="content.text" width="345" height="235" >
+                 </router-link>
             </div>
+            
           </li>
         </ul>
       </div>
-
     </div>
     <div class="bottom">
       <div class="left">
@@ -52,17 +53,18 @@
         </div>
         <div class="num">全部评论（{{article.comment.length}}）</div>
         <div class="detail" v-if="article.comment.length>0">
-          <div class="detail1 border-1px "  >
+          <div class="one border-1px "  >
             <ul>
               <li v-for="cmt in article.comment ">
                 <div class="icon">
                   <img :src="cmt.icon" alt=""width="27"height="27">
                 </div>
-                <div class="content border-1px">
+                <div class="content33 border-1px">
                   <div class="line1">
                     <span class="name">{{cmt.name}}</span>
                     <span class="num">{{cmt.thumbUp}}</span>
-                    <span class="thum" @click="thum"><img src="../../assets/img/15_icon_26X26_good.png" alt=""width="13" height="13"></span>
+                    <span class="thum" @click="thum" v-if="thumb=true"><img src="../../assets/img/6_icon_good2.png" width="13" height="13"></span>
+                    <span class="thum" @click="thum" v-else><img src="../../assets/img/6_icon_good.png"width="13" height="13" ></span>
                   </div>
                   <div class="text33">{{cmt.text}}</div>
                   <div class="time">{{cmt.dateTime|dateFormat}}</div>
@@ -76,7 +78,7 @@
           <img src="../../assets/img/56_no_comment.png" alt=""width="150"height="145">
           <div class="text44">暂无评论</div>
         </div>
-        <div class="bottom">
+        <div class="bottom33">
           <div class="left">
             <span class="icon"><img src="../../assets/img/12_write_comment.png" alt=""width="20"height="20"></span>
             <span class="write" @click="writeComment">写评论</span>
@@ -90,45 +92,11 @@
         </div>
       </div>
     </div>
-    <div class="shareIcon" v-show="showIcon">
-      <div class="no"></div>
-      <div class="iconWrapper">
-        <div class="icon">
-          <div class="line1">
-            <span class="icon"><img src="../../assets/img/20_share_wechat2.png" alt=""width="40"height="40"></span>
-            <span class="icon"><img src="../../assets/img/19_share_wechat.png" alt=""width="40"height="40"></span>
-            <span class="icon"><img src="../../assets/img/21_share_sina.png" alt=""width="40"height="40"></span>
-          </div>
-          <div class="line2">
-            <span class="text1">微信</span>
-            <span class="text1">朋友圈</span>
-            <span class="text1">新浪微博</span>
-          </div>
-          <div class="line1">
-            <span class="icon"><img src="../../assets/img/18_share_qq.png" alt=""width="40"height="40"></span>
-            <span class="icon"></span>
-            <span class="icon"></span>
-          </div>
-          <div class="line2">
-            <span class="text1">QQ</span>
-            <span class="text1">敬请期待</span>
-            <span class="text1">敬请期待</span>
-          </div>
-          <div class="white"></div>
-        </div>
-        <div class="del border-1px"@click="hideIcon"><p>取消</p></div>
-      </div>
-    </div>
-    <div class="writeComment" v-show="showWrite">
-      <div class="no"></div>
-      <div class="content">
-        <div class="text123">
-          <input type="text" v-model="text" placeholder="写评论">
-        </div>
-        <div class="send" @click="closeComment"><button>发送</button></div>
-
-      </div>
-    </div>
+    <!-- <v-seeComment v-show="showComment" :showComment="showComment" :article="article" @on-comment="onComment"></v-seeComment> -->
+    <v-share v-show="showIcon" :showIcon="showIcon" @on-change="onChange"></v-share>
+    <v-writeComment v-show="showWrite" :showWrite="showWrite" @on-write="onWrite"></v-writeComment>
+   
+    <!-- <v-image v-bind:article='article'></v-image> -->
   </div>
 </template>
 
@@ -136,8 +104,10 @@
   import {mapGetters,mapMutations,mapActions,mapState} from 'vuex';
   import store from '../../store'
   import moment from 'moment'
-
-  let collects=[];
+  import image from './image'
+  import share from './share'
+  import seeComment from './seeComment'
+  import writeComment from './writeComment'
   export default {
     filters: {
       dateFormat (time) {
@@ -155,7 +125,9 @@
         showWrite:false,
         text:'',
         uid:this.$route.query.id,
-        subscribeflag:true
+        subscribeflag:true,
+        thumb:true,
+        list:[]
 
       };
     },
@@ -197,22 +169,8 @@
         console.log(this.localSubscribe);
       },
       thum(){
-//        let img=this.cmt.icon;
-        let name=this.cmt.name;
-        let text=this.cmt.text;
-        let index=this.localThum.findIndex(item=>{
-          return item.id ===id
-        })
-        if(index ===-1){
-          this.ADD_THUM({
-            img,
-            name,
-            text
-          })
-        }else{
-          this.REMOVE_THUM(img,name,text)
-        }
-        console.log(thos.localThum);
+        this.thumb=!this.thumb;
+
       },
       collected(){
         let id = this.article.id;
@@ -239,35 +197,40 @@
             lengthC,
             comment,
             content
-
-
           })
 
         } else {
           this.article.like=!this.article.like;
           this.REMOVE_COLLECTION(id)
-
         }
         console.log(this.localCollection);
       },
       seeComment(){
-        this.showComment=true;
+        this.showComment=!this.showComment;
       },
       hideComment(){
-        this.showComment=false;
+        this.showComment=!this.showComment;
       },
-
       shareIcon(){
-        this.showIcon=true;
+        this.showIcon=!this.showIcon;
       },
       hideIcon(){
-        this.showIcon=false;
+        this.showIcon=!this.showIcon;
+      },
+      onChange(val){
+        this.showIcon=val;
+      },
+      onWrite(val){
+        this.showWrite=val;
+      },
+      onComment(val){
+        this.showComment=val;
       },
       writeComment(){
-        this.showWrite=true;
+        this.showWrite=!this.showWrite;
       },
       closeComment(){
-        this.showWrite=false;
+        this.showWrite=!this.showWrite;
       }
     },
     created(){
@@ -283,15 +246,7 @@
     },
     computed:{
       ...mapState(['localSubscribe','localCollection','article','ifReturnMsg','loading']),
-      text(){
-        let ex=/http/;
-        let result=ex.exec(this.article.content.text);
-        if(result.length===1){
-          return article.content.type==image;
-        }else {
-          return article.content.type=h1;
-        }
-      }
+     
     },
     watch:{
       currentNews(newVal,oldVal){
@@ -305,6 +260,10 @@
       }
     },
     components:{
+      'v-image':image,
+      'v-share':share,
+      'v-seeComment':seeComment,
+      'v-writeComment':writeComment
     },
 
   }
@@ -320,9 +279,10 @@
     z-index:100;
     width:100%;
     height:667px;
-    background-color:white;
+    background-color:@bg;
     header{
       height:20px;
+      background:rgba(0,0,0,0.00);
     }
     .back{
       position:relative;
@@ -338,12 +298,12 @@
       padding:15px 15px 0 15px;
       height:551px;
       overflow:auto;
-      .border-1px(bc);
+      .border-1px(@line);
       .title{
         height:52px;
         font-family:PingFangSC-Semibold;
         font-size: 21px;
-        color: #333333;
+        color: @33;
         line-height: 26px;
       }
       .some{
@@ -364,7 +324,7 @@
           .top {
             font-family: PingFangSC-Semibold;
             font-size: 12px;
-            color: #333333;
+            color: @33;
             padding-top: 1px;
             padding-bottom: 3px;
             width: 65px;
@@ -389,7 +349,7 @@
               padding:1px 0;
               font-family:PingFangSC-Regular;
               font-size: 11px;
-              color: #A5A5A5;
+              color: @light;
             }
           }
         }
@@ -406,7 +366,7 @@
           border-radius: 6px;
           color: #ffffff;
           &.active{
-            background:#A5A5A5;
+            background:@light;
           }
           .text2{
             font-family:PingFangSC-Semibold;
@@ -426,7 +386,7 @@
           border-radius: 6px;
           color: #ffffff;
           &.active{
-            background:#A5A5A5;
+            background:@light;
           }
           .text2{
             font-family:PingFangSC-Semibold;
@@ -442,7 +402,7 @@
         padding-bottom:15px;
         font-family:PingFangSC-Regular;
         font-size: 16px;
-        color: #333333;
+        color: @33;
         line-height: 24px;
         letter-spacing:0.5px;
       }
@@ -450,7 +410,7 @@
         padding-bottom:15px;
         font-family:PingFangSC-Regular;
         font-size: 16px;
-        color: #333333;
+        color: @33;
         letter-spacing: 0.3px;
         line-height: 24px;
       }
@@ -484,7 +444,7 @@
           padding:7px 0px 5px 0px;
           font-family: PingFangSC-Regular;
           font-size: 14px;
-          color: #A5A5A5;
+          color: @light;
         }
         .comment{
           display:inline-block;
@@ -550,12 +510,12 @@
         padding:15px 15px 0 15px;
         height:551px;
         overflow:hidden;
-        .border-1px(bc);
+        .border-1px(@line);
         .title{
           height:52px;
           font-family:PingFangSC-Semibold;
           font-size: 21px;
-          color: #333333;
+          color: @33;
           line-height: 26px;
         }
         .wrapper{
@@ -565,58 +525,55 @@
             padding-right:5px;
             font-family: PingFangSC-Regular;
             font-size: 11px;
-            color: #A5A5A5;
+            color: @light;
           }
 
         }
         .num{
           font-family: PingFangSC-Semibold;
           font-size: 13px;
-          color: #333333;
+          color: @33;
         }
         .detail{
           height:410px;
           overflow:auto;
-          .detail1{
-            display:flex;
+          .one{
             width:100%;
             height:144px;
-            .border-1px(bc);
             .icon{
               float:left;
-              flex:0 0 49px;
-              width:49px;
-              padding:15px 7px 0 15px;
+              width:34px;
+              padding:15px 7px 0 0px;
             }
-            .content{
+            .content33{
               float:left;
-              flex:1;
-              .border-1px(bc);
+              .border-1px(@line);
               padding:15px 0;
               height:144px;
               .line1{
+                background:red;
                 padding-bottom:5px;
                 .name{
                   padding-right:180px;
                   font-family: PingFangSC-Semibold;
                   font-size: 13px;
-                  color: #333333;
+                  color: @33;
                 }
                 .num{
                   padding-right:3px;
                   font-family: PingFangSC-Regular;
                   font-size: 13px;
-                  color: #6F7379;
+                  color: @num;
                 }
                 .thum{
-                  padding-right:15px;
+                  padding-left:0px;
                 }
               }
               .text33{
                 height:75px;
                 font-family: PingFangSC-Regular;
                 font-size: 16px;
-                color: #333333;
+                color: @33;
                 letter-spacing: 0.35px;
                 line-height: 25px;
                 overflow:hidden;
@@ -625,7 +582,7 @@
                 padding-top:4px;
                 font-family: PingFangSC-Regular;
                 font-size: 11px;
-                color: #A5A5A5;
+                color: @light;
               }
             }
           }
@@ -640,10 +597,10 @@
             padding-top:16px;
             font-family: PingFangSC-Regular;
             font-size: 16px;
-            color: #A5A5A5;
+            color: @light;
           }
         }
-        .bottom{
+        .bottom33{
           display:flex;
           position:fixed;
           right:0px;
@@ -670,7 +627,7 @@
               padding:7px 0px 5px 0px;
               font-family: PingFangSC-Regular;
               font-size: 14px;
-              color: #A5A5A5;
+              color: @light;
             }
             .comment{
               display:inline-block;
@@ -702,107 +659,7 @@
         }
       }
     }
-    .writeComment{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:667px;
-      z-index:100;
-      background: rgba(0,0,0,0.50);
-      .no{
-        width:100%;
-        height:267px;
-      }
-      .content{
-        padding:15px 15px 7px 15px;
-        width:100%;
-        height:135px;
-        background: #ffffff;
-        .text123{
-          height:60px;
-          padding-bottom:15px;
-          width:100%;
-          input{
-            font-family: PingFangSC-Regular;
-            font-size: 16px;
-            color: #A5A5A5;
-            background:#F1F3F5;
-            width:100%;
-            height:100%;
-          }
-        }
-        .send{
-          background: #FFFFFF;
-          border: 1px solid #A5A5A5;
-          border-radius: 2px;
-          padding:10px 0 11px 0;
-          text-align:center;
-          button{
-            font-family: PingFangSC-Regular;
-            font-size: 16px;
-            color: #A5A5A5;
-          }
-        }
-      }
-    }
-    .shareIcon{
-      position:fixed;
-      top:0;
-      left:0;
-      z-index:100;
-      width:100%;
-      height:100%;
-      background:rgba(0,0,0,0.50);
-      padding:0 15px 14px 15px;
-      .no{
-        height:431px;
-      }
-      .iconWrapper{
-        width:100%;
-        height:221px;
-        background: #FFFFFF;
-        border-radius: 6px;
-        padding:0 10px;
-        .icon{
-          width:100%;
-          .line1{
-            padding:20px 28px 8px 29px;
-            display:flex;
-            text-align: center;
-            .icon{
-              flex:1;
-            }
-          }
-          .line2{
-            padding:0 28px 0 29px ;
-            display:flex;
-            text-align:center;
-            .text1{
-              flex:1;
-              font-family: PingFangSC-Regular;
-              font-size: 12px;
-              color: #888888;
-              letter-spacing: 0;
-            }
-          }
-          .white{
-            height:15px;
-            width:100%;
-          }
-        }
-        .del{
-          width:100%;
-          padding:15px 0 14px 0;
-          text-align:center;
-          .border-1px(bc);
-          p{
-            font-family: PingFangSC-Regular;
-            font-size: 16px;
-            color: #FF0000;
-          }
-        }
-      }
-    }
+  
+    
   }
 </style>

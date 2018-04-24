@@ -34,6 +34,7 @@
 </script>
 
 <style lang="less">
+ @import '../../assets/css/common';
   .cmessage{
     position:fixed;
     top:0;
@@ -41,10 +42,10 @@
     width:100%;
     height:667px;
     z-index:100;
-    background:#fff;
+    background:@bg;
     header{
       height:20px;
-
+      background:rgba(0,0,0,0.00);
     }
     .wrapper{
       position:relative;
@@ -55,7 +56,7 @@
       .text{
         font-family:PingFangSC-Semibold;
         font-size: 16px;
-        color: #333333;
+        color: @33;
       }
       .icon{
         position:absolute;
@@ -84,12 +85,12 @@
           .name{
             font-family:PingFangSC-Regular;
             font-size: 14px;
-            color: #333333;
+            color: @33;
           }
           .text{
             font-family:PingFangSC-Regular;
             font-size: 11px;
-            color: #888888;
+            color: @88;
           }
           .time{
             position:absolute;
@@ -97,7 +98,7 @@
             right:15px;
             font-family: PingFangSC-Regular;
             font-size: 11px;
-            color: #A5A5A5;
+            color: @light;
           }
         }
       }

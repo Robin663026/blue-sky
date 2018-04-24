@@ -9,6 +9,8 @@ Vue.use(Vuex);
 const state={
   loading:false,//loading图片的切换
   ifReturnMsg:'',//是否返回数据
+  loadmore:false,
+  ifReturnMore:true,
   subscribes:[],//订阅列表
   thums:[],//点赞列表
   collection:[],//收藏列表
@@ -41,7 +43,8 @@ const state={
     :[],
   positions:{},
   type:'',
-  ifReturnRefresh:false
+  ifReturnRefresh:false,
+  
 }
 
 export default new Vuex.Store({

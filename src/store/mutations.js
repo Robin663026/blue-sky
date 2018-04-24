@@ -87,6 +87,22 @@ const mutations={
   [types.CLEAR_HISTORY] (state) {
     state.history.items = []
     localStorage.setItem('chan_history', JSON.stringify(state.history))
+  },
+  //加载
+  [types.IF_LOADING](state,boolean){
+    state.loading=boolean
+  },
+  // 刷新消息
+  [types.REFRESH_NEWS] (state, payload) {
+    let type = payload.type
+    for (let item of payload.data) {
+      state.list[type].unshift(item)
+    }
+  },
+  // 刷新消息的数量
+  [types.REFRESH_LENGTH] (state, length) {
+    state.newsLength = length
+    state.ifReturnRefresh = true
   }
 };
 export default mutations

@@ -1,0 +1,280 @@
+<template>
+  <div class="collectDetail"  >
+    <header></header>
+    <div class="title1">
+      <span class="icon"><router-link to="/me"><img src="../../assets/img/4_icon_back.png" alt=""width="16" height="16"></router-link></span>
+      <span class=" collects "  @click="collect">收藏</span>
+      <span class=" history" @click="hist">历史</span>
+      <span class="edit " ><router-link to="/me/collects/editC">编辑</router-link></span>
+      <span class="actives" ref="active"></span>
+    </div>
+    <div class="collect-list" v-if="collection_tag==='collect'">
+      <ul class="collections" v-if="localCollection.length">
+        <li v-for="item in localCollection" :key="item.id" class="collection_item" @click="$router.push({path: '/detail/' + item.id})">
+          <div class="title2 border-1px">
+            <div class="left">
+              <div class="row1">
+                <span>{{item.title}}</span>
+              </div>
+              <div class="row2">
+                <span class="datetme">{{item.time|dateFormat}}</span>
+                <span class="sour">{{item.source}}</span>
+                <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
+                <span class="comment" v-if="item.lengthC<=999">{{item.lengthC}}</span>
+                <span class="comment" v-else>999</span>
+                <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
+                <span class="like" v-if="item.lengthC<=999">{{item.lengthC}}</span>
+                <span class="like" v-else>999</span>
+              </div>
+            </div>
+            <div class="right">
+              <img v-lazy="item.img[0].text" width="100" height="75">
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div v-else>
+        空空如也，快去收藏吧
+      </div>
+    </div>
+    <div class="history-list" v-else>
+      lalala
+    </div>
+
+  </div>
+</template>
+
+<script>
+  import {mapState,mapMutations} from 'vuex'
+  import moment from 'moment'
+  export default {
+    data() {
+      return {
+        collection_tag:'initial',
+        direction:'',
+        ifModel:false,
+        id:'',
+        contents:true
+      }
+    },
+    created(){
+      let that=this;
+      this.$nextTick(()=>{
+        that.getImage(that);
+      });
+      if(this.collection.length>0) return false;
+    },
+    methods:{
+      getImage(){
+        for(let i=0;i<this.localCollection.length;i++){
+          for(let j=0;j<this.localCollection[i].img.length;j++){
+            if(this.localCollection[i].img[j].type=='image'){
+              if(j>0){
+                let temp;
+                temp=this.localCollection[i].img[0];
+                this.localCollection[i].img[0]=this.localCollection[i].img[j];
+                this.localCollection[i].img[j]=temp;
+              }else{
+                return
+              }
+
+
+            }
+          }
+
+        }
+      },
+      ...mapMutations(['REMOVE_COLLECTION']),
+      //显示默认收藏标签
+      collect(){
+        this.collection_tag = 'collect'
+        this.direction = 'collection-right'
+        this.$refs.active.style.transform = 'translateX(0)'
+      },
+      // 显示历史标签
+      hist () {
+        this.collection_tag = 'hist'
+        this.direction = 'collection-left'
+        this.$refs.active.style.transform = 'translateX(2rem)'
+      },
+      // 弹出对话框选择是否删除收藏
+      removeCollection (id) {
+        this.ifModal = true
+        this.id = id
+      },
+      // 删除收藏
+      del () {
+        this.REMOVE_COLLECTION(this.id)
+        this.ifModal = false
+        this.$Message.success('删除成功')
+        this.id = ''
+      }
+    },
+    computed:{
+      ...mapState([
+        'collection',
+        'localCollection',
+        'positions'
+      ])
+    },
+    filters: {
+      dateFormat (time) {
+        return moment(time).startOf('mimute').fromNow()
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+  @import '../../assets/css/common';
+  .collectDetail{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: #ffffff;
+    .title1{
+      position:fixed;
+      top:0;
+      height:45px;
+      padding:15px 15px 14px 15px;
+      .icon{
+        display:inline-block;
+        vertical-align: top;
+        padding-right:113px;
+
+      }
+      .collects{
+        display:inline-block;
+        vertical-align: top;
+        padding-right:20px;
+        font-family: PingFangSC-Semibold;
+        font-size: 16px;
+        color: @blue;
+      }
+      .history{
+        display:inline-block;
+        vertical-align: top;
+        padding-right: 80px;
+        font-family: PingFangSC-Semibold;
+        font-size: 14px;
+        color: @light;
+      }
+      .edit{
+        display:inline-block;
+        vertical-align: top;
+        padding:1px 0px ;
+        font-family: PingFangSC-Semibold;
+        font-size: 14px;
+        color: @light;
+      }
+      .actives{
+        margin-left:145px;
+        display:inline-block;
+        width:20px;
+        height:4px;
+        background: @blue;
+        left:0;
+        bottom:0;
+        transition:transform 0.6s ease;
+
+      }
+    }
+    .collect-list{
+      width:100%;
+      .collections{
+        padding:15px 15px 0 15px;
+        .title2{
+          height:115px;
+          width:100%;
+          display:flex;
+          padding:20px 0;
+          .border-1px(@line);
+
+          .left{
+            float:left;
+            flex:1;
+            padding-right:18px;
+            width:230px;
+            .row1{
+              height:42px;
+              overflow:hidden;
+              font-family:PingFangSC-Semibold;
+              font-size: 16px;
+              color: @33;
+              line-height: 21px;
+            }
+            .row2{
+
+              padding-top:22px;
+              height:11px;
+              display:inline-block;
+              vertical-align:top;
+              .top{
+
+                padding-right:2px;
+                font-family:PingFangSC-Regular;
+                font-size: 8px;
+                color: @red;
+              }
+              .datetme{
+                padding-right:5px;
+                width:45px;
+                font-family:PingFangSC-Regular;
+                font-size: 11px;
+                color: @light;
+              }
+              .sour{
+                display:inline-block;
+                width:65px;
+                padding-right:10px;
+                height:11px;
+                overflow: hidden;
+
+                font-family:PingFangSC-Regular;
+                font-size: 11px;
+                color: @light;
+
+
+              }
+              .comments_img{
+                padding-right:1px;
+              }
+              .comment{
+                padding-right:12px;
+                font-family: PingFangSC-Regular;
+                font-size: 11px;
+                color: @light;
+              }
+              .thumbUp{
+                padding-right:1px;
+              }
+              .like{
+                padding-right:12px;
+                font-family: PingFangSC-Regular;
+                font-size: 11px;
+                color: @light;
+              }
+
+            }
+          }
+          .right{
+            float:left;
+            flex:0 0 100px;
+
+          }
+        }
+
+      }
+    }
+    .history-list{
+      margin-top:30px;
+      width:100%;
+      text-align:center;
+    }
+
+
+
+  }
+</style>

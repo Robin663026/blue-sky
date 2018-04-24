@@ -42,6 +42,7 @@
 </script>
 
 <style lang="less">
+ @import '../../assets/css/common';
 .commentsDetail{
 
   position:fixed;
@@ -49,10 +50,10 @@
   left:0;
   width:100%;
   height:667px;
-  background: #ffffff;
+  background: @bg;
   header{
     height:20px;
-    background:white;
+    background:rgba(0,0,0,0.00);
   }
   .title{
     position:relative;
@@ -71,7 +72,7 @@
       p{
         font-family: PingFangSC-Semibold;
         font-size: 16px;
-        color: #333333;
+        color: @33;
       }
     }
   }
@@ -94,13 +95,13 @@
         padding-top:15px;
         font-family: PingFangSC-Semibold;
         font-size: 13px;
-        color: #333333;
+        color: @33;
       }
       .text{
         padding-right:14px;
         font-family: PingFangSC-Regular;
         font-size: 16px;
-        color: #333333;
+        color: @33;
         letter-spacing: 0.35px;
         line-height: 25px;
       }
@@ -114,7 +115,7 @@
     p{
       font-family: PingFangSC-Regular;
       font-size: 14px;
-      color: #A5A5A5;
+      color: @light;
     }
   }
 

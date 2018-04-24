@@ -79,6 +79,7 @@
 </script>
 
 <style lang="less">
+@import '../../assets/css/common';
   .editCollect{
     position:fixed;
     top:0;
@@ -103,7 +104,7 @@
         padding-right:25px;
         font-family: PingFangSC-Semibold;
         font-size: 16px;
-        color: #008BFF;
+        color: @blue;
       }
       .history{
         flex:1;
@@ -112,7 +113,7 @@
         padding:1px 80px 1px 0px;
         font-family: PingFangSC-Semibold;
         font-size: 14px;
-        color: #A5A5A5;
+        color: @light;
       }
       .del{
         flex:0 0 25px;
@@ -121,13 +122,13 @@
         padding:1px 0px ;
         font-family: PingFangSC-Semibold;
         font-size: 14px;
-        color: #333;
+        color: @33;
       }
       .line{
         padding-right:151px;
         width:20px;
         height:4px;
-        background: #008BFF;
+        background: @blue;
       }
     }
   }

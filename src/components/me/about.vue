@@ -1,9 +1,9 @@
 <template>
-  <div class="pc-about"  >
-    <header></header>
+  <div class="mobile-about">
+   <header></header>
     <div class="heads">
       <span class="title">关于蓝穹</span>
-      <router-link to="/me"><img class="icon" src="../../assets/img/4_icon_back.png" width="16" height="16"></router-link>
+      <router-link to="/me"><img class="icon" src="../../assets/img/4_icon_back.png" width="16" height="16" ></router-link>
 
     </div>
     <div class="contents border-1px">
@@ -30,7 +30,7 @@
         <p class="line9">图片3</p>
         <p class="line10">招商局仁和人寿保险股份有限公司</p>
       </div>
-      <div class="image1">
+      <div class="image2">
         <img src="../../assets/img/32_img.png" alt=""width="345" height="218">
         <p class="line9">图片4</p>
         <p class="line10">招商局仁和人寿保险股份有限公司</p>
@@ -44,14 +44,14 @@
           更多联系方式
         </div>
         <div class="comp border-1px">
-          <div class="about">关于公司</div>
+          <div class="about11">关于公司</div>
           <div class="job">工作机会</div>
           <div class="lawyer">法律声明</div>
           <div class="response">企业责任</div>
           <div class="map">网站地图</div>
         </div>
         <div class="follow border-1px">
-          <div class="us"></div>
+          <div class="us">关注我们</div>
           <div class="icon">
             <span class="wechat"><img  src="../../assets/img/20_share_wechat2.png" alt=""width="20" height="20"></span>
             <span class="sina"><img src="../../assets/img/21_share_sina.png" alt=""width="20" height="20"></span>
@@ -63,164 +63,198 @@
 </template>
 
 <script>
+
     export default {
         data() {
             return {
 
             }
+        },
+      methods:{
+        created(){
+
         }
+      }
     }
 </script>
 
 <style lang="less">
   @import '../../assets/css/common';
-  .pc-about{
-    position:fixed;
-    bottom:0;
-    top:0;
-    left:0;
+.mobile-about{
+  position:fixed;
+  bottom:0;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:white;
+  overflow:auto;
+  z-index:200;
+  header{
+    height:20px;
+    background:rgba(0,0,0,0.00);
+  }
+  .heads{
+    height:45px;
     width:100%;
-    height:100%;
-    background:white;
-    overflow:auto;
-    z-index:200;
-    header{
-      height:20px;
+    position:relative;
+    text-align:center;
+    padding:0 0;
+    line-height:16px;
+    .title{
+      display:inline-block;
+      vertical-align:top;
+      font-family: PingFangSC-Semibold;
+      font-size: 16px;
+      color: @33;
     }
-    .heads{
-      height:45px;
-      width:100%;
-      position:relative;
-      text-align:center;
-      padding:0 0;
-      line-height:16px;
-      .title{
-        display:inline-block;
-        vertical-align:top;
-        font-family: PingFangSC-Semibold;
-        font-size: 16px;
-        color: #333333;
-      }
-      .icon{
-        display:inline-block;
-        vertical-align:top;
-        position:absolute;
-        top:15px;
-        left:15px;
-      }
+    .icon{
+      display:inline-block;
+      vertical-align:top;
+      position:absolute;
+      top:15px;
+      left:15px;
     }
-    .contents{
-      .border-1px(bc);
-      width:100%;
-      padding:13px 15px 40px 15px;
-      .line1,.line2{
-        padding-bottom:8px;
-        font-family: PingFangSC-Regular;
-        font-size: 12px;
-        color: #333333;
-      }
-      .line3{
-        padding:2px 0 4px 0;
-        font-family: PingFangSC-Semibold;
-        font-size: 12px;
-        color: #333333;
-      }
-      .line4,.line5,.line6,.line7{
-        padding-bottom:5px;
-        font-family: PingFangSC-Regular;
-        font-size: 12px;
-        color: #333333;
+  }
+  .contents{
+    .border-1px(@line);
+    width:100%;
+    padding:13px 15px 40px 15px;
+    .line1{
+      padding-bottom:8px;
+      font-family: PingFangSC-Regular;
+      font-size: 12px;
+      color: @33;
+    }
+    .line2{
+      text-indent: 1em;
+      padding-bottom:8px;
+      font-family: PingFangSC-Regular;
+      font-size: 12px;
+      color: @33;
+    }
+    .line3{
+      padding:2px 0 4px 0;
+      font-family: PingFangSC-Semibold;
+      font-size: 12px;
+      color: @33;
+    }
+    .line4,.line5,.line6,.line7{
+      padding-bottom:5px;
+      font-family: PingFangSC-Regular;
+      font-size: 12px;
+      color: @33;
 
+    }
+    .line8{
+      font-family: PingFangSC-Regular;
+      font-size: 12px;
+      color: @33;
+    }
+    .image1{
+      img{
+        padding:20px 0 15px 0;
       }
-      .line8{
+      .line9{
+        padding-bottom:10px;
         font-family: PingFangSC-Regular;
-        font-size: 12px;
-        color: #333333;
+        font-size: 21px;
+        color: @33;
       }
-      .image1{
-        img{
-          padding:20px 0 15px 0;
-        }
-        .line9{
-          padding-bottom:10px;
-          font-family: PingFangSC-Regular;
-          font-size: 21px;
-          color: #333333;
-        }
-        .line10{
-          font-family: PingFangSC-Regular;
-          font-size: 14px;
-          color: #333333;
-        }
+      .line10{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: @33;
       }
     }
-    .bottom{
-      background: #F1F3F5;
-      width:100%;
-      padding-left:15px;
-      .tel{
-        height:75px;
+    .image2{
+      padding-bottom:40px;
+      img{
         padding:20px 0 15px 0;
-        .con{
-          padding-bottom:11px;
-          font-family: PingFangSC-Semibold;
-          font-size: 15px;
-          color: #333333;
-        }
-        .num{
-          font-family: PingFangSC-Regular;
-          font-size: 14px;
-          color: #888888;
-        }
       }
-      .more{
-        height:45px;
-        .border-1px(bc);
-        padding:15px 0;
+      .line9{
+        padding-bottom:10px;
+        font-family: PingFangSC-Regular;
+        font-size: 21px;
+        color: @33;
+      }
+      .line10{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: @33;
+      }
+    }
+  }
+  .bottom{
+    position:absolute;
+    left:0;
+    right:0;
+    background: #F1F3F5;
+    width:100%;
+    padding-left:15px;
+    .tel{
+      height:75px;
+      padding:20px 0 15px 0;
+      .con{
+        padding-bottom:11px;
         font-family: PingFangSC-Semibold;
         font-size: 15px;
-        color: #333333;
+        color: @33;
       }
-      .comp{
-        height:145px;
-        padding:15px 0 4px 0;
-        .about{
-          padding-bottom:11px;
-          font-family: PingFangSC-Semibold;
-          font-size: 15px;
-          color: #333333;
-        }
-        .lawyer,.job,.response,.map{
-          padding-bottom:11px;
-          font-family: PingFangSC-Regular;
-          font-size: 14px;
-          color: #888888;
-        }
+      .num{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: @88;
+      }
+    }
+    .more{
+      height:45px;
+      .border-1px(@line);
+      padding:15px 0;
+      font-family: PingFangSC-Semibold;
+      font-size: 15px;
+      color: @33;
+    }
+    .comp{
+      height:145px;
+      padding:15px 0 4px 0;
+      .about11{
+        padding-bottom:11px;
+        font-family: PingFangSC-Semibold;
+        font-size: 15px;
+        color: @33;
+      }
+      .lawyer,.job,.response,.map{
+        padding-bottom:11px;
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: @88;
+      }
 
+    }
+    .follow{
+      height:79px;
+      padding:15px 0 18px 0;
+      .us{
+        padding-bottom:21px;
+        height:15px;
+        font-family: PingFangSC-Semibold;
+        font-size: 15px;
+        color: @33;
       }
-      .follow{
-        height:79px;
-        padding:15px 0 18px 0;
-        .us{
-          padding-bottom:11px;
-          height:15px;
-          font-family: PingFangSC-Semibold;
-          font-size: 15px;
-          color: #333333;
+      .icon{
+        height:20px;
+        .wechat{
+          display:inline-block;
+          vertical-align: top;
+          padding-right:10px;
         }
-        .icon{
-          height:20px;
-          .wechat{
-            display:inline-block;
-            vertical-align: top;
-            padding-right:10px;
-          }
-          .sina{
-            display:inline-block;
-            vertical-align: top;
-          }
+        .sina{
+          display:inline-block;
+          vertical-align: top;
         }
       }
     }
   }
+}
 </style>
