@@ -25,9 +25,9 @@ const state={
     comment:'',
     like:'',
     lengthC:'',
-    image:'',
-    thumbUP:'',
-    position:''
+    images:'',
+    position:'',
+    images:''
   },
   history:localStorage.getItem('chan_history')
     ?JSON.parse(localStorage.getItem('chan_history'))

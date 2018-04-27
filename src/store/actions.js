@@ -34,6 +34,7 @@ export default {
         comment:data.comments,
         like:data.like,
         lengthC:data.comments.length,
+        images:data.images
         
       })
     },(response)=>{

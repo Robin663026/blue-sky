@@ -155,7 +155,9 @@
     .message{
       padding:15px 0 16px 0;
       font-size:0;
+      display:flex;
       .message1{
+        flex:1;
         display:inline-block;
         vertical-align: top;
         font-family: PingFangSC-Regular;
@@ -163,6 +165,7 @@
         color: @33;
       }
       .icon{
+        flex:0 0 20px;
         display:inline-block;
         vertical-align: top;
         padding:0 236px 0 15px;
@@ -174,7 +177,9 @@
     .module{
       font-size:0;
       .border-1px(@line);
+      display:flex;
       .message{
+        flex:1;
         display:inline-block;
         vertical-align: top;
         font-family: PingFangSC-Regular;
@@ -182,6 +187,7 @@
         color: @33;
       }
       .white{
+        flex:0 0 20px;
         display:inline-block;
         vertical-align: top;
         padding:0 225px 0 15px;
@@ -199,6 +205,7 @@
         }
       }
       .black{
+        flex:0 0 20px;
         display:inline-block;
         vertical-align: top;
         padding:0 225px 0 15px;
@@ -226,11 +233,13 @@
     height:137px;
     width: 100%;
     padding-left:51px;
-
+    
     .about1{
+      display:flex;
       padding:15px 0 16px 0;
       font-size:0;
       .about2{
+        flex:1;
         display:inline-block;
         vertical-align: top;
         font-family: PingFangSC-Regular;
@@ -238,6 +247,7 @@
         color: @33;
       }
       .icon{
+        flex:0 0 20px;
         display:inline-block;
         vertical-align: top;
         padding:0 265px 0 15px;
@@ -249,8 +259,10 @@
       padding:15px 0 16px 0;
       width:100%;
       font-size:0;
+      display:flex;
       .border-1px(@line);
       .thumb1{
+        flex:1;
         display:inline-block;
         vertical-align: top;
         font-family: PingFangSC-Regular;
@@ -258,6 +270,7 @@
         color: @33;
       }
       .icon{
+        flex:0 0 20px;
         display:inline-block;
         vertical-align: top;
         padding:0 250px 0 15px;
@@ -270,20 +283,25 @@
       padding:15px 0 16px 0;
       width:100%;
       .border-1px(@line);
+      display:flex;
       .now1{
+        flex:1;
         display:inline-block;
         vertical-align: top;
         padding:0 233px 15px 0;
         font-family: PingFangSC-Regular;
         font-size: 14px;
+
         color: @33;
       }
       .now2{
+        flex: 0 0 20px;
+        text-align:center;
         display:inline-block;
         vertical-align: top;
-
         font-family: PingFangSC-Regular;
         font-size: 14px;
+        padding-right:15px;
         color: @33;
       }
     }

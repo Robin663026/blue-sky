@@ -167,6 +167,7 @@
     height:551px;
     overflow:auto;
     .border-1px(@line);
+    
 
 
   }

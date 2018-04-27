@@ -8,10 +8,10 @@ import message from './../components/me/message.vue'
 import collects from './../components/me/collects.vue'
 import about from './../components/me/about.vue'
 import about1 from './../components/me/about1.vue'
-import editC from './../components/me/editC.vue'
+import editCollects from './../components/me/editCollects.vue'
 import search from './../components/search/search.vue'
 import detail from './../components/news-detail/detail.vue'
-import image from './../components/news-detail/image.vue'
+
 import store from '../store/index'
 import * as type from '../store/mutation-types'
 
@@ -49,8 +49,8 @@ let router =new Router({
           path:'/me/collects',
           component:collects,
           children:[{
-            path:'/me/collects/eidtC',
-            component:editC
+            path:'/me/collects/eidtCollects',
+            component:editCollects
           }]
         },{
           path:'/me/message',
@@ -66,11 +66,6 @@ let router =new Router({
       path:'/detail/:id',
       name:'detail',
       component:detail
-    },
-    {
-      path:'/image/:text',
-      name:'image',
-      component:image
     }
 
   ]

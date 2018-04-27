@@ -3,6 +3,7 @@
     <keep-alive >
       <router-view></router-view>
     </keep-alive>
+    <lg-preview></lg-preview>
 
 
 
@@ -21,12 +22,12 @@ export default{
 
   },
   created(){
-    this.$http.get('/api/news').then((response)=>{
-      response=response.body;
-      if(response.errno===ERR_OK){
-        this.news=response.data;
-      }
-    });
+    // this.$http.get('/api/news').then((response)=>{
+    //   response=response.body;
+    //   if(response.errno===ERR_OK){
+    //     this.news=response.data;
+    //   }
+    // });
   }
 }
 </script>

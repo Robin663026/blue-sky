@@ -1,16 +1,16 @@
 <template>
   <div class="collectDetail"  >
     <header></header>
-    <div class="title1">
+    <div class="cotitle1">
       <span class="icon"><router-link to="/me"><img src="../../assets/img/4_icon_back.png" alt=""width="16" height="16"></router-link></span>
-      <span class=" collects "  @click="collect">收藏</span>
-      <span class=" history" @click="hist">历史</span>
-      <span class="edit " ><router-link to="/me/collects/editC">编辑</router-link></span>
+      <span class=" collects "  @click.stop="collect">收藏</span>
+      <span class=" history" @click.stop="hist">历史</span>
+      <span class="edit" ><router-link to="/me/collects/eidtCollects">编辑</router-link></span>
       <span class="actives" ref="active"></span>
     </div>
-    <div class="collect-list" v-if="collection_tag==='collect'">
+    <div class="collect-list border-1px" v-if="collection_tag==='collect'">
       <ul class="collections" v-if="localCollection.length">
-        <li v-for="item in localCollection" :key="item.id" class="collection_item" @click="$router.push({path: '/detail/' + item.id})">
+        <li v-for="item in localCollection" :key="item.id" class="collection_item" @click.stop="$router.push({path: '/detail/' + item.id})">
           <div class="title2 border-1px">
             <div class="left">
               <div class="row1">
@@ -19,16 +19,10 @@
               <div class="row2">
                 <span class="datetme">{{item.time|dateFormat}}</span>
                 <span class="sour">{{item.source}}</span>
-                <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
-                <span class="comment" v-if="item.lengthC<=999">{{item.lengthC}}</span>
-                <span class="comment" v-else>999</span>
-                <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
-                <span class="like" v-if="item.lengthC<=999">{{item.lengthC}}</span>
-                <span class="like" v-else>999</span>
               </div>
             </div>
             <div class="right">
-              <img v-lazy="item.img[0].text" width="100" height="75">
+              <img v-lazy="item.images" width="100" height="75">
             </div>
           </div>
         </li>
@@ -40,13 +34,17 @@
     <div class="history-list" v-else>
       lalala
     </div>
-
+    <keep-alive >
+      <router-view></router-view>
+    </keep-alive>
   </div>
+
 </template>
 
 <script>
   import {mapState,mapMutations} from 'vuex'
   import moment from 'moment'
+
   export default {
     data() {
       return {
@@ -55,35 +53,36 @@
         ifModel:false,
         id:'',
         contents:true
+      
       }
     },
     created(){
-      let that=this;
-      this.$nextTick(()=>{
-        that.getImage(that);
-      });
-      if(this.collection.length>0) return false;
+      // let that=this;
+      // this.$nextTick(()=>{
+      //   that.getImage(that);
+      // });
+      // if(this.collection.length>0) return false;
     },
     methods:{
-      getImage(){
-        for(let i=0;i<this.localCollection.length;i++){
-          for(let j=0;j<this.localCollection[i].img.length;j++){
-            if(this.localCollection[i].img[j].type=='image'){
-              if(j>0){
-                let temp;
-                temp=this.localCollection[i].img[0];
-                this.localCollection[i].img[0]=this.localCollection[i].img[j];
-                this.localCollection[i].img[j]=temp;
-              }else{
-                return
-              }
+      // getImage(){
+      //   for(let i=0;i<this.localCollection.length;i++){
+      //     for(let j=0;j<this.localCollection[i].img.length;j++){
+      //       if(this.localCollection[i].img[j].type=='image'){
+      //         if(j>0){
+      //           let temp;
+      //           temp=this.localCollection[i].img[0];
+      //           this.localCollection[i].img[0]=this.localCollection[i].img[j];
+      //           this.localCollection[i].img[j]=temp;
+      //         }else{
+      //           return
+      //         }
 
 
-            }
-          }
+      //       }
+      //     }
 
-        }
-      },
+      //   }
+      // },
       ...mapMutations(['REMOVE_COLLECTION']),
       //显示默认收藏标签
       collect(){
@@ -102,6 +101,7 @@
         this.ifModal = true
         this.id = id
       },
+    
       // 删除收藏
       del () {
         this.REMOVE_COLLECTION(this.id)
@@ -133,12 +133,16 @@
     left:0;
     width:100%;
     height:100%;
-    background: #ffffff;
-    .title1{
-      position:fixed;
-      top:0;
+    background: @bg;
+    .header{
+      width:100%;
+      height:20px;
+      background:@bg1;
+    }
+    .cotitle1{
       height:45px;
       padding:15px 15px 14px 15px;
+
       .icon{
         display:inline-block;
         vertical-align: top;
@@ -170,21 +174,24 @@
         color: @light;
       }
       .actives{
-        margin-left:145px;
+        margin-left:135px;
         display:inline-block;
-        width:20px;
+        width:25px;
         height:4px;
         background: @blue;
         left:0;
         bottom:0;
-        transition:transform 0.6s ease;
+        transition:transform 0.8s ease;
+
 
       }
     }
     .collect-list{
       width:100%;
+      
       .collections{
-        padding:15px 15px 0 15px;
+        padding:15px 0px 0 15px;
+
         .title2{
           height:115px;
           width:100%;
@@ -206,7 +213,6 @@
               line-height: 21px;
             }
             .row2{
-
               padding-top:22px;
               height:11px;
               display:inline-block;
@@ -235,33 +241,15 @@
                 font-family:PingFangSC-Regular;
                 font-size: 11px;
                 color: @light;
-
-
               }
-              .comments_img{
-                padding-right:1px;
-              }
-              .comment{
-                padding-right:12px;
-                font-family: PingFangSC-Regular;
-                font-size: 11px;
-                color: @light;
-              }
-              .thumbUp{
-                padding-right:1px;
-              }
-              .like{
-                padding-right:12px;
-                font-family: PingFangSC-Regular;
-                font-size: 11px;
-                color: @light;
-              }
+              
 
             }
           }
           .right{
             float:left;
             flex:0 0 100px;
+            padding-right:15px;
 
           }
         }

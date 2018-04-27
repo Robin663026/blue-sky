@@ -40,6 +40,7 @@
         methods:{
           hideIcon(){
             this.showIcon=!this.showIcon;
+     
           }
         },
         watch:{

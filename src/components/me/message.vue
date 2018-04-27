@@ -68,17 +68,20 @@
       height:600px;
       width:100%;
       .list{
+        display:flex;
         position:relative;
         height:71px;
         width:100%;
         padding:10px 15px;
         .icon{
+          flex:0 0 47px;
           display:inline-block;
           vertical-align: top;
           padding:0 0px 17px 0;
           width:47px;
         }
         .middle{
+          flex:1;
           display:inline-block;
           vertical-align: top;
           width:285px;

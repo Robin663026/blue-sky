@@ -8,10 +8,10 @@
     <div class="news-list border-1px"  ref="newsColumn" >
       <ul  v-if="localSubscribe.length">
         <router-link   v-for="(news,index) in localSubscribe"  :key="index" :to="{path:'/detail/'+news.id}" tag="li">
-          <newlist :news="news"></newlist>
+          <v-newlist :news="news"></v-newlist>
         </router-link>
       </ul>
-      <div v-else>
+      <div class="nonono"v-else>
         空空如也，快去收藏
       </div>
 
@@ -33,7 +33,7 @@
   import BScroll from 'better-scroll'
   import {mapState,mapMutations} from 'vuex'
   import moment from 'moment'
-  import newlist from './newList'
+  import newlist from './newlist'
   export default {
 
     data() {
@@ -46,31 +46,31 @@
 
     },
     created(){
-      var that=this;
-      this.$nextTick(()=>{
-        that.getImage(that);
-      })
+      // var that=this;
+      // this.$nextTick(()=>{
+      //   that.getImage(that);
+      // })
     },
     methods: {
-      getImage(){
-        for(let i=0;i<this.localSubscribe.length;i++){
-          for(let j=0;j<this.localSubscribe[i].img.length;j++){
-            if(this.localSubscribe[i].img[j].type=='image'){
-              if(j>0){
-                let temp;
-                temp=this.localSubscribe[i].img[0];
-                this.localSubscribe[i].img[0]=this.localSubscribe[i].img[j];
-                this.localSubscribe[i].img[j]=temp;
-              }else{
-                return
-              }
+      // getImage(){
+      //   for(let i=0;i<this.localSubscribe.length;i++){
+      //     for(let j=0;j<this.localSubscribe[i].img.length;j++){
+      //       if(this.localSubscribe[i].img[j].type=='image'){
+      //         if(j>0){
+      //           let temp;
+      //           temp=this.localSubscribe[i].img[0];
+      //           this.localSubscribe[i].img[0]=this.localSubscribe[i].img[j];
+      //           this.localSubscribe[i].img[j]=temp;
+      //         }else{
+      //           return
+      //         }
 
 
-            }
-          }
+      //       }
+      //     }
 
-        }
-      },
+      //   }
+      // },
       ...mapMutations([
         'REMOVE_SUBSCRIBE'
       ]),
@@ -101,7 +101,7 @@
     },
     components:{
       'v-footer':footer,
-      'newlist':newlist
+      'v-newlist':newlist
     },
     filters: {
       dateFormat (time) {
@@ -151,7 +151,13 @@
       height:551px;
       overflow:auto;
       .border-1px(@line);
-    }
+      
 
-  }
+    }
+    .nonono{
+      padding-top:20px;
+      text-align:center;
+
+    }
+}
 </style>
