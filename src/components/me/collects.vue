@@ -1,5 +1,5 @@
 <template>
-  <div class="collectDetail"  >
+  <div class="collectDetail" :id="theme"  >
     <header></header>
     <div class="cotitle1">
       <span class="icon"><router-link to="/me"><img src="../../assets/img/4_icon_back.png" alt=""width="16" height="16"></router-link></span>
@@ -115,7 +115,10 @@
         'collection',
         'localCollection',
         'positions'
-      ])
+      ]),
+      theme(){
+        return this.$store.state.theme
+      }
     },
     filters: {
       dateFormat (time) {
@@ -126,7 +129,7 @@
 </script>
 
 <style lang="less">
-  @import '../../assets/css/common';
+  @import (reference)'../../assets/css/common';
   .collectDetail{
     position:absolute;
     top:0;

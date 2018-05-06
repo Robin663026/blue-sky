@@ -1,7 +1,7 @@
 <template>
-  <div  class="news" >
+  <div  class="news" :id="theme">
     <header></header>
-    <div class="back "><router-link to="/news" ><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></div>
+    <div class="back "><router-link to="/news" ><div class="image" ></div></router-link></div>
     <div class="content border-1px" >
       <div class="title">{{article.title}}</div>
       <div class="some">
@@ -40,7 +40,7 @@
         <span class="comment"><img src="../../assets/img/13_comment.png" alt=""width="20"height="20"@click.stop="seeComment"></span>
         <span class="collect" v-if="article.like==true"><img src="../../assets/img/14_collect.png" alt=""width="20"height="20"@click.stop="collected"></span>
         <span class="nocollect" v-else><img src="../../assets/img/14_collect2.png" alt=""width="20"height="20"@click.stop="collected"></span>
-        <span class="share"><img src="../../assets/img/13_share.png" alt=""width="20"height="20" @click.stop="shareIcon"></span>
+        <span class="share"@click.stop="shareIcon"></span>
         <div class="num">{{article.comment.length}}</div>
       </div>
     </div>
@@ -239,7 +239,9 @@
     },
     computed:{
       ...mapState(['localSubscribe','localCollection','article','ifReturnMsg','loading']),
-     
+     theme(){
+            return this.$store.state.theme
+          }
     },
     watch:{
       currentNews(newVal,oldVal){

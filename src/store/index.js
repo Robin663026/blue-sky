@@ -7,6 +7,7 @@ import mutations from './mutations'
 Vue.use(Vuex);
 
 const state={
+  theme:'white',
   loading:false,//loading图片的切换
   ifReturnMsg:'',//是否返回数据
   loadmore:false,
@@ -44,7 +45,7 @@ const state={
   positions:{},
   type:'',
   ifReturnRefresh:false,
-  
+  theme:''
 }
 
 export default new Vuex.Store({

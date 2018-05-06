@@ -1,5 +1,5 @@
 <template>
-<div class="hea"></div>
+<div class="hea":id="theme"></div>
 </template>
 
 <script>
@@ -11,7 +11,7 @@
 </script>
 
 <style lang="less">
-@import '../../assets/css/common';
+@import (reference)'../../assets/css/common';
 .hea{
 	height:20px;
 	background:@bg1;

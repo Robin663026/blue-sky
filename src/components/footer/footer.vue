@@ -1,5 +1,5 @@
 <template>
-  <div class="bottomB border-1px">
+  <div class="bottomB border-1px" >
     <div class="tab-image">
       <div class="tab-item ">
         <router-link  to="/news" class="tab-item1 ">
@@ -30,12 +30,17 @@
     export default {
         data() {
             return {}
+        },
+        computed:{
+          theme(){
+            return this.$store.state.theme
+          }
         }
     }
 </script>
 
 <style lang="less">
-  @import '../../assets/css/common';
+  @import (reference)'../../assets/css/common';
   .bottomB {
     position:fixed;
     bottom:0px;

@@ -34,3 +34,5 @@ export const RETURN_REFRESH = 'RETURN_REFRESH'
 //
 export const IF_LOADING='IF_LOADING'
 export const GET_NEWSLIST='GET_NEWSLIST'
+
+export const setTheme='setTheme'

@@ -1,5 +1,5 @@
 <template>
-    <div class="shareIcon" >
+    <div class="shareIcon" :id="theme">
       <div class="no"></div>
       <div class="iconWrapper">
         <div class="icon">
@@ -54,7 +54,7 @@
       }
     </script>
     <style lang="less">
-  @import '../../assets/css/common';
+  @import (reference)'../../assets/css/common';
     .shareIcon{
 	    position:fixed;
       top:0;

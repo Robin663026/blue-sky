@@ -103,6 +103,12 @@ const mutations={
   [types.REFRESH_LENGTH] (state, length) {
     state.newsLength = length
     state.ifReturnRefresh = true
+  },
+  [types.setTheme](state,payload){
+    state.theme=payload;
+    console.log(1);
   }
+ 
+  
 };
 export default mutations

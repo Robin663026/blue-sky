@@ -1,5 +1,5 @@
 <template>
-<div class="title1 ">
+<div class="title1 " :id="theme">
   <div class="left">
       <div class="row1">
           <span>{{news.title}}</span>
@@ -38,7 +38,7 @@ import moment from 'moment'
 </script>
 
 <style lang="less">
- @import '../../assets/css/common';
+ @import (reference)'../../assets/css/common';
     .title1{
       height:115px;
       width:100%;

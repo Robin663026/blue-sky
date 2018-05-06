@@ -1,4 +1,4 @@
-@import '../../assets/css/common';
+@import (reference)'../../assets/css/common';
   
   .news{
     position:fixed;
@@ -18,10 +18,13 @@
       position:relative;
       width: 100%;
       height:45px;
-      img{
+      .image{
+        display:inline-block;
+        background:url(../../assets/img/4_icon_back.png)no-repeat center center;
+        background-size:16px 16px;
         position:absolute;
-        left:15px;
-        top:13px;
+        padding-left:30px;
+        padding-top:30px;
       }
     }
     .content{
@@ -69,9 +72,9 @@
               padding-right:2px;
               font-family:PingFangSC-Regular;
               font-size: 8px;
-              color: #FF0000;
-              background: #FFFFFF;
-              border: 1px solid #FF0000;
+              color: @red;
+              background: @bg;
+              border: 1px solid @red;
             }
             .time{
               display:inline-block;
@@ -91,10 +94,10 @@
           height:26px;
           text-align:center;
           box-sizing:border-box;
-          background:#008CFF;
-          border:1px solid #fff;
+          background:@blue;
+          border:1px solid @bg;
           border-radius: 6px;
-          color: #ffffff;
+          color: @bg;
           &.active{
             background:@light;
           }
@@ -112,9 +115,9 @@
           text-align:center;
           box-sizing:border-box;
           background:orange;
-          border:1px solid #fff;
+          border:1px solid @bg;
           border-radius: 6px;
-          color: #ffffff;
+          color: @bg;
           &.active{
             background:@light;
           }
@@ -161,7 +164,7 @@
       .left{
         flex:0 0 150px;
         float:left;
-        background: #F1F3F5;
+        background: @input;
         border-radius: 50px;
         width:150px;
         height:30px;
@@ -202,7 +205,10 @@
 
         }
         .share{
-          padding:0px 5px 0px 5px;
+   
+          background:url(../../assets/img/13_share.png)no-repeat center center;
+          background-size:20px 20px;
+       
         }
         .num{
           position:absolute;
@@ -211,12 +217,12 @@
           right:72px;
           width:16px;
           height:12px;
-          background: #FF0000;
+          background: @red;
           border-radius: 5px;
           text-align:center;
           font-family:PingFangSC-Regular;
           font-size: 9px;
-          color: #FFFFFF;
+          color: @bg;
           letter-spacing: 0;
         }
       }
@@ -227,7 +233,7 @@
       top:20px;
       bottom:0px;
       z-index:200;
-      background: #ffffff;
+      background: @bg;
       .combacks{
         position:relative;
         width: 100%;
@@ -363,7 +369,7 @@
           .comleft{
             flex:0 0 150px;
             float:left;
-            background: #F1F3F5;
+            background: @input;
             border-radius: 50px;
             width:150px;
             height:30px;
@@ -400,7 +406,424 @@
               padding:0 5px 0px 5px;
               font-family: PingFangSC-Semibold;
               font-size: 14px;
-              color: #008BFF;
+              color: @blue;
+            }
+            .comshare{
+              padding:0px 5px 0px 5px;
+            }
+
+          }
+        }
+      }
+    }
+  
+    
+  }
+  #black{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    right:0;
+    z-index:100;
+    width:100%;
+    height:667px;
+    background-color:@bme;
+    header{
+      height:20px;
+      background:@bg1;
+    }
+    .back{
+      position:relative;
+      width: 100%;
+      height:45px;
+      .image{
+        display:inline-block;
+        background:url(../../assets/img/48_dark_back.png)no-repeat center center;
+        background-size:16px 16px;
+        position:absolute;
+        padding-left:30px;
+        padding-top:30px;
+      }
+    }
+    .content{
+      padding:15px 15px 0 15px;
+      height:551px;
+      overflow:auto;
+      .border-1px(@bline);
+      .title{
+        height:52px;
+        font-family:PingFangSC-Semibold;
+        font-size: 21px;
+        color: @b33;
+        line-height: 26px;
+      }
+      .some{
+        position:relative;
+        display: flex;
+        height:50px;
+        width:100%;
+        padding:8px 0 15px 0;
+        .left{
+          flex:0 0 35px;
+          width:35px;
+          float:left;
+          padding-right:8px;
+        }
+        .middle{
+          flex:1;
+          float:left;
+          .top {
+            font-family: PingFangSC-Semibold;
+            font-size: 12px;
+            color: @b33;
+            padding-top: 1px;
+            padding-bottom: 3px;
+            width: 65px;
+            overflow: hidden;
+            height: 12px;
+          }
+          .bot{
+            margin-bottom:15px;
+            .red{
+              display:inline-block;
+              vertical-align: top;
+              padding-right:2px;
+              font-family:PingFangSC-Regular;
+              font-size: 8px;
+              color: @b33;
+              background: @bbg;
+              border: 1px solid @b33;
+            }
+            .time{
+              display:inline-block;
+              vertical-align: top;
+              padding:1px 0;
+              font-family:PingFangSC-Regular;
+              font-size: 11px;
+              color: @blight;
+            }
+          }
+        }
+        .order{
+          position:absolute;
+          top:9px;
+          right:15px;
+          width:53px;
+          height:26px;
+          text-align:center;
+          box-sizing:border-box;
+          background:@blue;
+          border:1px solid @bg;
+          border-radius: 6px;
+          color: @bg;
+          &.active{
+            background:@blight;
+          }
+          .text2{
+            font-family:PingFangSC-Semibold;
+            font-size: 12px;
+          }
+        }
+        .active{
+          position:absolute;
+          top:9px;
+          right:15px;
+          width:53px;
+          height:26px;
+          text-align:center;
+          box-sizing:border-box;
+          background:orange;
+          border:1px solid @bg;
+          border-radius: 6px;
+          color: @bg;
+          &.active{
+            background:@blight;
+          }
+          .text2{
+            font-family:PingFangSC-Semibold;
+            font-size: 12px;
+          }
+
+        }
+      }
+    }
+    .contents{
+      width:100%;
+      .h1{
+        padding-bottom:15px;
+        font-family:PingFangSC-Regular;
+        font-size: 16px;
+        color: @b33;
+        line-height: 24px;
+        letter-spacing:0.5px;
+      }
+      .p{
+        padding-bottom:15px;
+        font-family:PingFangSC-Regular;
+        font-size: 16px;
+        color: @b33;
+        letter-spacing: 0.3px;
+        line-height: 24px;
+      }
+      .image{
+        height:135px;
+        text-align:center;
+        padding-bottom:15px;
+      }
+    }
+    .bottom{
+      display:flex;
+      position:absolute;
+      right:0px;
+      bottom:0px;
+      height:50px;
+      padding:10px;
+      width:100%;
+      .left{
+        flex:0 0 150px;
+        float:left;
+        background: @bline;
+        border-radius: 50px;
+        width:150px;
+        height:30px;
+        .icon{
+          display:inline-block;
+          vertical-align:top;
+          padding:5px 5px 5px 15px;
+        }
+        .write{
+          display:inline-block;
+          vertical-align:top;
+          padding:7px 0px 5px 0px;
+          font-family: PingFangSC-Regular;
+          font-size: 14px;
+          color: @blight;
+        }
+        .comment{
+          display:inline-block;
+          vertical-align:top;
+          padding:7px 0px 9px 5px;
+        }
+      }
+      .right{
+        flex:1;
+        position:relative;
+        float:left;
+        height:30px;
+        width:205px;
+        padding:5px 0px;
+        .comment{
+          padding:0px 5px 0px 100px;
+        }
+        .collect{
+          padding:0px 5px 0px 5px;
+        }
+        .nocollect{
+          padding:0px 5px 0px 5px;
+
+        }
+        .share{
+          background:url(../../assets/img/47_dark_share.png)no-repeat center center;
+          background-size:20px 20px;
+        }
+        .num{
+          position:absolute;
+          padding:1px 0;
+          top:0;
+          right:72px;
+          width:16px;
+          height:12px;
+          background: @red;
+          border-radius: 5px;
+          text-align:center;
+          font-family:PingFangSC-Regular;
+          font-size: 9px;
+          color: @bg;
+          letter-spacing: 0;
+        }
+      }
+    }
+    .comseeComment{
+      position:fixed;
+      width:100%;
+      top:20px;
+      bottom:0px;
+      z-index:200;
+      background: @bbg;
+      .combacks{
+        position:relative;
+        width: 100%;
+        height:45px;
+        img{
+          position:absolute;
+          left:15px;
+          top:13px;
+        }
+      }
+      .comcommentCon{
+        padding:15px 15px 0 15px;
+        height:551px;
+        overflow:hidden;
+        .border-1px(@bline);
+        .comtitle{
+          height:52px;
+          font-family:PingFangSC-Semibold;
+          font-size: 21px;
+          color: @b33;
+          line-height: 26px;
+        }
+        .comwrapper{
+          height:56px;
+          padding:15px 0 30px 0;
+          .comtime,.comtop{
+            padding-right:5px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .comtop{
+            width:45px;
+            overflow:hidden;
+          }
+
+        }
+        .comnum{
+          font-family: PingFangSC-Semibold;
+          font-size: 13px;
+          color: @b33;
+          padding-bottom:5px;
+
+        }
+        .comdetail{
+          height:410px;
+          overflow:auto;
+          .border-1px(@bline);
+          .comlist{
+            display:flex;
+            width:100%;
+            height:144px;
+            position:relative;
+            .comicon{
+              flex:0 0 34px;
+              display:inline-block;
+              vertical-align:top;
+              width:34px;
+              padding:15px 7px 0 0px;
+             
+            }
+            .comcontent33{
+              flex:1;
+              display:inline-block;
+              vertical-align:top;
+              .border-1px(@bline);
+              padding:15px 0;
+              height:144px;
+              .comline1{
+                padding-bottom:5px;
+                padding-right:15px;
+                display:flex;
+                .comname{
+                  flex:1;
+                  padding-left:0px;
+                  font-family: PingFangSC-Semibold;
+                  font-size: 13px;
+                  color: @b33;
+                }
+                .comnum{
+                
+                  flex:0 0 21px;
+                  padding-right:3px;
+                  font-family: PingFangSC-Regular;
+                  font-size: 13px;
+                  color: @bnum;
+                }
+                .comthumb{
+                  felx:0 0 13px;
+                  padding-right:0px;
+                }
+              }
+              .comtext33{
+                height:75px;
+                font-family: PingFangSC-Regular;
+                font-size: 16px;
+                color: @b33;
+                letter-spacing: 0.35px;
+                line-height: 25px;
+                overflow:hidden;
+              }
+              .comtime{
+                padding-top:4px;
+                font-family: PingFangSC-Regular;
+                font-size: 11px;
+                color: @blight;
+              }
+            }
+          }
+        }
+
+        .comdetail2{
+          height:410px;
+          overflow:auto;
+          padding-top:74px;
+          text-align:center;
+          text44{
+            padding-top:16px;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: @light;
+          }
+        }
+        .combottom33{
+          display:flex;
+          position:fixed;
+          right:0px;
+          bottom:0px;
+          height:50px;
+          padding:10px;
+          width:100%;
+          background:@bbg;
+          .comleft{
+            flex:0 0 150px;
+            float:left;
+            background: @bline;
+            border-radius: 50px;
+            width:150px;
+            height:30px;
+            .comicon{
+              display:inline-block;
+              vertical-align:top;
+              padding:5px 5px 5px 15px;
+            }
+            .comwrite{
+              display:inline-block;
+              vertical-align:top;
+              padding:7px 0px 5px 0px;
+              font-family: PingFangSC-Regular;
+              font-size: 14px;
+              color: @blight;
+            }
+            .comcomment{
+              display:inline-block;
+              vertical-align:top;
+              padding:7px 0px 9px 5px;
+            }
+          }
+          .comright{
+            flex:1;
+            position:relative;
+            float:left;
+            height:30px;
+            width:205px;
+            padding:5px 0px;
+            .comcomment{
+              padding:0px 5px 0px 100px;
+            }
+            .comback{
+              padding:0 5px 0px 5px;
+              font-family: PingFangSC-Semibold;
+              font-size: 14px;
+              color: @blue;
             }
             .comshare{
               padding:0px 5px 0px 5px;

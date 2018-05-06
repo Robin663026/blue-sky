@@ -1,6 +1,6 @@
 <template>
-<div>
-	<div v-if="news.image.position==='right'" class="title1 border-1px">
+<div >
+	<div v-if="news.image.position==='right'" class="title1 border-1px" >
     <div class="left">
       <div class="row1">
         <span>{{news.titile}}</span>
@@ -27,10 +27,10 @@
   </div>
   <div v-else class="title2 border-1px">
     <div class="top">
-      <span>{{news.titile}}</span>
+      {{news.titile}}
     </div>
-    <div class="middle"><img v-lazy="news.image.url"width="345"height="135"></div>
-    <div class="bottom">
+    <div class="middle"><img v-lazy="news.image.url"width="325"height="135"></div>
+    <div class="bottom1">
       <span v-if="news.top===true" class="top" >置顶</span>
       <span class="datetme">{{news.dateTme|dateFormat}}</span>
       <span class="sour">{{news.source}}</span>
@@ -57,13 +57,16 @@ import moment from 'moment'
     	    dateFormat (time) {
     	      return moment(time).startOf('mimute').fromNow()
     	    }
-    	  }
+    	  },
+        computed:{
+        
+        }
         
     }
 </script>
 
 <style lang="less">
-  @import '../../assets/css/common';
+  @import (reference)'../../assets/css/common';
     .title1{
       height:115px;
       width:100%;
@@ -118,7 +121,12 @@ import moment from 'moment'
             font-size: 11px;
             color: @light;
           }
-          
+          .comment1{
+            width:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @light;
+          }
 
           .thumbUp{
             padding-right:1px;
@@ -129,7 +137,12 @@ import moment from 'moment'
             font-size: 11px;
             color: @light;
           }
-          
+          .like1{
+            width:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @light;
+          }
           
 
         }
@@ -142,6 +155,7 @@ import moment from 'moment'
     }
 
    .title2 {
+      width:100%;
       height:220px;
       padding:20px 15px 20px 0;
       .border-1px(@line);
@@ -157,26 +171,32 @@ import moment from 'moment'
       .middle{
         height:135px;
         text-align:center;
-        margin-bottom:7px;
+        margin-bottom:14px;
       }
-      .bottom{
+      .bottom1{
+      
         height:11px;
         display:inline-block;
         vertical-align:top;
         font-size:0;
+        
         .top{
+     
           padding-right:2px;
           font-family:PingFangSC-Regular;
           font-size: 8px;
           color: @red;
         }
         .datetme{
+         
+    
           padding-right:5px;
           font-family:PingFangSC-Regular;
           font-size: 11px;
           color: @light;
         }
         .sour{
+        
           display:inline-block;
           width:65px;
           padding-right:10px;
@@ -187,28 +207,45 @@ import moment from 'moment'
           color: @light;
         }
         .comments_img{
+         
           padding-right:1px;
         }
         .comment{
+         
           padding-right:12px;
           font-family: PingFangSC-Regular;
           font-size: 11px;
           color:@light;
         }
-       
+        .comment1{
+         
+          width:20px;
+          font-family: PingFangSC-Regular;
+          font-size: 11px;
+          color: @light;
+        }
         .thumbUp{
+          
           padding-right:1px;
         }
         .like{
+         
           padding-right:12px;
           font-family: PingFangSC-Regular;
           font-size: 11px;
           color: @light;
         }
-       
+        .like1{
+         
+          width:20px;
+          font-family: PingFangSC-Regular;
+          font-size: 11px;
+          color: @light;
+        }
 
       }
 
 
     }
+  
 </style>

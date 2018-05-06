@@ -1,5 +1,5 @@
 <template>
-  <div class="commentsDetail" >
+  <div class="commentsDetail" :id="theme">
     <header></header>
     <div class="title">
       <span class="icon"><router-link to="/me"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></span>
@@ -37,14 +37,18 @@
           hide(){
             this.showC=false
         }
+      },
+      computed:{
+      	theme(){
+        	return this.$store.state.theme
+        }
       }
     }
 </script>
 
 <style lang="less">
- @import '../../assets/css/common';
+ @import (reference)'../../assets/css/common';
 .commentsDetail{
-
   position:fixed;
   top:0;
   left:0;
@@ -116,6 +120,83 @@
       font-family: PingFangSC-Regular;
       font-size: 14px;
       color: @light;
+    }
+  }
+
+
+}
+#black{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:667px;
+  background: @bbg;
+  header{
+    height:20px;
+    background:@bg;
+  }
+  .title{
+    position:relative;
+    height:45px;
+    width:100%;
+    padding:15px 0 14px 0;
+    .icon{
+      position:absolute;
+      top:15px;
+      left:15px;
+    }
+    .text{
+      text-align:center;
+      vertical-align: top;
+      display:inline-block;
+      p{
+        font-family: PingFangSC-Semibold;
+        font-size: 16px;
+        color: @b33;
+      }
+    }
+  }
+  .list {
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    display:flex;
+    .icon{
+      float:left;
+      flex: 0 0 50px;
+      width:50px;
+      padding:16px 7px 0 16px;
+    }
+    .content{
+      flex:1;
+      float:left;
+      .name{
+        height:38px;
+        padding-top:15px;
+        font-family: PingFangSC-Semibold;
+        font-size: 13px;
+        color: @b33;
+      }
+      .text{
+        padding-right:14px;
+        font-family: PingFangSC-Regular;
+        font-size: 16px;
+        color: @b33;
+        letter-spacing: 0.35px;
+        line-height: 25px;
+      }
+    }
+
+  }
+  .mention{
+    width:100%;
+    padding-top:15px;
+    text-align:center;
+    p{
+      font-family: PingFangSC-Regular;
+      font-size: 14px;
+      color: @blight;
     }
   }
 

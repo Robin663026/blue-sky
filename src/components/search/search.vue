@@ -142,8 +142,8 @@
 </script>
 
 <style lang="less">
-  @import '../../assets/css/border-1px';
-   @import '../../assets/css/common';
+
+   @import (reference)'../../assets/css/common';
   .searchNews{
     position:absolute;
     top:0;

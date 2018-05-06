@@ -1,5 +1,5 @@
 <template>
-  <div class="cmessage" >
+  <div class="cmessage" :id="theme">
     <header></header>
     <div class="wrapper">
       <div class="icon"><router-link to="/me"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></div>
@@ -29,12 +29,17 @@
         },
       components:{
           'v-footer':footer
+      },
+      computed:{
+      	theme(){
+        	return this.$store.state.theme
+        }
       }
     }
 </script>
 
 <style lang="less">
- @import '../../assets/css/common';
+ @import (reference)'../../assets/css/common';
   .cmessage{
     position:fixed;
     top:0;

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="writeComment" >
+		<div class="writeComment" :id="theme">
       <div class="no"></div>
       <div class="content">
         <div class="text123">
@@ -36,7 +36,7 @@
 	}
 </script>
 <style lang="less">
-@import '../../assets/css/common';
+@import (reference)'../../assets/css/common';
 	.writeComment{
       position:fixed;
       top:0;

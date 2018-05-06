@@ -1,5 +1,5 @@
 <template>
-<div class="news">
+<div class="news" :id="theme">
   <header></header>
   <div class="tab">
     <span class="title">新闻</span>
@@ -19,7 +19,7 @@
   <keep-alive >
     <router-view></router-view>
   </keep-alive>
-  <v-footer></v-footer>
+  <v-footer ></v-footer>
 
 
 </div>
@@ -106,7 +106,10 @@
             'newsLength',
             'loadmore',
             'typePositions'
-          ])
+          ]),
+        theme(){
+        		return this.$store.state.theme
+        	}
       },
       watch:{
         ifReturnRefresh (val, oldVal) {
@@ -128,8 +131,7 @@
 </script>
 
 <style lang="less">
-
-  @import '../../assets/css/common';
+  @import (reference)'../../assets/css/common';
 .news{
   position:absolute;
   top: 0px;
@@ -167,9 +169,20 @@
     height:551px;
     overflow:auto;
     .border-1px(@line);
-    
+  }
 
-
+}
+#black{
+  header{ 
+    background:@bg1;
+  }
+  .tab{
+    .title{   
+      color: @b33;
+    } 
+  }
+  .news-list{
+    .border-1px(@bline);
   }
 
 }

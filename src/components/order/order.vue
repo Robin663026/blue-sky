@@ -1,5 +1,5 @@
 <template>
-  <div class="news">
+  <div class="news" :id="theme">
     <header></header>
     <div class="tab">
       <span class="title">订阅</span>
@@ -97,6 +97,9 @@
     },
     computed:{
       ...mapState(['subscribes','localSubscribe']),
+      theme(){
+            return this.$store.state.theme
+          }
 
     },
     components:{
@@ -112,7 +115,7 @@
 </script>
 
 <style lang="less">
-   @import '../../assets/css/common';
+   @import (reference)'../../assets/css/common';
   .news{
     position:absolute;
     top: 0px;
@@ -151,6 +154,53 @@
       height:551px;
       overflow:auto;
       .border-1px(@line);
+      
+
+    }
+    .nonono{
+      padding-top:20px;
+      text-align:center;
+
+    }
+}
+#black{
+    position:absolute;
+    top: 0px;
+    bottom:50px;
+    left:0;
+    width:100%;
+    height:667px;
+    header{
+      height:20px;
+      background:@bg;
+    }
+    .tab{
+      position:relative;
+      height:45px;
+      padding:15px 0 14px 0;
+      line-height:16px;
+      text-align:center;
+
+      .title{
+        display:inline-block;
+        vertical-align:top;
+        font-family: PingFangSC-Semibold;
+        font-size: 16px;
+        color: @b33;
+      }
+      .search{
+        display:inline-block;
+        vertical-align:top;
+        position:absolute;
+        right:15px;
+      }
+    }
+    .news-list{
+      padding:0px 15px 0 15px ;
+      width:100%;
+      height:551px;
+      overflow:auto;
+      .border-1px(@bline);
       
 
     }

@@ -7,7 +7,7 @@ import VueLazyLoad from 'vue-lazyload'
 import vuePicturePreview from 'vue-picture-preview'
 import FastClick from 'fastclick'
 // FastClick.attach(document.body);
-import './assets/css/common.less'
+
 
 
 Vue.use(VueLazyLoad,{

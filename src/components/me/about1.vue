@@ -79,7 +79,7 @@
 </script>
 
 <style lang="less">
-  @import '../../assets/css/common';
+  @import (reference)'../../assets/css/common';
   .pc-about{
     position:fixed;
     bottom:0;
