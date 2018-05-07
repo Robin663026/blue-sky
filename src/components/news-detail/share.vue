@@ -54,7 +54,7 @@
       }
     </script>
     <style lang="less">
-  @import (reference)'../../assets/css/common';
+  @import (reference)'../../assets/less/common';
     .shareIcon{
 	    position:fixed;
       top:0;

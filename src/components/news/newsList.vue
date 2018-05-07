@@ -66,7 +66,7 @@ import moment from 'moment'
 </script>
 
 <style lang="less">
-  @import (reference)'../../assets/css/common';
+  @import (reference)'../../assets/less/common';
     .title1{
       height:115px;
       width:100%;
@@ -157,7 +157,7 @@ import moment from 'moment'
    .title2 {
       width:100%;
       height:220px;
-      padding:20px 15px 20px 0;
+      padding:20px 0px 20px 0;
       .border-1px(@line);
       border-bottom:1px solid @line;
       .top{

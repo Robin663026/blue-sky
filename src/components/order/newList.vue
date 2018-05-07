@@ -38,7 +38,7 @@ import moment from 'moment'
 </script>
 
 <style lang="less">
- @import (reference)'../../assets/css/common';
+ @import (reference)'../../assets/less/common';
     .title1{
       height:115px;
       width:100%;
@@ -112,7 +112,7 @@ import moment from 'moment'
         
         float:left;
         flex:0 0 100px;
-        padding-right:15px;
+        padding-right:0px;
       }
     }     
 </style>

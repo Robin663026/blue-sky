@@ -32,11 +32,16 @@
 			myWrite(val){
 				this.$emit('on-write',val)
 			}
-		}
+		},
+    computed:{
+      theme(){
+          return this.$store.state.theme
+        }
+    }
 	}
 </script>
 <style lang="less">
-@import (reference)'../../assets/css/common';
+@import (reference)'../../assets/less/common';
 	.writeComment{
       position:fixed;
       top:0;
@@ -53,7 +58,7 @@
         padding:15px 15px 7px 15px;
         width:100%;
         height:135px;
-        background: #ffffff;
+        background: @bg;
         .text123{
           height:60px;
           padding-bottom:15px;
@@ -62,13 +67,13 @@
             font-family: PingFangSC-Regular;
             font-size: 16px;
             color: @light;
-            background:#F1F3F5;
+            background:@input;
             width:100%;
             height:100%;
           }
         }
         .send{
-          background: #FFFFFF;
+          background: @bg;
           border: 1px solid @light;
           border-radius: 2px;
           padding:10px 0 11px 0;
@@ -81,4 +86,5 @@
         }
       }
     }
+   
 </style>

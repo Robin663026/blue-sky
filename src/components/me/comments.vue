@@ -47,7 +47,7 @@
 </script>
 
 <style lang="less">
- @import (reference)'../../assets/css/common';
+ @import (reference)'../../assets/less/common';
 .commentsDetail{
   position:fixed;
   top:0;

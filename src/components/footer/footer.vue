@@ -40,7 +40,7 @@
 </script>
 
 <style lang="less">
-  @import (reference)'../../assets/css/common';
+  @import (reference)'../../assets/less/common';
   .bottomB {
     position:fixed;
     bottom:0px;
@@ -60,13 +60,11 @@
         text-align: center;
         .tab-item1{
           display:inline-block;
-
           width:90px;
           height:30px;
           .icon_1{
             height:30px;
             background:url(../../assets/img/8_icon_news_grey.png) no-repeat center center;
-
             background-size:24px 24px;
           }
           .icon_2{

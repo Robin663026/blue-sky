@@ -11,7 +11,7 @@
 </script>
 
 <style lang="less">
-@import (reference)'../../assets/css/common';
+@import (reference)'../../assets/less/common';
 .hea{
 	height:20px;
 	background:@bg1;

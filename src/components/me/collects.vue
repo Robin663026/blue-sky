@@ -27,7 +27,7 @@
           </div>
         </li>
       </ul>
-      <div v-else>
+      <div v-else class="no-message">
         空空如也，快去收藏吧
       </div>
     </div>
@@ -129,7 +129,7 @@
 </script>
 
 <style lang="less">
-  @import (reference)'../../assets/css/common';
+  @import (reference)'../../assets/less/common';
   .collectDetail{
     position:absolute;
     top:0;
@@ -257,6 +257,11 @@
           }
         }
 
+      }
+      .no-message{
+        vertical-align:center;
+        width:100%;
+        padding-top:40px;
       }
     }
     .history-list{

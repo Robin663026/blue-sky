@@ -131,7 +131,7 @@
 </script>
 
 <style lang="less">
-  @import (reference)'../../assets/css/common';
+  @import (reference)'../../assets/less/common';
 .news{
   position:absolute;
   top: 0px;
@@ -139,6 +139,7 @@
   left:0;
   width:100%;
   header{
+    width:100%;
     height:20px;
     background:rgba(0,0,0,0.00);
   }
@@ -183,7 +184,273 @@
   }
   .news-list{
     .border-1px(@bline);
+    .title1{
+      height:115px;
+      width:100%;
+      display:flex;
+      padding:20px 0;
+      .border-1px(@bline);
+      border-bottom:1px solid @bline;
+      .left{
+        float:left;
+        flex:1;
+        padding-right:18px;
+        .row1{
+          height:42px;
+          overflow:hidden;
+          font-family:PingFangSC-Semibold;
+          font-size: 16px;
+          color: @b33;
+          line-height: 21px;
+        }
+        .row2{
+          margin-top:18px;
+          height:11px;
+          display:inline-block;
+          vertical-align:top;
+          .top{ 
+            width:17px;
+            padding-right:2px;
+            font-family:PingFangSC-Regular;
+            font-size: 8px;
+            color: @bred;
+          }
+          .datetme{
+            width:45px;
+            overflow:hidden;
+            font-family:PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .sour{
+            width:45px;
+            overflow: hidden;
+            font-family:PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .comments_img{
+            padding-right:1px;
+          }
+          .comment{
+            width:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .comment1{
+            width:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+
+          .thumbUp{
+            padding-right:1px;
+          }
+          .like{
+            width:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .like1{
+            width:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          
+
+        }
+      }
+      .right{
+        float:left;
+        flex:0 0 100px;
+        padding-right:15px;
+      }
+    }
+
+   .title2 {
+      width:100%;
+      height:220px;
+      padding:20px 15px 20px 0;
+      .border-1px(@bline);
+      border-bottom:1px solid @bline;
+      .top{
+        height:16px;
+        overflow:hidden;
+        font-family: PingFangSC-Semibold;
+        font-size: 16px;
+        color: @b33;
+        margin-bottom:10px;
+      }
+      .middle{
+        height:135px;
+        text-align:center;
+        margin-bottom:14px;
+      }
+      .bottom1{
+      
+        height:11px;
+        display:inline-block;
+        vertical-align:top;
+        font-size:0;
+        
+        .top{
+     
+          padding-right:2px;
+          font-family:PingFangSC-Regular;
+          font-size: 8px;
+          color: @bred;
+        }
+        .datetme{
+         
+    
+          padding-right:5px;
+          font-family:PingFangSC-Regular;
+          font-size: 11px;
+          color: @blight;
+        }
+        .sour{
+        
+          display:inline-block;
+          width:65px;
+          padding-right:10px;
+          height:11px;
+          overflow: hidden;
+          font-family:PingFangSC-Regular;
+          font-size: 11px;
+          color: @blight;
+        }
+        .comments_img{
+         
+          padding-right:1px;
+        }
+        .comment{
+         
+          padding-right:12px;
+          font-family: PingFangSC-Regular;
+          font-size: 11px;
+          color:@blight;
+        }
+        .comment1{
+         
+          width:20px;
+          font-family: PingFangSC-Regular;
+          font-size: 11px;
+          color: @blight;
+        }
+        .thumbUp{
+          
+          padding-right:1px;
+        }
+        .like{
+         
+          padding-right:12px;
+          font-family: PingFangSC-Regular;
+          font-size: 11px;
+          color: @blight;
+        }
+        .like1{
+         
+          width:20px;
+          font-family: PingFangSC-Regular;
+          font-size: 11px;
+          color: @blight;
+        }
+
+      }
+
+
+    }
+  
   }
+  .bottomB {
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    width: 100%;
+    padding: 7px 39px 5px 39px;
+    height: 50px;
+    z-index:200;
+    .border-1px(bc);
+    .tab-image {
+      display: flex;
+      height: 24px;
+      line-height: 24px;
+      .tab-item {
+        flex: 1;
+
+        text-align: center;
+        .tab-item1{
+          display:inline-block;
+
+          width:90px;
+          height:30px;
+          .icon_1{
+            height:30px;
+            background:url(../../assets/img/41_dark_news2.png) no-repeat center center;
+
+            background-size:24px 24px;
+          }
+          .icon_2{
+            height:30px;
+            background:url(../../assets/img/42_dark_order2.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+          .icon_3{
+            height:30px;
+            background:url(../../assets/img/43_dark_me2.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+
+        }
+
+        .router-link-exact-active{
+
+          .icon_1{
+            height:30px;
+            background:url(../../assets/img/41_dark_news1.png) no-repeat center center;
+
+            background-size:24px 24px;
+          }
+          .icon_2{
+            height:30px;
+            background:url(../../assets/img/42_dark_order1.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+          .icon_3{
+            height:30px;
+            background:url(../../assets/img/43_dark_me1.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+        }
+      }
+
+    }
+    .tab-wrapper {
+      display: flex;
+      padding-top: 3px;
+      height: 11px;
+      line-height: 11px;
+      font-size: 0;
+      .tab-item {
+        flex: 1;
+        text-align: center;
+        font-size: 11px;
+        color: @btab;
+        font-family: PingFangSC-Regular;
+        &>a {
+          text-decoration: none;
+          &.active {
+            color: @btab1;
+          }
+        }
+      }
+    }
+  }
+
 
 }
 </style>

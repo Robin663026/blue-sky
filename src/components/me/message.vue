@@ -39,7 +39,7 @@
 </script>
 
 <style lang="less">
- @import (reference)'../../assets/css/common';
+ @import (reference)'../../assets/less/common';
   .cmessage{
     position:fixed;
     top:0;
@@ -50,7 +50,7 @@
     background:@bg;
     header{
       height:20px;
-      background:rgba(0,0,0,0.00);
+      background:@bg1;
     }
     .wrapper{
       position:relative;
@@ -115,4 +115,5 @@
     }
 
   }
+  
 </style>

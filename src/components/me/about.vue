@@ -79,7 +79,7 @@
 </script>
 
 <style lang="less">
-  @import (reference)'../../assets/css/common';
+  @import (reference)'../../assets/less/common';
 .mobile-about{
   position:fixed;
   bottom:0;
@@ -87,12 +87,13 @@
   left:0;
   width:100%;
   height:100%;
-  background:white;
+  background:@bg;
   overflow:auto;
   z-index:200;
   header{
+    width:100%;
     height:20px;
-    background:rgba(0,0,0,0.00);
+    background:@bg1;
   }
   .heads{
     height:45px;
@@ -257,4 +258,5 @@
     }
   }
 }
+
 </style>

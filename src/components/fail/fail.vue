@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="less">
-  @import (reference)'../../assets/css/common.less';
+  @import (reference)'../../assets/less/common.less';
 
   .fail{
    background:@bc;

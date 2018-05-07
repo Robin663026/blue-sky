@@ -107,6 +107,6 @@
 
 <style lang="less">
 
-  @import '../../assets/css/me.less';
+  @import '../../assets/less/me.less';
 
 </style>

@@ -143,7 +143,7 @@
 
 <style lang="less">
 
-   @import (reference)'../../assets/css/common';
+   @import (reference)'../../assets/less/common';
   .searchNews{
     position:absolute;
     top:0;

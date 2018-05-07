@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="less">
-  @import (reference)'../../assets/css/common.less';
+  @import (reference)'../../assets/less/common.less';
 
   .myLoadmore {
     text-align: center;

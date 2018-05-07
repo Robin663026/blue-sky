@@ -263,5 +263,5 @@
   }
 </script>
 <style lang="less">
-  @import '../../assets/css/detail';
+  @import '../../assets/less/detail';
 </style>
