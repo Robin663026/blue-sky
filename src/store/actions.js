@@ -5,7 +5,7 @@ export default {
   getNews({commit,state}){
     state.loading=true
     state.ifReturnMsg=true
-    axios.get('http://rap2api.taobao.org/app/mock/3894/data/newsList').then((response)=>{
+    axios.get('http://localhost:8080/static/data/newsList.json').then((response)=>{
       state.loading=false
       if(err||response.data.length===0){
         state.ifReturnMsg=false
@@ -20,9 +20,9 @@ export default {
   getArticle({commit,state},payload){
     state.loading=true;
     let id=payload.id;
-    let url='http://rap2api.taobao.org/app/mock/3894/data/detailList';
+    let url='http://localhost:8080/static/data/'+payload.id+'.json';
     axios.get(url).then((response)=>{
-      let data=response.data.detailList[payload.id-1];
+      let data=response.data;
       console.log(data);
       state.ifReturnMsg=true;
       commit(type.GET_ARTICLE, {

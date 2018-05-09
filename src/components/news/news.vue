@@ -62,8 +62,8 @@
         //     that.touchPosition
         //   }
         // })
-        axios.get('http://rap2api.taobao.org/app/mock/3894/data/newsList').then((response)=>{
-          this.press=response.data.newsList;
+        axios.get('http://localhost:8080/static/data/newsList.json').then((response)=>{
+          this.press=response.data;
         },(response)=>{
           console.log('服务器请求失败');
         });

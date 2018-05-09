@@ -18,17 +18,13 @@
         <ul>
           <li v-for="content in article.content">
             <div class="h1" v-if="content.type==='h1'">{{content.text}}</div>
-            <div class="p" v-else>{{content.text}}</div>
+            <div class="p" v-else-if="content.type==='p'">{{content.text}}</div>
+            <div class="image" v-else="content.type==='image'">
+              <img :src="content.text"width="345"height="235" v-preview='content.text'preview-title-enable="true" preview-nav-enable="true">
+            </div>
           </li>
         </ul>
-        <img v-for="(img,index) in article.images"
-          v-preview='img.image'
-          :src="img.image"
-          :key="index"
-          preview-title-enable="true"
-          preview-nav-enable="true"
-          height="135" width="345"
-        >
+        
       </div>
     </div>
     <div class="bottom">
@@ -141,8 +137,8 @@
         let source=this.article.source;
         let time=this.article.time;
         let comment=this.article.comment;
-        let lengthC=this.article.lengthC;
-        let images=this.article.images[0].image;
+     
+        let images=this.article.content;
         let index = this.localSubscribe.findIndex(item => {
           return item.id === id
         })
@@ -154,7 +150,7 @@
             time,
             source,
             comment,
-            lengthC,
+            
             images
           })
         } else {
@@ -173,10 +169,8 @@
         let title=this.article.title;
         let source=this.article.source;
         let time=this.article.time;
-        let images=this.article.images[0].image;
-        let lengthC=this.article.lengthC;
-        let comment=this.article.comment;
-        let like=this.article.like;
+        let images=this.article.content;
+   
         let content=this.article.content;
         let index = this.localCollection.findIndex(item => {
           return item.id === id
@@ -189,9 +183,6 @@
             images,
             time,
             source,
-            like,
-            lengthC,
-            comment,
             content
           })
 

@@ -46,31 +46,31 @@
 
     },
     created(){
-      // var that=this;
-      // this.$nextTick(()=>{
-      //   that.getImage(that);
-      // })
+      var that=this;
+      this.$nextTick(()=>{
+        that.getImage(that);
+      })
     },
     methods: {
-      // getImage(){
-      //   for(let i=0;i<this.localSubscribe.length;i++){
-      //     for(let j=0;j<this.localSubscribe[i].img.length;j++){
-      //       if(this.localSubscribe[i].img[j].type=='image'){
-      //         if(j>0){
-      //           let temp;
-      //           temp=this.localSubscribe[i].img[0];
-      //           this.localSubscribe[i].img[0]=this.localSubscribe[i].img[j];
-      //           this.localSubscribe[i].img[j]=temp;
-      //         }else{
-      //           return
-      //         }
+      getImage(){
+        for(let i=0;i<this.localSubscribe.length;i++){
+          for(let j=0;j<this.localSubscribe[i].images.length;j++){
+            if(this.localSubscribe[i].images[j].type=='image'){
+              if(j>0){
+                let temp;
+                temp=this.localSubscribe[i].images[0];
+                this.localSubscribe[i].images[0]=this.localSubscribe[i].images[j];
+                this.localSubscribe[i].images[j]=temp;
+              }else{
+                return
+              }
 
 
-      //       }
-      //     }
+            }
+          }
 
-      //   }
-      // },
+        }
+      },
       ...mapMutations([
         'REMOVE_SUBSCRIBE'
       ]),

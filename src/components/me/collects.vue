@@ -22,7 +22,7 @@
               </div>
             </div>
             <div class="right">
-              <img v-lazy="item.images" width="100" height="75">
+              <img v-lazy="item.images[0].text" width="100" height="75">
             </div>
           </div>
         </li>
@@ -57,32 +57,32 @@
       }
     },
     created(){
-      // let that=this;
-      // this.$nextTick(()=>{
-      //   that.getImage(that);
-      // });
-      // if(this.collection.length>0) return false;
+      let that=this;
+      this.$nextTick(()=>{
+        that.getImage(that);
+      });
+      if(this.collection.length>0) return false;
     },
     methods:{
-      // getImage(){
-      //   for(let i=0;i<this.localCollection.length;i++){
-      //     for(let j=0;j<this.localCollection[i].img.length;j++){
-      //       if(this.localCollection[i].img[j].type=='image'){
-      //         if(j>0){
-      //           let temp;
-      //           temp=this.localCollection[i].img[0];
-      //           this.localCollection[i].img[0]=this.localCollection[i].img[j];
-      //           this.localCollection[i].img[j]=temp;
-      //         }else{
-      //           return
-      //         }
+      getImage(){
+        for(let i=0;i<this.localCollection.length;i++){
+          for(let j=0;j<this.localCollection[i].images.length;j++){
+            if(this.localCollection[i].images[j].type=='image'){
+              if(j>0){
+                let temp;
+                temp=this.localCollection[i].images[0];
+                this.localCollection[i].images[0]=this.localCollection[i].images[j];
+                this.localCollection[i].images[j]=temp;
+              }else{
+                return
+              }
 
 
-      //       }
-      //     }
+            }
+          }
 
-      //   }
-      // },
+        }
+      },
       ...mapMutations(['REMOVE_COLLECTION']),
       //显示默认收藏标签
       collect(){

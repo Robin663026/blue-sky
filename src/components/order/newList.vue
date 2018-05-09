@@ -7,17 +7,12 @@
       <div class="row2">
           <span class="datetme">{{news.time|dateFormat}}</span>
           <span class="sour">{{news.source}}</span>
-          <span class="comments_img"><img src="../../assets/img/5_icon_comment.png" alt=""width="11"height="11"></span>
-          <span class="comment" v-if="news.lengthC<=999">{{news.lengthC}}</span>
-          <span class="comment1" v-else>999<span class="plus">+</span></span>
-          <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
-          <span class="like" v-if="news.lengthC<=999">{{news.lengthC}}</span>
-          <span class="like1" v-else>999<span class="plus">+</span></span>
+          
       </div>
    </div>
    <div class="right" >
 
-       <img v-lazy='news.images' width="100" height="75">
+       <img v-lazy='news.images[0].text' width="100" height="75">
    </div>
 </div>
 </template>
