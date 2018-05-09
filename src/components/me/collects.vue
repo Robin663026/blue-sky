@@ -273,4 +273,149 @@
 
 
   }
+  #black{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: @bbg;
+    .header{
+      width:100%;
+      height:20px;
+      background:@bg1;
+    }
+    .cotitle1{
+      height:45px;
+      padding:15px 15px 14px 15px;
+
+      .icon{
+        display:inline-block;
+        vertical-align: top;
+        padding-right:113px;
+
+      }
+      .collects{
+        display:inline-block;
+        vertical-align: top;
+        padding-right:20px;
+        font-family: PingFangSC-Semibold;
+        font-size: 16px;
+        color: @bblue;
+      }
+      .history{
+        display:inline-block;
+        vertical-align: top;
+        padding-right: 80px;
+        font-family: PingFangSC-Semibold;
+        font-size: 14px;
+        color: @blight;
+      }
+      .edit{
+        display:inline-block;
+        vertical-align: top;
+        padding:1px 0px ;
+        font-family: PingFangSC-Semibold;
+        font-size: 14px;
+        color: @blight;
+      }
+      .actives{
+        margin-left:135px;
+        display:inline-block;
+        width:25px;
+        height:4px;
+        background: @bblue;
+        left:0;
+        bottom:0;
+        transition:transform 0.8s ease;
+
+
+      }
+    }
+    .collect-list{
+      width:100%;
+      
+      .collections{
+        padding:15px 0px 0 15px;
+
+        .title2{
+          height:115px;
+          width:100%;
+          display:flex;
+          padding:20px 0;
+          .border-1px(@bline);
+
+          .left{
+            float:left;
+            flex:1;
+            padding-right:18px;
+            width:230px;
+            .row1{
+              height:42px;
+              overflow:hidden;
+              font-family:PingFangSC-Semibold;
+              font-size: 16px;
+              color: @b33;
+              line-height: 21px;
+            }
+            .row2{
+              padding-top:22px;
+              height:11px;
+              display:inline-block;
+              vertical-align:top;
+              .top{
+
+                padding-right:2px;
+                font-family:PingFangSC-Regular;
+                font-size: 8px;
+                color: @bred;
+              }
+              .datetme{
+                padding-right:5px;
+                width:45px;
+                font-family:PingFangSC-Regular;
+                font-size: 11px;
+                color: @blight;
+              }
+              .sour{
+                display:inline-block;
+                width:65px;
+                padding-right:10px;
+                height:11px;
+                overflow: hidden;
+
+                font-family:PingFangSC-Regular;
+                font-size: 11px;
+                color: @blight;
+              }
+              
+
+            }
+          }
+          .right{
+            float:left;
+            flex:0 0 100px;
+            padding-right:15px;
+
+          }
+        }
+
+      }
+      .no-message{
+        vertical-align:center;
+        width:100%;
+        padding-top:40px;
+        color:@blight;
+      }
+    }
+    .history-list{
+      margin-top:30px;
+      width:100%;
+      text-align:center;
+      color:@blight;
+    }
+
+
+
+  }
 </style>

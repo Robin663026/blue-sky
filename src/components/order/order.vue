@@ -2,8 +2,8 @@
   <div class="news" :id="theme">
     <header></header>
     <div class="tab">
-      <span class="title">订阅</span>
-      <span class="search" ><img src="../../assets/img/3_icon_search.png" alt="" width="16"height="16"></span>
+      <span class="otitle">订阅</span>
+      <span class="search" ></span>
     </div>
     <div class="news-list border-1px"  ref="newsColumn" >
       <ul  v-if="localSubscribe.length">
@@ -110,7 +110,7 @@
       dateFormat (time) {
         return moment(time).startOf('mimute').fromNow()
       }
-    }
+    },
   }
 </script>
 
@@ -134,7 +134,7 @@
       line-height:16px;
       text-align:center;
 
-      .title{
+      .otitle{
         display:inline-block;
         vertical-align:top;
         font-family: PingFangSC-Semibold;
@@ -146,6 +146,10 @@
         vertical-align:top;
         position:absolute;
         right:15px;
+        width:16px;
+        height:16px;
+        background:url(../../assets/img/3_icon_search.png)no-repeat center center;
+        background-size:16px 16px;
       }
     }
     .news-list{
@@ -181,7 +185,7 @@
       line-height:16px;
       text-align:center;
 
-      .title{
+      .otitle{
         display:inline-block;
         vertical-align:top;
         font-family: PingFangSC-Semibold;
@@ -193,6 +197,10 @@
         vertical-align:top;
         position:absolute;
         right:15px;
+        width:16px;
+        height:16px;
+        background:url(../../assets/img/40_dark_search.png)no-repeat center center;
+        background-size:16px 16px;
       }
     }
     .news-list{

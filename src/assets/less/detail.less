@@ -14,25 +14,19 @@
       height:20px;
       background:rgba(0,0,0,0.00);
     }
-    .back{
-      position:relative;
-      width: 100%;
+    .backs{
+      background:url(../img/4_icon_back.png)no-repeat center center;
+      background-size:16px 16px;
+      width: 46px;
       height:45px;
-      .image{
-        display:inline-block;
-        background:url(../img/4_icon_back.png)no-repeat center center;
-        background-size:16px 16px;
-        position:absolute;
-        padding-left:30px;
-        padding-top:30px;
-      }
+      
     }
     .content{
       padding:15px 15px 0 15px;
       height:551px;
       overflow:auto;
       .border-1px(@line);
-      .title{
+      .dtitle{
         height:52px;
         font-family:PingFangSC-Semibold;
         font-size: 21px;
@@ -55,12 +49,14 @@
           flex:1;
           float:left;
           .top {
+            display:inline-block;
+            height:12px;
             font-family: PingFangSC-Semibold;
             font-size: 12px;
             color: @33;
             padding-top: 1px;
             padding-bottom: 3px;
-            width: 65px;
+            width: 53px;
             overflow: hidden;
             height: 12px;
           }
@@ -161,6 +157,7 @@
       height:50px;
       padding:10px;
       width:100%;
+      background:@bg;
       .left{
         flex:0 0 150px;
         float:left;
@@ -195,17 +192,37 @@
         width:205px;
         padding:5px 0px;
         .comment{
-          padding:0px 5px 0px 100px;
+          position:absolute;
+          right:80px;
+          width:20px;
+          height:20px;
+          background:url(../../assets/img/13_comment.png)no-repeat center center;
+          background-size:20px 20px;
         }
         .collect{
-          padding:0px 5px 0px 5px;
+          position:absolute;
+          right:50px;
+          width:20px;
+          height:20px;
+          background:url(../img/14_collect.png)no-repeat center center;
+          background-size:20px 20px;
+          
         }
         .nocollect{
           padding:0px 5px 0px 5px;
-
+          position:absolute;
+          right:50px;
+          width:20px;
+          height:20px;
+          background:url(../img/14_collect2.png)no-repeat center center;
+          background-size:20px 20px;
         }
         .share{
-   
+          display:inline-block;
+          position:absolute;
+          right:20px;
+          width:20px;
+          height:20px;
           background:url(../img/13_share.png)no-repeat center center;
           background-size:20px 20px;
        
@@ -236,13 +253,11 @@
       background: @bg;
       .combacks{
         position:relative;
-        width: 100%;
+        width: 46px;
         height:45px;
-        img{
-          position:absolute;
-          left:15px;
-          top:13px;
-        }
+        background:url(../../assets/img/4_icon_back.png)no-repeat center center;
+        background-size:16px 16px;
+        
       }
       .comcommentCon{
         padding:15px 15px 0 15px;
@@ -266,7 +281,9 @@
             color: @light;
           }
           .comtop{
-            width:45px;
+            display:inline-block;
+            height:12px;
+            width:53px;
             overflow:hidden;
           }
 
@@ -365,7 +382,7 @@
           height:50px;
           padding:10px;
           width:100%;
-          background:white;
+          background:@bg;
           .comleft{
             flex:0 0 150px;
             float:left;
@@ -400,16 +417,24 @@
             width:205px;
             padding:5px 0px;
             .comcomment{
-              padding:0px 5px 0px 100px;
+              position:absolute;
+              right:90px;
             }
             .comback{
+              position:absolute;
+              right:40px;
               padding:0 5px 0px 5px;
               font-family: PingFangSC-Semibold;
-              font-size: 14px;
+              font-size: 16px;
               color: @blue;
             }
             .comshare{
-              padding:0px 5px 0px 5px;
+              position:absolute;
+              right:15px;
+              width:20px;
+              height:20px;
+              background:url(../../assets/img/13_share.png)no-repeat center center;
+              background-size:20px 20px;
             }
 
           }
@@ -433,25 +458,18 @@
       height:20px;
       background:@bg1;
     }
-    .back{
-      position:relative;
-      width: 100%;
+    .backs{
+      background:url(../img/48_dark_back.png)no-repeat center center;
+      background-size:16px 16px;
+      width: 46px;
       height:45px;
-      .image{
-        display:inline-block;
-        background:url(../img/48_dark_back.png)no-repeat center center;
-        background-size:16px 16px;
-        position:absolute;
-        padding-left:30px;
-        padding-top:30px;
-      }
     }
     .content{
       padding:15px 15px 0 15px;
       height:551px;
       overflow:auto;
       .border-1px(@bline);
-      .title{
+      .dtitle{
         height:52px;
         font-family:PingFangSC-Semibold;
         font-size: 21px;
@@ -580,6 +598,7 @@
       height:50px;
       padding:10px;
       width:100%;
+      background:@bme;
       .left{
         flex:0 0 150px;
         float:left;
@@ -614,16 +633,35 @@
         width:205px;
         padding:5px 0px;
         .comment{
-          padding:0px 5px 0px 100px;
+          position:absolute;
+          right:80px;
+          width:20px;
+          height:20px;
+          background:url(../../assets/img/46_dark_comment.png)no-repeat center center;
+          background-size:20px 20px;
         }
         .collect{
-          padding:0px 5px 0px 5px;
+          position:absolute;
+          right:50px;
+          width:20px;
+          height:20px;
+          background:url(../img/45_dark_collect.png)no-repeat center center;
+          background-size:20px 20px;
         }
         .nocollect{
-          padding:0px 5px 0px 5px;
-
+          position:absolute;
+          right:50px;
+          width:20px;
+          height:20px;
+          background:url(../img/14_collect2.png)no-repeat center center;
+          background-size:20px 20px;
         }
         .share{
+          display:inline-block;
+          position:absolute;
+          right:20px;
+          width:20px;
+          height:20px;
           background:url(../img/47_dark_share.png)no-repeat center center;
           background-size:20px 20px;
         }
@@ -653,13 +691,10 @@
       background: @bbg;
       .combacks{
         position:relative;
-        width: 100%;
+        width: 46px;
         height:45px;
-        img{
-          position:absolute;
-          left:15px;
-          top:13px;
-        }
+        background:url(../../assets/img/48_dark_back.png)no-repeat center center;
+        background-size:16px 16px;
       }
       .comcommentCon{
         padding:15px 15px 0 15px;
@@ -782,7 +817,7 @@
           height:50px;
           padding:10px;
           width:100%;
-          background:@bbg;
+          background:@bme;
           .comleft{
             flex:0 0 150px;
             float:left;
@@ -826,7 +861,12 @@
               color: @blue;
             }
             .comshare{
-              padding:0px 5px 0px 5px;
+              position:absolute;
+              right:15px;
+              width:20px;
+              height:20px;
+              background:url(../../assets/img/47_dark_share.png)no-repeat center center;
+              background-size:20px 20px;
             }
 
           }

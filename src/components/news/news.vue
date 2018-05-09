@@ -2,8 +2,8 @@
 <div class="news" :id="theme">
   <header></header>
   <div class="tab">
-    <span class="title">新闻</span>
-    <span class="search" ><router-link :to="{path:'/news/search',query:{id:press}}"><img src="../../assets/img/3_icon_search.png" alt="" width="16"height="16"></router-link></span>
+    <span class="ntitle">新闻</span>
+    <router-link :to="{path:'/news/search',query:{id:press}}"><span class="search" ></span></router-link>
   </div>
   <div class="news-list border-1px"  ref="newsColumn" >
     <ul >
@@ -141,7 +141,7 @@
   header{
     width:100%;
     height:20px;
-    background:rgba(0,0,0,0.00);
+    background:@bg1;
   }
   .tab{
     position:relative;
@@ -150,7 +150,7 @@
     line-height:16px;
     text-align:center;
 
-    .title{
+    .ntitle{
       display:inline-block;
       vertical-align:top;
       font-family: PingFangSC-Semibold;
@@ -162,6 +162,10 @@
       vertical-align:top;
       position:absolute;
       right:15px;
+      width:16px;
+      height:16px;
+      background:url(../../assets/img/3_icon_search.png)no-repeat center center;
+      background-size:16px 16px;
     }
   }
   .news-list{
@@ -178,9 +182,13 @@
     background:@bg1;
   }
   .tab{
-    .title{   
+    .ntitle{   
       color: @b33;
     } 
+    .search{
+      background:url(../../assets/img/40_dark_search.png)no-repeat center center;
+      background-size:16px 16px;
+    }
   }
   .news-list{
     .border-1px(@bline);
@@ -209,6 +217,7 @@
           display:inline-block;
           vertical-align:top;
           .top{ 
+            border:1px solid @bred;
             width:17px;
             padding-right:2px;
             font-family:PingFangSC-Regular;
@@ -223,7 +232,9 @@
             color: @blight;
           }
           .sour{
-            width:45px;
+            display:inline-block;
+            width:53px;
+            height:12px;
             overflow: hidden;
             font-family:PingFangSC-Regular;
             font-size: 11px;
@@ -298,7 +309,7 @@
         font-size:0;
         
         .top{
-     
+          border:1px solid @bred;
           padding-right:2px;
           font-family:PingFangSC-Regular;
           font-size: 8px;
@@ -317,7 +328,7 @@
           display:inline-block;
           width:65px;
           padding-right:10px;
-          height:11px;
+          height:12px;
           overflow: hidden;
           font-family:PingFangSC-Regular;
           font-size: 11px;

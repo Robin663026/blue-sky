@@ -1,5 +1,5 @@
 <template>
-<div class="title1 " :id="theme">
+<div class="title1 " >
   <div class="left">
       <div class="row1">
           <span>{{news.title}}</span>
@@ -74,33 +74,14 @@ import moment from 'moment'
             color: @light;
           }
           .sour{
-            width:45px;
+            display:inline-block;
+            height:12px;
+            width:52px;
             overflow: hidden;
             font-family:PingFangSC-Regular;
             font-size: 11px;
             color: @light;
           }
-          .comments_img{
-            padding-right:1px;
-          }
-          .comment{
-            width:20px;
-            font-family: PingFangSC-Regular;
-            font-size: 11px;
-            color: @light;
-          }
-        
-          .thumbUp{
-            padding-right:1px;
-          }
-          .like{
-            width:20px;
-            font-family: PingFangSC-Regular;
-            font-size: 11px;
-            color: @light;
-          }
-          
-
         }
       }
       .right{

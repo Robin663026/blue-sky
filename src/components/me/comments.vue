@@ -1,8 +1,8 @@
 <template>
   <div class="commentsDetail" :id="theme">
     <header></header>
-    <div class="title">
-      <span class="icon"><router-link to="/me"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></router-link></span>
+    <div class="title border-1px">
+      <router-link to="/me"><div class="icon1"></div></router-link>
       <span class="text"><p>赞过的评论</p></span>
     </div>
     <div class="contents ">
@@ -59,15 +59,22 @@
     height:20px;
     background:rgba(0,0,0,0.00);
   }
+
   .title{
+    border-bottom:1px solid @line;
     position:relative;
     height:45px;
     width:100%;
     padding:15px 0 14px 0;
-    .icon{
+    .icon1{
       position:absolute;
-      top:15px;
       left:15px;
+      top:15px;
+      width:16px;
+      height:16px;
+      background:url(../../assets/img/4_icon_back.png)no-repeat center center;
+      background-size:16px 16px;
+
     }
     .text{
       text-align:center;
@@ -137,14 +144,19 @@
     background:@bg;
   }
   .title{
+    border-bottom:1px solid @bline;
     position:relative;
     height:45px;
     width:100%;
     padding:15px 0 14px 0;
     .icon{
       position:absolute;
-      top:15px;
       left:15px;
+      top:15px;
+      width:16px;
+      height:16px;
+      background:url(../../assets/img/48_dark_back.png)no-repeat center center;
+      background-size:16px 16px;
     }
     .text{
       text-align:center;

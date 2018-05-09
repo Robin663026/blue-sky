@@ -29,11 +29,11 @@
             </div>
         </li>
       </ul>
-      <div v-else>
+      <div class="none"v-else>
         空空如也，快去收藏吧
       </div>
     </div>
-    <div class="bottom">
+    <div class="bottom233">
       <span class="left"  @click.stop="checkall">全选</span>
       <span class="right" @click.stop="dele">删除</span>
     </div>
@@ -51,6 +51,17 @@
         isCheckedAll:false,
         checkData:[]
       }
+    },
+    mounted(){
+      this.getImage();
+
+    },
+    created(){
+      // let that=this;
+      // this.$nextTick(()=>{
+      //   that.getImage(that);
+      // });
+      // if(this.collection.length>0) return false;
     },
     methods:{
       ...mapMutations(['REMOVE_COLLECTION']),
@@ -76,6 +87,25 @@
           if(index.checked){
             that.localCollection.splice(i,1)
           }
+        }
+      },
+      getImage(){
+        for(let i=0;i<this.localCollection.length;i++){
+          for(let j=0;j<this.localCollection[i].images.length;j++){
+            if(this.localCollection[i].images[j].type=='image'){
+              if(j>0){
+                let temp;
+                temp=this.localCollection[i].images[0];
+                this.localCollection[i].images[0]=this.localCollection[i].images[j];
+                this.localCollection[i].images[j]=temp;
+              }else{
+                return
+              }
+
+
+            }
+          }
+
         }
       }
     },
@@ -173,7 +203,7 @@
       padding:0px 15px;
       width:100%;
       .border-1px(@line);
-      border-bottom:1px solid @line;
+      
       .editItem{
         width:100%;
         display:flex;
@@ -243,9 +273,13 @@
           float:left;
         }
       }
+      .none{
+        text-align:center;
+        padding-top:50px;
+      }
 
     }
-    .bottom{
+    .bottom233{
       position:absolute;
       left:0;
       bottom:0;
@@ -265,6 +299,172 @@
         font-family: PingFangSC-Regular;
         font-size: 16px;
         color: @bg;
+      }
+
+    }
+
+  }
+  #black{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:400;
+    background:@bbg;
+    .header{
+      width:100%;
+      height:20px;
+      background:@bg1;
+    }
+    .wrapper{
+      
+      height:45px;
+     
+      padding:15px 15px 14px 15px;
+      .icon{
+        display:inline-block;
+        vertical-align: top;
+        padding-right:113px;
+
+      }
+      .collects{
+        display:inline-block;
+        vertical-align: top;
+        padding-right:20px;
+        font-family: PingFangSC-Semibold;
+        font-size: 16px;
+        color: @bblue;
+      }
+      .history{
+        display:inline-block;
+        vertical-align: top;
+        padding-right: 80px;
+        font-family: PingFangSC-Semibold;
+        font-size: 14px;
+        color: @blight;
+      }
+      .edit{
+        display:inline-block;
+        vertical-align: top;
+        padding:1px 0px ;
+        font-family: PingFangSC-Semibold;
+        font-size: 14px;
+        color: @blight;
+      }
+      .actives{
+        margin-left:145px;
+        display:inline-block;
+        width:20px;
+        height:4px;
+        background: @bblue;
+        left:0;
+        bottom:0;
+        transition:transform 0.6s ease;
+
+      }
+    }
+    .editList{
+      padding:0px 15px;
+      width:100%;
+      .border-1px(@bline);
+      
+      .editItem{
+        width:100%;
+        display:flex;
+        height:115px;
+        padding:20px 0;
+        .border-1px(@bline);
+        .left{
+          flex:0 0 38px;
+          float:left;
+          margin-top:27px;
+          .circle{
+            display:inline-block;
+        
+            width:23px;
+            height:23px;
+            background:black;
+            border-radius:50%;
+            background: @bbg;
+            border: 1px solid @97;
+          }
+        }
+        .middle{
+          flex:1;
+          float:left;
+          padding-right:18px;
+          .row1{
+            height:42px;
+            overflow:hidden;
+            font-family:PingFangSC-Semibold;
+            font-size: 16px;
+            color: @b33;
+            line-height: 21px;            
+          }
+          .row2{
+            padding-top:22px;
+            height:11px;
+            display:inline-block;
+            vertical-align:top;
+            .top{
+              padding-right:2px;
+              font-family:PingFangSC-Regular;
+              font-size: 8px;
+              color: @bred;
+              }
+            .datetme{
+              padding-right:5px;
+              width:45px;
+              font-family:PingFangSC-Regular;
+              font-size: 11px;
+              color: @blight;
+            }
+            .sour{
+              display:inline-block;
+              width:65px;
+              padding-right:10px;
+              height:11px;
+              overflow: hidden;
+              font-family:PingFangSC-Regular;
+              font-size: 11px;
+              color: @blight;
+            }
+              
+          }
+        }
+        .right{
+          flex:0 0 100px;
+          float:left;
+        }
+      }
+      .none{
+        text-align:center;
+        padding-top:50px;
+        color:@blight;
+      }
+
+    }
+    .bottom233{
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:100%;
+      height:45px;
+      background:@bline;
+      display:inline-block;
+      vertical-align:center;
+      padding:15px 15px 14px 15px;
+      .left{
+        font-family: PingFangSC-Regular;
+        font-size: 16px;
+        color: @b33;
+      }
+      .right{
+        float:right;
+        font-family: PingFangSC-Regular;
+        font-size: 16px;
+        color: @b33;
       }
 
     }

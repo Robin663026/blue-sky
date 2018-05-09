@@ -1,9 +1,9 @@
 <template>
   <div  class="news" :id="theme">
     <header></header>
-    <div class="back "><router-link to="/news" ><div class="image" ></div></router-link></div>
+    <router-link to="/news" ><div class="backs "></div></router-link>
     <div class="content border-1px" >
-      <div class="title">{{article.title}}</div>
+      <div class="dtitle">{{article.title}}</div>
       <div class="some">
         <span class="left"><img src="../../assets/img/35_img_54X54.png" width="27" height="27"></span>
         <span class="middle">
@@ -33,15 +33,15 @@
         <span class="write" @click.stop="writeComment">写评论</span>
       </div>
       <div class="right">
-        <span class="comment"><img src="../../assets/img/13_comment.png" alt=""width="20"height="20"@click.stop="seeComment"></span>
-        <span class="collect" v-if="article.like==true"><img src="../../assets/img/14_collect.png" alt=""width="20"height="20"@click.stop="collected"></span>
-        <span class="nocollect" v-else><img src="../../assets/img/14_collect2.png" alt=""width="20"height="20"@click.stop="collected"></span>
+        <span class="comment" @click.stop="seeComment"></span>
+        <span class="collect" v-if="article.like==true"@click.stop="collected"></span>
+        <span class="nocollect" v-else @click.stop="collected"></span>
         <span class="share"@click.stop="shareIcon"></span>
         <div class="num">{{article.comment.length}}</div>
       </div>
     </div>
     <div class="comseeComment" v-show="showComment">
-      <div class="combacks "@click.stop="hideComment"><img src="../../assets/img/4_icon_back.png" alt=""width="16"height="16"></div>
+      <div class="combacks "@click.stop="hideComment"></div>
       <div class="comcommentCon border-1px">
         <div class="comtitle">{{article.title}}</div>
         <div class="comwrapper">
@@ -82,7 +82,7 @@
           <div class="comright">
             <span class="comcomment"><img src="../../assets/img/17_backnews.png" alt=""width="20"height="20"@click.stop="hideComment"></span>
             <span class="comback" @click.stop="hideComment">正文</span>
-            <span class="comshare"><img src="../../assets/img/13_share.png" alt=""width="20"height="20" @click.stop="shareIcon11"></span>
+            <span class="comshare"@click.stop="shareIcon11"></span>
 
           </div>
         </div>

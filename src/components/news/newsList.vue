@@ -92,6 +92,7 @@ import moment from 'moment'
           display:inline-block;
           vertical-align:top;
           .top{ 
+            border:1px solid @red;
             width:17px;
             padding-right:2px;
             font-family:PingFangSC-Regular;
@@ -106,7 +107,9 @@ import moment from 'moment'
             color: @light;
           }
           .sour{
-            width:45px;
+            display:inline-block;
+            width:52px;
+            height:12px;
             overflow: hidden;
             font-family:PingFangSC-Regular;
             font-size: 11px;
@@ -142,6 +145,9 @@ import moment from 'moment'
             font-family: PingFangSC-Regular;
             font-size: 11px;
             color: @light;
+            .plus{
+              
+            }
           }
           
 
@@ -181,7 +187,7 @@ import moment from 'moment'
         font-size:0;
         
         .top{
-     
+          border:1px solid @red;
           padding-right:2px;
           font-family:PingFangSC-Regular;
           font-size: 8px;
@@ -198,9 +204,9 @@ import moment from 'moment'
         .sour{
         
           display:inline-block;
-          width:65px;
+          width:60px;
           padding-right:10px;
-          height:11px;
+          height:12px;
           overflow: hidden;
           font-family:PingFangSC-Regular;
           font-size: 11px;
