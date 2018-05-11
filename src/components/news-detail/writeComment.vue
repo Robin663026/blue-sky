@@ -86,5 +86,23 @@
         }
       }
     }
-   
+   #black{
+    background:@bg1;
+    .content{
+      background:@bbg;
+      .text123{
+        input{
+          color:@blight;
+          background:@binput;
+        }
+      }
+      .send{
+        background:@bbg;
+        border:1px solid @blight;
+        button{
+          color:@blight;
+        }
+      }
+    }
+   }
 </style>

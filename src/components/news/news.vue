@@ -135,7 +135,6 @@
 .news{
   position:absolute;
   top: 0px;
-  bottom:50px;
   left:0;
   width:100%;
   header{
@@ -169,12 +168,19 @@
     }
   }
   .news-list{
-    padding:0px 0px 0 15px ;
+    padding:0px 0px 0px 15px ;
     width:100%;
     height:551px;
     overflow:auto;
     .border-1px(@line);
   }
+  .bottomB{
+    position:fixed;
+    left:0;
+    bottom:0;
+    height:50px;
+  }
+
 
 }
 #black{
@@ -278,7 +284,7 @@
       .right{
         float:left;
         flex:0 0 100px;
-        padding-right:15px;
+        padding-right:0px;
       }
     }
 

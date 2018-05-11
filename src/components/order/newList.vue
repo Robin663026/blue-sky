@@ -7,6 +7,7 @@
       <div class="row2">
           <span class="datetme">{{news.time|dateFormat}}</span>
           <span class="sour">{{news.source}}</span>
+          <span class='none'>{{news.images[0].text}}</span>
           
       </div>
    </div>
@@ -24,11 +25,31 @@ import moment from 'moment'
             return {}
         },
         filters: {
-	      dateFormat (time) {
-	        return moment(time).startOf('mimute').fromNow()
-	      }
-	    },
-	    props:["news"]
+  	      dateFormat (time) {
+  	        return moment(time).startOf('mimute').fromNow()
+  	      }
+	       },
+	      props:["news"],
+        methods:{
+          getImg(){
+            for(let i=0;i<this.news.images.length;i++){
+              if(this.news.images[i].type=='image'){
+                if(i>0){
+                  let temp;
+                  temp=this.news.images[0];
+                  this.news.images[0]=this.news.images[i];
+                  this.news.images[i]=temp;
+                }else{
+                  return
+                }
+              }
+            }
+          }
+        },
+        mounted(){
+          this.getImg();
+          
+        }
     }
 </script>
 
@@ -81,6 +102,9 @@ import moment from 'moment'
             font-family:PingFangSC-Regular;
             font-size: 11px;
             color: @light;
+          }
+          .none{
+            display:none;
           }
         }
       }

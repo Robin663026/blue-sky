@@ -1,35 +1,30 @@
 <template>
-  <div class="searchNews" >
+  <div class="searchNews" :id="theme">
     <header></header>
     <div class="search-line">
       <div class="textV">
-        <input v-model='searchValue'type="search" placeholder="请输入关键字"  autofocus="autofocus">
+        <input v-model='searchValue' type="search" placeholder="请输入关键字"  autofocus="autofocus">
       </div>
-      <div class="delete" @click.prevent="searchTarget('')">搜索</div>
-
-
+      <router-link to="/news"><div class="delete" >取消</div></router-link>
     </div>
-    <div>
+  
       <div class="hot-key">
-        <div class="title">热门搜索关键字</div>
-        <ul>
-          <li @click="addQuery(item.k)" class="item" v-for="item in hotKey">
-            <span>{{item.k}}</span>
-          </li>
-        </ul>
+        <div class="titlez">热门搜索关键字</div>
+        <div class="line1">
+          <div class="name">招商仁和</div>
+          <div class="name">科技时事</div>
+          <div class="name">双十二纪念日</div>
+        </div>
+        <div class="line2">
+          <div class="name">深圳时事</div>
+          <div class="name">设计资讯</div>
+          <div class="name">中国</div>
+        </div>
       </div>
-      <div class="search-history" v-show="searchHistory.length">
-        <h1 class="title">
-          <span class="text">搜索历史</span>
-          <span @click="showConfirm" class="clear">
-                <i class="icon-clear"></i>
-              </span>
-        </h1>
-        <search-list @delete="deleteSearchHistory" @select="addQuery" :searches="searchHistory"></search-list>
-      </div>
-    </div>
+      
+  
 
-    <div class="searchResult" v-if="searchList.length>0">
+<!--     <div class="searchResult" v-if="searchList.length>0">
       <ul>
         <li v-for="list in searchList">
           <div v-if="list.image.position==='right'" class="title1 border-1px">
@@ -76,7 +71,7 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div> -->
     <div class="noResult" v-if="emptyResult">
       <div class="icon"><img src="../../assets/img/55_load_fail.png" alt=""width="150" height="149"></div>
       <div class="text">无相关关键词文章</div>
@@ -97,9 +92,6 @@
         searchHistory: [],
       }
     },
-    method:{
-
-    },
     methods:{
       async searchTarget(historyValue){
         if (historyValue) {
@@ -108,10 +100,10 @@
           return
         }
         //隐藏历史记录
-        this.showHistory = false;
+        // this.showHistory = false;
         //获取搜索结果
-        this.searchList = await searchNews(this.news, this.searchValue);
-        this.emptyResult = !this.searchList.length;
+        // this.searchList = await searchNews(this.news, this.searchValue);
+        // this.emptyResult = !this.searchList.length;
         /**
          * 点击搜索结果进入下一页面时进行判断是否已经有一样的历史记录
          * 如果没有则新增，如果有则不做重复储存，判断完成后进入下一页
@@ -136,7 +128,12 @@
 
     },
     mounted(){
-      this.news=this.$router.query.id;
+      // this.news=this.$router.query.id;
+    },
+    computed:{
+      theme(){
+        return this.$store.state.theme
+      }
     }
   }
 </script>
@@ -153,7 +150,7 @@
     background: @bg;
     .header{
       height:20px;
-      background:rgba(0,0,0,0.00);
+      background:@bg1;
     }
     .search-line{
       height:45px;
@@ -169,7 +166,7 @@
         input{
           width:100%;
           height:100%;
-          background:@33;
+          background:@input;
         }
       }
       .delete{
@@ -182,59 +179,51 @@
       }
     }
     .hot-key{
-      height:276px;
+      
       width:100%;
-      .title{
+      .titlez{
         padding:15px 0px 10px 20px;
         ont-family:PingFangSC-Semibold;
         font-size: 14px;
         color: @33;
       }
-      .place1{
-        padding:0 0 15px 20px;
+      .line1{
+        display:flex;
+        padding:0 0px 15px 20px;
         height:30px;
         width:100%;
-        .tip{
+        .name{
+          flex:1;
+          height:30px;
+          margin-right:20px;
           display:inline-block;
-          vertical-align:top;
-          width:77px;
-          padding:8px 0;
+          padding-top:7px;
           background: @bg;
           border: 1px solid @light;
           border-radius: 100px;
 
-          font-family:PingFangSC-Regular;
-          font-size: 14px;
-          text-align:center;
-          color: @light;
-        }
-        .tip1{
-          display:inline-block;
-          vertical-align:top;
-          width:105px;
-          padding:8px 0;
-          background: @bg;
-          border: 1px solid @light;
-          border-radius: 100px;
           font-family:PingFangSC-Regular;
           font-size: 14px;
           text-align:center;
           color: @light;
         }
       }
-      .place2{
-        padding:15px 0 15px 20px;
+      .line2{
+        display:flex;
+        margin-top:15px;
+        padding:0 0px 15px 20px;
         height:30px;
-
         width:100%;
-        .tip{
+        .name{
+          flex:1;
+          height:30px;
+          margin-right:20px;
           display:inline-block;
-          vertical-align:top;
-          width:77px;
-          padding:8px 0;
+          padding-top:7px;
           background: @bg;
           border: 1px solid @light;
           border-radius: 100px;
+
           font-family:PingFangSC-Regular;
           font-size: 14px;
           text-align:center;
@@ -391,6 +380,254 @@
             font-family: PingFangSC-Regular;
             font-size: 11px;
             color: @light;
+          }
+
+        }
+
+
+      }
+    }
+  }
+  #black{
+    position:absolute;
+    top:0;
+    left: 0;
+    width:100%;
+    height:667px;
+    background: @bbg;
+    .header{
+      width:100%;
+      height:20px;
+      background:@bg1;
+    }
+    .search-line{
+      height:45px;
+      width:100%;
+      padding:5px 10px;
+      .textV{
+        display:inline-block;
+        vertical-align:top;
+        width:300px;
+        background: @binput;
+        border-radius: 10px;
+        padding:10px 0px 10px 9px;
+        input{
+          width:100%;
+          height:100%;
+          background:@binput;
+        }
+      }
+      .delete{
+        display:inline-block;
+        vertical-align:top;
+        padding:10px 0 11px 16px;
+        font-family:PingFangSC-Regular;
+        font-size: 14px;
+        color: @b33;
+      }
+    }
+    .hot-key{
+      
+      width:100%;
+      .titlez{
+        padding:15px 0px 10px 20px;
+        ont-family:PingFangSC-Semibold;
+        font-size: 14px;
+        color: @b33;
+      }
+      .line1{
+        display:flex;
+        padding:0 0px 15px 20px;
+        height:30px;
+        width:100%;
+        .name{
+          flex:1;
+          height:30px;
+          margin-right:20px;
+          display:inline-block;
+          padding-top:7px;
+          background: @bbg;
+          border: 1px solid @blight;
+          border-radius: 100px;
+
+          font-family:PingFangSC-Regular;
+          font-size: 14px;
+          text-align:center;
+          color: @blight;
+        }
+      }
+      .line2{
+        display:flex;
+        margin-top:15px;
+        padding:0 0px 15px 20px;
+        height:30px;
+        width:100%;
+        .name{
+          flex:1;
+          height:30px;
+          margin-right:20px;
+          display:inline-block;
+          padding-top:7px;
+          background: @bbg;
+          border: 1px solid @blight;
+          border-radius: 100px;
+
+          font-family:PingFangSC-Regular;
+          font-size: 14px;
+          text-align:center;
+          color: @blight;
+        }
+      }
+    }
+    .noResult{
+      position:fixed;
+      top:64px;
+      left:0;
+      bottom:45px;
+      width:100%;
+      background:@bbg;
+      text-align:center;
+      .icon{
+        padding:150px 0 10px 0;
+      }
+      .text{
+        font-family: PingFangSC-Regular;
+        font-size: 16px;
+        color: @blight;
+      }
+    }
+    .searchResult{
+      position:fixed;
+      top:64px;
+      left:0;
+      width:100%;
+      .title1{
+        height:115px;
+        width:100%;
+        padding:20px 0;
+        .border-1px(@bline);
+
+        .left{
+          float:left;
+          padding-right:18px;
+          width:227px;
+          .row1{
+            height:42px;
+            overflow:hidden;
+            font-family:PingFangSC-Semibold;
+            font-size: 16px;
+            color: @b33;
+            line-height: 21px;
+          }
+          .row2{
+            padding-top:22px;
+            height:11px;
+            display:inline-block;
+            vertical-align:top;
+            .top{
+              padding-right:2px;
+              font-family:PingFangSC-Regular;
+              font-size: 8px;
+              color: @bred;
+            }
+            .datetme{
+              padding-right:5px;
+              font-family:PingFangSC-Regular;
+              font-size: 11px;
+              color: @blight;
+            }
+            .source{
+              padding-right:10px;
+              width:45px;
+              overflow: hidden;
+              font-family:PingFangSC-Regular;
+              font-size: 11px;
+              color: @blight;
+
+
+            }
+            .comments_img{
+              padding-right:1px;
+            }
+            .comment{
+              padding-right:12px;
+              font-family: PingFangSC-Regular;
+              font-size: 11px;
+              color: @blight;
+            }
+            .thumbUp{
+              padding-right:1px;
+            }
+            .like{
+              padding-right:12px;
+              font-family: PingFangSC-Regular;
+              font-size: 11px;
+              color: @blight;
+            }
+
+          }
+        }
+        .right{
+          float:left;
+          padding-right:15px;
+        }
+      }
+      .title2 {
+        .border-1px(@bline);
+        height:220px;
+        padding:20px 15px 20px 0;
+        .top{
+          height:16px;
+          font-family: PingFangSC-Semibold;
+          font-size: 16px;
+          color: @b33;
+          margin-bottom:5px;
+        }
+        .middle{
+          margin-bottom:7px;
+        }
+        .bottom{
+          height:11px;
+          display:inline-block;
+          vertical-align:top;
+          .top{
+            padding-right:2px;
+            font-family:PingFangSC-Regular;
+            font-size: 8px;
+            color: @bred;
+          }
+          .datetme{
+            padding-right:5px;
+            font-family:PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .source{
+            padding-right:10px;
+            overflow: hidden;
+            font-family:PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+            overflow: hidden;
+            width:45px;
+          }
+          .comments_img{
+            padding-right:1px;
+          }
+          .comment{
+            padding-right:12px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .thumbUp{
+            padding-right:1px;
+          }
+          .like{
+            padding-right:12px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
           }
 
         }

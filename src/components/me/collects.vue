@@ -2,7 +2,7 @@
   <div class="collectDetail" :id="theme"  >
     <header></header>
     <div class="cotitle1">
-      <span class="icon"><router-link to="/me"><img src="../../assets/img/4_icon_back.png" alt=""width="16" height="16"></router-link></span>
+      <router-link to="/me"><span class="icon"></span></router-link>
       <span class=" collects "  @click.stop="collect">收藏</span>
       <span class=" history" @click.stop="hist">历史</span>
       <span class="edit" ><router-link to="/me/collects/eidtCollects">编辑</router-link></span>
@@ -15,6 +15,7 @@
             <div class="left">
               <div class="row1">
                 <span>{{item.title}}</span>
+                <span class="none">{{item.images[0].text}}</span>
               </div>
               <div class="row2">
                 <span class="datetme">{{item.time|dateFormat}}</span>
@@ -48,7 +49,7 @@
   export default {
     data() {
       return {
-        collection_tag:'initial',
+        collection_tag:'collect',
         direction:'',
         ifModel:false,
         id:'',
@@ -56,12 +57,9 @@
       
       }
     },
-    created(){
-      let that=this;
-      this.$nextTick(()=>{
-        that.getImage(that);
-      });
-      if(this.collection.length>0) return false;
+    mounted(){
+      this.getImage();
+
     },
     methods:{
       getImage(){
@@ -87,13 +85,13 @@
       //显示默认收藏标签
       collect(){
         this.collection_tag = 'collect'
-        this.direction = 'collection-right'
+        this.direction = 'collection-left'
         this.$refs.active.style.transform = 'translateX(0)'
       },
       // 显示历史标签
       hist () {
         this.collection_tag = 'hist'
-        this.direction = 'collection-left'
+        this.direction = 'collection-right'
         this.$refs.active.style.transform = 'translateX(2rem)'
       },
       // 弹出对话框选择是否删除收藏
@@ -149,12 +147,18 @@
       .icon{
         display:inline-block;
         vertical-align: top;
-        padding-right:113px;
-
+        position:absolute;
+        left:15px;
+        top:35px;
+        width:16px;
+        height:16px;
+        background:url(../../assets/img/4_icon_back.png)no-repeat center center;
+        background-size:16px 16px;
       }
       .collects{
         display:inline-block;
         vertical-align: top;
+        padding-left:135px;
         padding-right:20px;
         font-family: PingFangSC-Semibold;
         font-size: 16px;
@@ -191,7 +195,8 @@
     }
     .collect-list{
       width:100%;
-      
+      height:551px;
+      overflow:auto;
       .collections{
         padding:15px 0px 0 15px;
 
@@ -214,6 +219,9 @@
               font-size: 16px;
               color: @33;
               line-height: 21px;
+              .none{
+                display:none;
+              }
             }
             .row2{
               padding-top:22px;
@@ -292,16 +300,22 @@
       .icon{
         display:inline-block;
         vertical-align: top;
-        padding-right:113px;
-
+        position:absolute;
+        left:15px;
+        top:35px;
+        width:16px;
+        height:16px;
+        background:url(../../assets/img/48_dark_back.png)no-repeat center center;
+        background-size:16px 16px;
       }
       .collects{
         display:inline-block;
         vertical-align: top;
+        padding-left:135px;
         padding-right:20px;
         font-family: PingFangSC-Semibold;
         font-size: 16px;
-        color: @bblue;
+        color: @blue;
       }
       .history{
         display:inline-block;
@@ -309,7 +323,7 @@
         padding-right: 80px;
         font-family: PingFangSC-Semibold;
         font-size: 14px;
-        color: @blight;
+        color: @light;
       }
       .edit{
         display:inline-block;
@@ -357,6 +371,9 @@
               font-size: 16px;
               color: @b33;
               line-height: 21px;
+              .none{
+                display:none;
+              }
             }
             .row2{
               padding-top:22px;

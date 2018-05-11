@@ -58,9 +58,9 @@
                 <div class="comcontent33 border-1px">
                   <div class="comline1">
                     <span class="comname">{{cmt.name}}</span>
-                    <span class="comnum">{{cmt.thumbUP}}</span>
-                    <span class="comthumb" @click.stop="thum" v-if="thumb=true"><img src="../../assets/img/6_icon_good2.png" width="13" height="13"></span>
-                    <span class="comthum" @click.stop="thum" v-else><img src="../../assets/img/6_icon_good.png"width="13" height="13" ></span>
+                    <span class="comnum">{{cmt.thumbUp}}</span>
+                    <span class="comthumb" @click.stop="thum" v-if="thumb=true"><img src="../../assets/img/6_icon_good.png" width="13" height="13"></span>
+                    <span class="comthum" @click.stop="thum" v-else><img src="../../assets/img/6_icon_good2.png"width="13" height="13" ></span>
                   </div>
                   <div class="comtext33">{{cmt.text}}</div>
                   <div class="comtime">{{cmt.dateTime|dateFormat}}</div>
@@ -120,7 +120,7 @@
         text:'',
         uid:this.$route.query.id,
         subscribeflag:true,
-        thumb:true,
+        thumb:false,
         list:[]
 
       };

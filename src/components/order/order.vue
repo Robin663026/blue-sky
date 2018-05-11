@@ -45,14 +45,9 @@
     props:{
 
     },
-    created(){
-      var that=this;
-      this.$nextTick(()=>{
-        that.getImage(that);
-      })
-    },
     methods: {
       getImage(){
+        
         for(let i=0;i<this.localSubscribe.length;i++){
           for(let j=0;j<this.localSubscribe[i].images.length;j++){
             if(this.localSubscribe[i].images[j].type=='image'){
@@ -111,6 +106,12 @@
         return moment(time).startOf('mimute').fromNow()
       }
     },
+    mounted(){
+      let that=this;
+      this.$nextTick(()=>{
+        that.getImage(that);
+      });
+    }
   }
 </script>
 
@@ -119,7 +120,7 @@
   .news{
     position:absolute;
     top: 0px;
-    bottom:50px;
+ 
     left:0;
     width:100%;
     height:667px;
@@ -166,11 +167,16 @@
       text-align:center;
 
     }
+    .bottomB{
+      position:fixed;
+      left:0;
+      bottom:0;
+    }
 }
 #black{
     position:absolute;
     top: 0px;
-    bottom:50px;
+   
     left:0;
     width:100%;
     height:667px;
@@ -216,6 +222,11 @@
       padding-top:20px;
       text-align:center;
 
+    }
+    .bottomB{
+      position:fixed;
+      left:0;
+      bottom:0;
     }
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="editCollects" :id="theme">
     <header></header>
     <div class="wrapper">
-      <span class="icon"><router-link to="/me"><img src="../../assets/img/4_icon_back.png" alt=""width="16" height="16"></router-link></span>
+      <router-link to="/me"><span class="icon"></span></router-link>
       <span class=" collects "  >收藏</span>
       <span class=" history" >历史</span>
       <span class="edit" ><router-link to="/me/collects">取消</router-link></span>
@@ -25,7 +25,7 @@
               </div>
             </div>
             <div class="right">
-              <img v-lazy="item.images" width="100" height="75">
+              <img v-lazy="item.images[0].text" width="100" height="75">
             </div>
         </li>
       </ul>
@@ -160,12 +160,18 @@
       .icon{
         display:inline-block;
         vertical-align: top;
-        padding-right:113px;
-
+        position:fixed;
+        left:15px;
+        top:35px;
+        width:16px;
+        height:16px;
+        background:url(../../assets/img/4_icon_back.png)no-repeat center center;
+        background-size:16px 16px;
       }
       .collects{
         display:inline-block;
         vertical-align: top;
+        padding-left:135px;
         padding-right:20px;
         font-family: PingFangSC-Semibold;
         font-size: 16px;
@@ -202,6 +208,8 @@
     .editList{
       padding:0px 15px;
       width:100%;
+      height:551px;
+      overflow:auto;
       .border-1px(@line);
       
       .editItem{
@@ -280,7 +288,7 @@
 
     }
     .bottom233{
-      position:absolute;
+      position:fixed;
       left:0;
       bottom:0;
       width:100%;
@@ -325,16 +333,22 @@
       .icon{
         display:inline-block;
         vertical-align: top;
-        padding-right:113px;
-
+        position:fixed;
+        left:15px;
+        top:35px;
+        width:16px;
+        height:16px;
+        background:url(../../assets/img/48_dark_back.png)no-repeat center center;
+        background-size:16px 16px;
       }
       .collects{
         display:inline-block;
         vertical-align: top;
+        padding-left:135px;
         padding-right:20px;
         font-family: PingFangSC-Semibold;
         font-size: 16px;
-        color: @bblue;
+        color: @blue;
       }
       .history{
         display:inline-block;
@@ -342,7 +356,7 @@
         padding-right: 80px;
         font-family: PingFangSC-Semibold;
         font-size: 14px;
-        color: @blight;
+        color: @light;
       }
       .edit{
         display:inline-block;
@@ -367,6 +381,8 @@
     .editList{
       padding:0px 15px;
       width:100%;
+      height:551px;
+      overflow:scroll;
       .border-1px(@bline);
       
       .editItem{
@@ -446,7 +462,7 @@
 
     }
     .bottom233{
-      position:absolute;
+      position:fixed;
       left:0;
       bottom:0;
       width:100%;
