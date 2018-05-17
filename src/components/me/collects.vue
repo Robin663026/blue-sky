@@ -142,7 +142,9 @@
     }
     .cotitle1{
       height:45px;
-      padding:15px 15px 14px 15px;
+      display:flex;
+      width:100%;
+      padding:15px 0px 14px 0px;
 
       .icon{
         display:inline-block;
@@ -175,6 +177,9 @@
       .edit{
         display:inline-block;
         vertical-align: top;
+        position:absolute;
+        right:15px;
+        top:35px;
         padding:1px 0px ;
         font-family: PingFangSC-Semibold;
         font-size: 14px;
@@ -295,8 +300,8 @@
     }
     .cotitle1{
       height:45px;
-      padding:15px 15px 14px 15px;
-
+      padding:15px 0px 14px 0px;
+      
       .icon{
         display:inline-block;
         vertical-align: top;

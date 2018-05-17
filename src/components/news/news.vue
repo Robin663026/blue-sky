@@ -170,7 +170,9 @@
   .news-list{
     padding:0px 0px 0px 15px ;
     width:100%;
-    height:551px;
+    position:fixed;
+    top:0px;
+    bottom:50px;
     overflow:auto;
     .border-1px(@line);
   }
@@ -391,7 +393,8 @@
     padding: 7px 39px 5px 39px;
     height: 50px;
     z-index:200;
-    .border-1px(bc);
+    background:@bbg;
+    .border-1px(@bline);
     .tab-image {
       display: flex;
       height: 24px;

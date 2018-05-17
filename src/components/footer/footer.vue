@@ -48,8 +48,9 @@
     width: 100%;
     padding: 7px 39px 5px 39px;
     height: 50px;
+    background:@bg;
     z-index:200;
-    .border-1px(bc);
+    .border-1px(@line);
     .tab-image {
       display: flex;
       height: 24px;

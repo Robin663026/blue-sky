@@ -1,7 +1,8 @@
 <template>
   <div  class="news" :id="theme">
     <header></header>
-    <router-link to="/news" ><div class="backs "></div></router-link>
+    <div class="backed"><router-link to="/news" ><div class="backs "></div></router-link></div>
+    
     <div class="content border-1px" >
       <div class="dtitle">{{article.title}}</div>
       <div class="some">
