@@ -13,7 +13,7 @@
         <span class="comment" v-if="news.comments[0].count<=999">{{news.comments[0].count}}</span>
         <span class="comment1 " v-else>999<span class="plus">+</span></span>
         <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
-        <span class="like" v-if="news.comments[0].thumbUP<=999">{{news.comments[0].thumbUP}}</span>
+        <span class="like" v-if="news.comments[0].thumbUp<=999">{{news.comments[0].thumbUp}}</span>
         <span class="like1" v-else>
           999
           <span class="plus">+</span>
@@ -38,7 +38,7 @@
       <span class="comment" v-if="news.comments[0].count<=999">{{news.comments[0].count}}</span>
       <span class="comment1" v-else>999<span class="plus">+</span></span>
       <span class="thumbUp"><img src="../../assets/img/6_icon_good.png" alt=""alt=""width="11"height="11"></span>
-      <span class="like" v-if="news.comments[0].thumbUP<=999">{{news.comments[0].thumbUP}}</span>
+      <span class="like" v-if="news.comments[0].thumbUp<=999">{{news.comments[0].thumbUp}}</span>
       <span class="like1" v-else>999<span class="plus">+</span></span>
       
     </div>
@@ -141,12 +141,17 @@ import moment from 'moment'
             color: @light;
           }
           .like1{
+            position:relative;
             width:20px;
             font-family: PingFangSC-Regular;
             font-size: 11px;
             color: @light;
             .plus{
-              
+              position:absolute;
+              top:-3px;
+              left:22px;
+              font-size:10px;
+              color: @light;
             }
           }
           
@@ -242,11 +247,18 @@ import moment from 'moment'
           color: @light;
         }
         .like1{
-         
+          position:relative;
           width:20px;
           font-family: PingFangSC-Regular;
           font-size: 11px;
           color: @light;
+          .plus{
+            position:absolute;
+            top:-3px;
+            left:22px;
+            font-size:10px;
+            color: @light;
+          }
         }
 
       }

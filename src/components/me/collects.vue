@@ -6,12 +6,12 @@
       <span class=" collects "  @click.stop="collect">收藏</span>
       <span class=" history" @click.stop="hist">历史</span>
       <span class="edit" ><router-link to="/me/collects/eidtCollects">编辑</router-link></span>
-      <span class="actives" ref="active"></span>
+      <span class="actives" ></span>
     </div>
-    <div class="collect-list border-1px" v-if="collection_tag==='collect'">
+    <div class="collect-list " v-if="collection_tag==='collect'">
       <ul class="collections" v-if="localCollection.length">
         <li v-for="item in localCollection" :key="item.id" class="collection_item" @click.stop="$router.push({path: '/detail/' + item.id})">
-          <div class="title2 border-1px">
+          <div class="titled ">
             <div class="left">
               <div class="row1">
                 <span>{{item.title}}</span>
@@ -129,9 +129,11 @@
 <style lang="less">
   @import (reference)'../../assets/less/common';
   .collectDetail{
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
+    bottom:0;
+    z-index:300;
     width:100%;
     height:100%;
     background: @bg;
@@ -142,14 +144,12 @@
     }
     .cotitle1{
       height:45px;
-      display:flex;
-      width:100%;
-      padding:15px 0px 14px 0px;
+      border-bottom:1px solid @line;
 
       .icon{
         display:inline-block;
         vertical-align: top;
-        position:absolute;
+        position:fixed;
         left:15px;
         top:35px;
         width:16px;
@@ -160,8 +160,9 @@
       .collects{
         display:inline-block;
         vertical-align: top;
-        padding-left:135px;
-        padding-right:20px;
+        position:fixed;
+        top:35px;
+        left:38%;
         font-family: PingFangSC-Semibold;
         font-size: 16px;
         color: @blue;
@@ -169,7 +170,9 @@
       .history{
         display:inline-block;
         vertical-align: top;
-        padding-right: 80px;
+        position:fixed;
+        top:35px;
+        left:53%;
         font-family: PingFangSC-Semibold;
         font-size: 14px;
         color: @light;
@@ -186,32 +189,30 @@
         color: @light;
       }
       .actives{
-        margin-left:135px;
+        position:fixed;
+        left:39%;
+        top:64px;
         display:inline-block;
-        width:25px;
-        height:4px;
+        width:20px;
+        height:2px;
         background: @blue;
-        left:0;
-        bottom:0;
-        transition:transform 0.8s ease;
-
-
       }
     }
     .collect-list{
       width:100%;
-      height:551px;
+      position:fixed !important;
+      top:65px;
+      bottom:50px;
       overflow:auto;
       .collections{
-        padding:15px 0px 0 15px;
-
-        .title2{
+        padding:0px 0px 0 15px;
+        
+        .titled{
+          border-bottom:1px solid @line;
           height:115px;
           width:100%;
           display:flex;
           padding:20px 0;
-          .border-1px(@line);
-
           .left{
             float:left;
             flex:1;
@@ -287,11 +288,7 @@
 
   }
   #black{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    
     background: @bbg;
     .header{
       width:100%;
@@ -300,12 +297,12 @@
     }
     .cotitle1{
       height:45px;
-      padding:15px 0px 14px 0px;
+      border-bottom:1px solid @bline;
       
       .icon{
         display:inline-block;
         vertical-align: top;
-        position:absolute;
+        position:fixed;
         left:15px;
         top:35px;
         width:16px;
@@ -316,8 +313,9 @@
       .collects{
         display:inline-block;
         vertical-align: top;
-        padding-left:135px;
-        padding-right:20px;
+        position:fixed;
+        top:35px;
+        left:38%;
         font-family: PingFangSC-Semibold;
         font-size: 16px;
         color: @blue;
@@ -325,7 +323,9 @@
       .history{
         display:inline-block;
         vertical-align: top;
-        padding-right: 80px;
+        position:fixed;
+        top:35px;
+        left:53%;
         font-family: PingFangSC-Semibold;
         font-size: 14px;
         color: @light;
@@ -339,31 +339,28 @@
         color: @blight;
       }
       .actives{
-        margin-left:135px;
+        position:fixed;
+        left:39%;
+        top:64px;
         display:inline-block;
-        width:25px;
-        height:4px;
+        width:20px;
+        height:2px;
         background: @bblue;
-        left:0;
-        bottom:0;
-        transition:transform 0.8s ease;
-
-
       }
     }
     .collect-list{
       width:100%;
       
       .collections{
-        padding:15px 0px 0 15px;
+        padding:0px 0px 0 15px;
 
-        .title2{
+        .titled{
           height:115px;
           width:100%;
           display:flex;
           padding:20px 0;
-          .border-1px(@bline);
-
+          border-bottom:1px solid @bline;
+         
           .left{
             float:left;
             flex:1;

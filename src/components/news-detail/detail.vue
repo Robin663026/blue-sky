@@ -1,11 +1,11 @@
 <template>
-  <div  class="news" :id="theme">
+  <div  class="dnews" :id="theme">
     <header></header>
     <div class="backed"><router-link to="/news" ><div class="backs "></div></router-link></div>
     
-    <div class="content border-1px" >
+    <div class="dcontent border-1px" >
       <div class="dtitle">{{article.title}}</div>
-      <div class="some">
+      <div class="dsome">
         <span class="left"><img src="../../assets/img/35_img_54X54.png" width="27" height="27"></span>
         <span class="middle">
           <div class="top">{{article.source}}</div>
@@ -15,7 +15,7 @@
         </span>
         <span  @click.stop="addSubscribe"  :class="{ 'order':true,'active':subscribeflag}"><span class="text2" >订阅</span></span>
       </div>
-      <div class="contents" >
+      <div class="dcontents" >
         <ul>
           <li v-for="content in article.content">
             <div class="h1" v-if="content.type==='h1'">{{content.text}}</div>
@@ -28,7 +28,7 @@
         
       </div>
     </div>
-    <div class="bottom">
+    <div class="dbottom">
       <div class="left">
         <span class="icon"><img src="../../assets/img/12_write_comment.png" alt=""width="20"height="20"></span>
         <span class="write" @click.stop="writeComment">写评论</span>
@@ -42,6 +42,7 @@
       </div>
     </div>
     <div class="comseeComment" v-show="showComment">
+      <div class="chead"></div>
       <div class="combacks "@click.stop="hideComment"></div>
       <div class="comcommentCon border-1px">
         <div class="comtitle">{{article.title}}</div>
@@ -159,7 +160,7 @@
           this.REMOVE_SUBSCRIBE(id)
 
         }
-        console.log(this.localSubscribe);
+        
       },
       thum(){
         this.thumb=!this.thumb;
@@ -191,7 +192,7 @@
           this.article.like=!this.article.like;
           this.REMOVE_COLLECTION(id)
         }
-        console.log(this.localCollection);
+        
       },
       seeComment(){
         this.showComment=!this.showComment;
@@ -237,7 +238,7 @@
     },
     watch:{
       currentNews(newVal,oldVal){
-        console.log(this.currentNews);
+        
         if (!newVal.id) {
           return
         }

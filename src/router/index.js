@@ -18,7 +18,7 @@ import * as type from '../store/mutation-types'
 Vue.use(Router)
 let router =new Router({
   linkActiveClass:'active',
-  mode:'history',
+  mode:'hash',
   routes:[
     {
       path:'/',

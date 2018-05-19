@@ -6,7 +6,8 @@
       <router-link to="/me"><img class="icon" src="../../assets/img/4_icon_back.png" width="16" height="16" ></router-link>
 
     </div>
-    <div class="contents border-1px">
+    <div class="acontent border-1px">
+   
       <p class="line1">蓝穹新闻订阅APP是一款新闻定向推送及订阅类的APP。</p>
       <p class="line2"> &nbsp;&nbsp;2016年12月1日，中国保监会发文批准招商局仁和人寿保险股份有限公司筹建。注册资本人民币50亿元，注册地深圳市。拟任董事长李建红，拟任总经理彭伟。</p>
       <p class="line3">招商局仁和人寿保险股份有限公司筹备组：</p>
@@ -86,22 +87,24 @@
   top:0;
   left:0;
   width:100%;
-  height:100%;
-  background:@bg;
   overflow:auto;
+  background:@bg;
   z-index:200;
   header{
     width:100%;
     height:20px;
-    background:@bg1;
+    background:@bg;
+    z-index:200;
   }
   .heads{
+    border-bottom:1px solid @line;
     height:45px;
     width:100%;
-    position:relative;
+    z-index:200;
     text-align:center;
     padding:0 0;
     line-height:16px;
+    background:@bg;
     .title{
       display:inline-block;
       vertical-align:top;
@@ -112,149 +115,157 @@
     .icon{
       display:inline-block;
       vertical-align:top;
-      position:absolute;
-      top:15px;
+      position:fixed;
+      top:35px;
       left:15px;
     }
   }
-  .contents{
-    .border-1px(@line);
-    width:100%;
-    padding:13px 15px 40px 15px;
-    .line1{
-      padding-bottom:8px;
-      font-family: PingFangSC-Regular;
-      font-size: 12px;
-      color: @33;
-    }
-    .line2{
-      text-indent: 1em;
-      padding-bottom:8px;
-      font-family: PingFangSC-Regular;
-      font-size: 12px;
-      color: @33;
-    }
-    .line3{
-      padding:2px 0 4px 0;
-      font-family: PingFangSC-Semibold;
-      font-size: 12px;
-      color: @33;
-    }
-    .line4,.line5,.line6,.line7{
-      padding-bottom:5px;
-      font-family: PingFangSC-Regular;
-      font-size: 12px;
-      color: @33;
+  .acontent{
+      position:fixed !important;
+      top:65px;
+      bottom:0;
+      overflow:auto;
+      width:100%;
+      
+      .line1{
+        padding:13px 15px 0px 15px;
+        padding-bottom:8px;
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: @33;
+      }
+      .line2{
+        padding:0px 15px;
+        text-indent: 1em;
+        padding-bottom:8px;
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: @33;
+      }
+      .line3{
+        padding:2px 15px 4px 15px;
+        font-family: PingFangSC-Semibold;
+        font-size: 12px;
+        color: @33;
+      }
+      .line4,.line5,.line6,.line7{
+        padding:0px 15px 5px 15px;
+        padding-bottom:5px;
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: @33;
 
-    }
-    .line8{
-      font-family: PingFangSC-Regular;
-      font-size: 12px;
-      color: @33;
-    }
-    .image1{
-      img{
-        padding:20px 0 15px 0;
       }
-      .line9{
-        padding-bottom:10px;
+      .line8{
+        padding:0px 15px;
         font-family: PingFangSC-Regular;
-        font-size: 21px;
+        font-size: 12px;
         color: @33;
       }
-      .line10{
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: @33;
-      }
-    }
-    .image2{
-      padding-bottom:40px;
-      img{
-        padding:20px 0 15px 0;
-      }
-      .line9{
-        padding-bottom:10px;
-        font-family: PingFangSC-Regular;
-        font-size: 21px;
-        color: @33;
-      }
-      .line10{
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: @33;
-      }
-    }
-  }
-  .bottom{
-    position:absolute;
-    left:0;
-    right:0;
-    background: #F1F3F5;
-    width:100%;
-    padding-left:15px;
-    .tel{
-      height:75px;
-      padding:20px 0 15px 0;
-      .con{
-        padding-bottom:11px;
-        font-family: PingFangSC-Semibold;
-        font-size: 15px;
-        color: @33;
-      }
-      .num{
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: @88;
-      }
-    }
-    .more{
-      height:45px;
-      .border-1px(@line);
-      padding:15px 0;
-      font-family: PingFangSC-Semibold;
-      font-size: 15px;
-      color: @33;
-    }
-    .comp{
-      height:145px;
-      padding:15px 0 4px 0;
-      .about11{
-        padding-bottom:11px;
-        font-family: PingFangSC-Semibold;
-        font-size: 15px;
-        color: @33;
-      }
-      .lawyer,.job,.response,.map{
-        padding-bottom:11px;
-        font-family: PingFangSC-Regular;
-        font-size: 14px;
-        color: @88;
-      }
-
-    }
-    .follow{
-      height:79px;
-      padding:15px 0 18px 0;
-      .us{
-        padding-bottom:21px;
-        height:15px;
-        font-family: PingFangSC-Semibold;
-        font-size: 15px;
-        color: @33;
-      }
-      .icon{
-        height:20px;
-        .wechat{
-          display:inline-block;
-          vertical-align: top;
-          padding-right:10px;
+      .image1{
+        padding:0px 15px;
+        img{
+          padding:20px 0 15px 0;
         }
-        .sina{
-          display:inline-block;
-          vertical-align: top;
+        .line9{
+          padding-bottom:10px;
+          font-family: PingFangSC-Regular;
+          font-size: 21px;
+          color: @33;
+        }
+        .line10{
+          font-family: PingFangSC-Regular;
+          font-size: 14px;
+          color: @33;
         }
       }
+      .image2{
+        padding:0px 15px 40px 15px;
+        
+        img{
+          padding:20px 0 15px 0;
+        }
+        .line9{
+          padding-bottom:10px;
+          font-family: PingFangSC-Regular;
+          font-size: 21px;
+          color: @33;
+        }
+        .line10{
+          font-family: PingFangSC-Regular;
+          font-size: 14px;
+          color: @33;
+        }
+      }
+      .bottom{
+        height:345px;
+        background: #F1F3F5;
+        width:100%;
+        padding-left:15px;
+        .tel{
+          height:75px;
+          padding:20px 0 15px 0;
+          .con{
+            padding-bottom:11px;
+            font-family: PingFangSC-Semibold;
+            font-size: 15px;
+            color: @33;
+          }
+          .num{
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: @88;
+          }
+        }
+        .more{
+          height:45px;
+          .border-1px(@line);
+          padding:15px 0;
+          font-family: PingFangSC-Semibold;
+          font-size: 15px;
+          color: @33;
+        }
+        .comp{
+          height:145px;
+          padding:15px 0 4px 0;
+          .about11{
+            padding-bottom:11px;
+            font-family: PingFangSC-Semibold;
+            font-size: 15px;
+            color: @33;
+          }
+          .lawyer,.job,.response,.map{
+            padding-bottom:11px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: @88;
+          }
+
+        }
+        .follow{
+          height:79px;
+          padding:15px 0 18px 0;
+          .us{
+            padding-bottom:21px;
+            height:15px;
+            font-family: PingFangSC-Semibold;
+            font-size: 15px;
+            color: @33;
+          }
+          .icon{
+            height:20px;
+            .wechat{
+              display:inline-block;
+              vertical-align: top;
+              padding-right:10px;
+            }
+            .sina{
+              display:inline-block;
+              vertical-align: top;
+            }
+          }
+        }
+      
     }
   }
 }

@@ -6,13 +6,16 @@
     <router-link :to="{path:'/news/search',query:{id:press}}"><span class="search" ></span></router-link>
   </div>
   <div class="news-list border-1px"  ref="newsColumn" >
-    <ul >
+    <div class="test">
+       <ul >
       <router-link v-for="(news,index) in press"
       :key="index" :to="{path:'/detail/'+news.id}" tag="li" v-if="news.titile"
       >
         <newslist :news="news"></newslist>
       </router-link>
     </ul>
+    </div>
+   
 
 
   </div>
@@ -133,7 +136,7 @@
 <style lang="less">
   @import (reference)'../../assets/less/common';
 .news{
-  position:absolute;
+  position:relative;
   top: 0px;
   left:0;
   width:100%;
@@ -143,12 +146,10 @@
     background:@bg1;
   }
   .tab{
-    position:relative;
     height:45px;
     padding:15px 0 14px 0;
     line-height:16px;
     text-align:center;
-
     .ntitle{
       display:inline-block;
       vertical-align:top;
@@ -168,30 +169,34 @@
     }
   }
   .news-list{
-    padding:0px 0px 0px 15px ;
     width:100%;
-    position:fixed;
-    top:0px;
-    bottom:50px;
-    overflow:auto;
+    padding:0px 0px 0px 15px ;
     .border-1px(@line);
+    .test{
+      width:100%;
+   
+      padding-right:15px;
+      position:fixed;
+      bottom:50px;
+      top:65px;
+      overflow:auto;
+    }
   }
   .bottomB{
     position:fixed;
     left:0;
     bottom:0;
-    height:50px;
   }
 
 
 }
 #black{
   header{ 
-    background:@bg1;
+    background:@bg1 !important;
   }
   .tab{
     .ntitle{   
-      color: @b33;
+      color: @b33 !important;
     } 
     .search{
       background:url(../../assets/img/40_dark_search.png)no-repeat center center;
@@ -199,14 +204,15 @@
     }
   }
   .news-list{
-    .border-1px(@bline);
+
+    .border-1px(@bline );
     .title1{
       height:115px;
       width:100%;
       display:flex;
       padding:20px 0;
-      .border-1px(@bline);
-      border-bottom:1px solid @bline;
+      .border-1px(@bline );
+      border-bottom:1px solid @bline !important;
       .left{
         float:left;
         flex:1;
@@ -216,7 +222,7 @@
           overflow:hidden;
           font-family:PingFangSC-Semibold;
           font-size: 16px;
-          color: @b33;
+          color: @b33 !important;
           line-height: 21px;
         }
         .row2{
@@ -225,19 +231,19 @@
           display:inline-block;
           vertical-align:top;
           .top{ 
-            border:1px solid @bred;
+            border:1px solid @bred !important;
             width:17px;
             padding-right:2px;
             font-family:PingFangSC-Regular;
             font-size: 8px;
-            color: @bred;
+            color: @bred !important;
           }
           .datetme{
             width:45px;
             overflow:hidden;
             font-family:PingFangSC-Regular;
             font-size: 11px;
-            color: @blight;
+            color: @blight !important;
           }
           .sour{
             display:inline-block;
@@ -246,7 +252,7 @@
             overflow: hidden;
             font-family:PingFangSC-Regular;
             font-size: 11px;
-            color: @blight;
+            color: @blight !important;
           }
           .comments_img{
             padding-right:1px;
@@ -255,13 +261,13 @@
             width:20px;
             font-family: PingFangSC-Regular;
             font-size: 11px;
-            color: @blight;
+            color: @blight !important;
           }
           .comment1{
             width:20px;
             font-family: PingFangSC-Regular;
             font-size: 11px;
-            color: @blight;
+            color: @blight !important;
           }
 
           .thumbUp{
@@ -271,13 +277,21 @@
             width:20px;
             font-family: PingFangSC-Regular;
             font-size: 11px;
-            color: @blight;
+            color: @blight !important;
           }
           .like1{
+            position:relative;
             width:20px;
             font-family: PingFangSC-Regular;
             font-size: 11px;
-            color: @blight;
+            color: @blight !important;
+            .plus{
+              position:absolute;
+              top:-3px;
+              left:22px;
+              font-size:10px;
+              color: @blight;
+            }
           }
           
 
@@ -294,7 +308,7 @@
       width:100%;
       height:220px;
       padding:20px 15px 20px 0;
-      .border-1px(@bline);
+      .border-1px(@bline );
       border-bottom:1px solid @bline;
       .top{
         height:16px;
@@ -372,11 +386,18 @@
           color: @blight;
         }
         .like1{
-         
+          position:relative;
           width:20px;
           font-family: PingFangSC-Regular;
           font-size: 11px;
           color: @blight;
+          .plus{
+              position:absolute;
+              top:-3px;
+              left:22px;
+              font-size:10px;
+              color: @light;
+            }
         }
 
       }
@@ -387,12 +408,8 @@
   }
   .bottomB {
     position:fixed;
-    bottom:0px;
-    left:0px;
-    width: 100%;
-    padding: 7px 39px 5px 39px;
-    height: 50px;
-    z-index:200;
+    left:0;
+    bottom:0;
     background:@bbg;
     .border-1px(@bline);
     .tab-image {

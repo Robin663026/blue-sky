@@ -8,12 +8,11 @@
       <span class="edit" ><router-link to="/me/collects">取消</router-link></span>
       <span class="actives" ref="active"></span>
     </div>
-    <div class="editList border-1px">
+    <div class="editList ">
       <ul  v-if="localCollection.length">
-        <li v-for="(item,index) in localCollection" :key="item.id" class="editItem border-1px">
+        <li v-for="(item,index) in localCollection" :key="item.id" class="editItem ">
             <input class="left" type="checkbox" v-model="item.checked">
-              <!-- <span v-if="choose" ><img src="../../assets/img/7_choose.png" alt="" width="23" height="23"></span>
-              <span class="circle" v-else></span> -->
+              
             </input>
             <div class="middle">
               <div class="row1">
@@ -33,7 +32,7 @@
         空空如也，快去收藏吧
       </div>
     </div>
-    <div class="bottom233">
+    <div class="delete">
       <span class="left"  @click.stop="checkall">全选</span>
       <span class="right" @click.stop="dele">删除</span>
     </div>
@@ -73,17 +72,17 @@
           for(let i=len-1;i>=0;i--){
             let index=this.localCollection[i];
             index.checked=true;
-            console.log(index.checked);
+            
           }
         }
       },
       dele(){
         let that=this;
         let len=this.localCollection.length;
-        console.log(this.localCollection);
+        
         for(let i=len-1;i>=0;i--){
           let index=this.localCollection[i];
-          console.log(index)
+        
           if(index.checked){
             that.localCollection.splice(i,1)
           }
@@ -140,12 +139,12 @@
 <style lang="less">
   @import (reference)'../../assets/less/common';
   .editCollects{
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    z-index:300;
+    z-index:400;
     background:@bg;
     .header{
       width:100%;
@@ -155,8 +154,8 @@
     .wrapper{
       
       height:45px;
-     
-      padding:15px 15px 14px 15px;
+      border-bottom:1px solid @line;
+      padding:15px 15px 14px 0px;
       .icon{
         display:inline-block;
         vertical-align: top;
@@ -171,8 +170,9 @@
       .collects{
         display:inline-block;
         vertical-align: top;
-        padding-left:135px;
-        padding-right:20px;
+        position:fixed;
+        top:35px;
+        left:38%;
         font-family: PingFangSC-Semibold;
         font-size: 16px;
         color: @blue;
@@ -180,7 +180,9 @@
       .history{
         display:inline-block;
         vertical-align: top;
-        padding-right: 80px;
+        position:fixed;
+        top:35px;
+        left:53%;
         font-family: PingFangSC-Semibold;
         font-size: 14px;
         color: @light;
@@ -188,20 +190,21 @@
       .edit{
         display:inline-block;
         vertical-align: top;
-        padding:1px 0px ;
+        position:fixed;
+        top:35px;
+        right:15px;
         font-family: PingFangSC-Semibold;
         font-size: 14px;
         color: @light;
       }
       .actives{
-        margin-left:145px;
+        position:fixed;
+        left:39%;
+        top:64px;
         display:inline-block;
         width:20px;
-        height:4px;
+        height:2px;
         background: @blue;
-        left:0;
-        bottom:0;
-        transition:transform 0.6s ease;
 
       }
     }
@@ -210,14 +213,13 @@
       width:100%;
       height:551px;
       overflow:auto;
-      .border-1px(@line);
       
       .editItem{
         width:100%;
         display:flex;
         height:115px;
         padding:20px 0;
-        .border-1px(@line);
+        border-bottom:1px solid @line;
         .left{
           flex:0 0 38px;
           float:left;
@@ -287,7 +289,7 @@
       }
 
     }
-    .bottom233{
+    .delete{
       position:fixed;
       left:0;
       bottom:0;
@@ -313,12 +315,7 @@
 
   }
   #black{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:400;
+    
     background:@bbg;
     .header{
       width:100%;
@@ -328,8 +325,8 @@
     .wrapper{
       
       height:45px;
-     
-      padding:15px 15px 14px 15px;
+      border-bottom:1px solid @bline;
+      padding:15px 15px 14px 0px;
       .icon{
         display:inline-block;
         vertical-align: top;
@@ -344,8 +341,7 @@
       .collects{
         display:inline-block;
         vertical-align: top;
-        padding-left:135px;
-        padding-right:20px;
+        
         font-family: PingFangSC-Semibold;
         font-size: 16px;
         color: @blue;
@@ -353,7 +349,6 @@
       .history{
         display:inline-block;
         vertical-align: top;
-        padding-right: 80px;
         font-family: PingFangSC-Semibold;
         font-size: 14px;
         color: @light;
@@ -367,14 +362,13 @@
         color: @blight;
       }
       .actives{
-        margin-left:145px;
+        position:fixed;
+        left:39%;
+        top:64px;
         display:inline-block;
         width:20px;
-        height:4px;
+        height:2px;
         background: @bblue;
-        left:0;
-        bottom:0;
-        transition:transform 0.6s ease;
 
       }
     }
@@ -383,14 +377,14 @@
       width:100%;
       height:551px;
       overflow:scroll;
-      .border-1px(@bline);
+      border-bottom:1px solid @bline;
       
       .editItem{
         width:100%;
         display:flex;
         height:115px;
         padding:20px 0;
-        .border-1px(@bline);
+        border-bottom:1px solid @bline;
         .left{
           flex:0 0 38px;
           float:left;
@@ -461,12 +455,13 @@
       }
 
     }
-    .bottom233{
+    .delete{
       position:fixed;
       left:0;
       bottom:0;
       width:100%;
       height:45px;
+      z-index:600;
       background:@bline;
       display:inline-block;
       vertical-align:center;

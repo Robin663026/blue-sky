@@ -1,19 +1,22 @@
 <template>
-  <div class="news" :id="theme">
+  <div class="onews" :id="theme">
     <header></header>
-    <div class="tab">
+    <div class="otab">
       <span class="otitle">订阅</span>
       <span class="search" ></span>
     </div>
-    <div class="news-list border-1px"  ref="newsColumn" >
-      <ul  v-if="localSubscribe.length">
+    <div class="onews-list border-1px"  ref="newsColumn" >
+      <div class="otest">
+        <ul  v-if="localSubscribe.length">
         <router-link   v-for="(news,index) in localSubscribe"  :key="index" :to="{path:'/detail/'+news.id}" tag="li">
           <v-newlist :news="news"></v-newlist>
         </router-link>
       </ul>
-      <div class="nonono"v-else>
+        <div class="ononono"v-else>
         空空如也，快去收藏
       </div>
+      </div>
+      
 
     </div>
 
@@ -117,116 +120,349 @@
 
 <style lang="less">
    @import (reference)'../../assets/less/common';
-  .news{
-    position:absolute;
-    top: 0px;
- 
-    left:0;
+.onews{
+  position:relative;
+  top: 0px;
+  left:0;
+  width:100%;
+  header{
     width:100%;
-    height:667px;
-    header{
-      height:20px;
-      background:rgba(0,0,0,0.00);
+    height:20px;
+    background:@bg1;
+  }
+  .otab{
+    height:45px;
+    padding:15px 0 14px 0;
+    line-height:16px;
+    text-align:center;
+    .otitle{
+      display:inline-block;
+      vertical-align:top;
+      font-family: PingFangSC-Semibold;
+      font-size: 16px;
+      color: @33;
     }
-    .tab{
-      position:relative;
-      height:45px;
-      padding:15px 0 14px 0;
-      line-height:16px;
-      text-align:center;
-
-      .otitle{
-        display:inline-block;
-        vertical-align:top;
-        font-family: PingFangSC-Semibold;
-        font-size: 16px;
-        color: @33;
-      }
-      .search{
-        display:inline-block;
-        vertical-align:top;
-        position:absolute;
-        right:15px;
-        width:16px;
-        height:16px;
-        background:url(../../assets/img/3_icon_search.png)no-repeat center center;
-        background-size:16px 16px;
-      }
+    .search{
+      display:inline-block;
+      vertical-align:top;
+      position:absolute;
+      right:15px;
+      width:16px;
+      height:16px;
+      background:url(../../assets/img/3_icon_search.png)no-repeat center center;
+      background-size:16px 16px;
     }
-    .news-list{
-      padding:0px 15px 0 15px ;
+  }
+  .onews-list{
+    width:100%;
+    padding:0px 0px 0px 15px ;
+    .border-1px(@line);
+    .otest{
       width:100%;
-      height:551px;
-      overflow:auto;
-      .border-1px(@line);
-      
-
-    }
-    .nonono{
-      padding-top:20px;
-      text-align:center;
-
-    }
-    .bottomB{
+      padding-right:15px;
       position:fixed;
-      left:0;
-      bottom:0;
+      bottom:50px;
+      top:65px;
+      overflow:auto;
+      .ononono{
+        width:100%;
+        padding-top:20px;
+        text-align:center;
+      }
     }
+    
+  }
+  .bottomB{
+    position:fixed;
+    left:0;
+    bottom:0;
+    height:50px;
+  }
 }
 #black{
-    position:absolute;
-    top: 0px;
-   
-    left:0;
-    width:100%;
-    height:667px;
-    header{
-      height:20px;
-      background:@bg;
+  header{ 
+    background:@bg1;
+  }
+  .otab{
+    .otitle{   
+      color: @b33;
+    } 
+    .search{
+      background:url(../../assets/img/40_dark_search.png)no-repeat center center;
+      background-size:16px 16px;
     }
-    .tab{
-      position:relative;
-      height:45px;
-      padding:15px 0 14px 0;
-      line-height:16px;
-      text-align:center;
+  }
+  .onews-list{
 
-      .otitle{
-        display:inline-block;
-        vertical-align:top;
+    .border-1px(@bline);
+    .title1{
+      height:115px;
+      width:100%;
+      display:flex;
+      padding:20px 0;
+      .border-1px(@bline);
+      border-bottom:1px solid @bline;
+      .left{
+        float:left;
+        flex:1;
+        padding-right:18px;
+        .row1{
+          height:42px;
+          overflow:hidden;
+          font-family:PingFangSC-Semibold;
+          font-size: 16px;
+          color: @b33;
+          line-height: 21px;
+        }
+        .row2{
+          margin-top:18px;
+          height:11px;
+          display:inline-block;
+          vertical-align:top;
+          .top{ 
+            border:1px solid @bred;
+            width:17px;
+            padding-right:2px;
+            font-family:PingFangSC-Regular;
+            font-size: 8px;
+            color: @bred;
+          }
+          .datetme{
+            width:45px;
+            overflow:hidden;
+            font-family:PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .sour{
+            display:inline-block;
+            width:53px;
+            height:12px;
+            overflow: hidden;
+            font-family:PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .comments_img{
+            padding-right:1px;
+          }
+          .comment{
+            width:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .comment1{
+            width:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+
+          .thumbUp{
+            padding-right:1px;
+          }
+          .like{
+            width:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          .like1{
+            width:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 11px;
+            color: @blight;
+          }
+          
+
+        }
+      }
+      .right{
+        float:left;
+        flex:0 0 100px;
+        padding-right:15px;
+      }
+    }
+
+   .title2 {
+      width:100%;
+      height:220px;
+      padding:20px 15px 20px 0;
+      .border-1px(@bline);
+      border-bottom:1px solid @bline;
+      .top{
+        height:16px;
+        overflow:hidden;
         font-family: PingFangSC-Semibold;
         font-size: 16px;
         color: @b33;
+        margin-bottom:10px;
       }
-      .search{
+      .middle{
+        height:135px;
+        text-align:center;
+        margin-bottom:14px;
+      }
+      .bottom1{
+      
+        height:11px;
         display:inline-block;
         vertical-align:top;
-        position:absolute;
-        right:15px;
-        width:16px;
-        height:16px;
-        background:url(../../assets/img/40_dark_search.png)no-repeat center center;
-        background-size:16px 16px;
+        font-size:0;
+        
+        .top{
+          border:1px solid @bred;
+          padding-right:2px;
+          font-family:PingFangSC-Regular;
+          font-size: 8px;
+          color: @bred;
+        }
+        .datetme{
+         
+    
+          padding-right:5px;
+          font-family:PingFangSC-Regular;
+          font-size: 11px;
+          color: @blight;
+        }
+        .sour{
+        
+          display:inline-block;
+          width:65px;
+          padding-right:10px;
+          height:12px;
+          overflow: hidden;
+          font-family:PingFangSC-Regular;
+          font-size: 11px;
+          color: @blight;
+        }
+        .comments_img{
+         
+          padding-right:1px;
+        }
+        .comment{
+         
+          padding-right:12px;
+          font-family: PingFangSC-Regular;
+          font-size: 11px;
+          color:@blight;
+        }
+        .comment1{
+         
+          width:20px;
+          font-family: PingFangSC-Regular;
+          font-size: 11px;
+          color: @blight;
+        }
+        .thumbUp{
+          
+          padding-right:1px;
+        }
+        .like{
+         
+          padding-right:12px;
+          font-family: PingFangSC-Regular;
+          font-size: 11px;
+          color: @blight;
+        }
+        .like1{
+         
+          width:20px;
+          font-family: PingFangSC-Regular;
+          font-size: 11px;
+          color: @blight;
+        }
+
+      }
+
+
+    }
+  
+  }
+  .bottomB {
+    
+    padding: 7px 39px 5px 39px;
+    height: 50px;
+    z-index:200;
+    background:@bbg;
+    .border-1px(@bline);
+    .tab-image {
+      display: flex;
+      height: 24px;
+      line-height: 24px;
+      .tab-item {
+        flex: 1;
+
+        text-align: center;
+        .tab-item1{
+          display:inline-block;
+
+          width:90px;
+          height:30px;
+          .icon_1{
+            height:30px;
+            background:url(../../assets/img/41_dark_news2.png) no-repeat center center;
+
+            background-size:24px 24px;
+          }
+          .icon_2{
+            height:30px;
+            background:url(../../assets/img/42_dark_order2.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+          .icon_3{
+            height:30px;
+            background:url(../../assets/img/43_dark_me2.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+
+        }
+
+        .router-link-exact-active{
+
+          .icon_1{
+            height:30px;
+            background:url(../../assets/img/41_dark_news1.png) no-repeat center center;
+
+            background-size:24px 24px;
+          }
+          .icon_2{
+            height:30px;
+            background:url(../../assets/img/42_dark_order1.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+          .icon_3{
+            height:30px;
+            background:url(../../assets/img/43_dark_me1.png) no-repeat center center;
+            background-size:24px 24px;
+          }
+        }
+      }
+
+    }
+    .tab-wrapper {
+      display: flex;
+      padding-top: 3px;
+      height: 11px;
+      line-height: 11px;
+      font-size: 0;
+      .tab-item {
+        flex: 1;
+        text-align: center;
+        font-size: 11px;
+        color: @btab;
+        font-family: PingFangSC-Regular;
+        &>a {
+          text-decoration: none;
+          &.active {
+            color: @btab1;
+          }
+        }
       }
     }
-    .news-list{
-      padding:0px 15px 0 15px ;
-      width:100%;
-      height:551px;
-      overflow:auto;
-      .border-1px(@bline);
-      
+  }
 
-    }
-    .nonono{
-      padding-top:20px;
-      text-align:center;
 
-    }
-    .bottomB{
-      position:fixed;
-      left:0;
-      bottom:0;
-    }
 }
 </style>
