@@ -350,7 +350,7 @@
     }
     .collect-list{
       width:100%;
-      
+      background:@bbg;
       .collections{
         padding:0px 0px 0 15px;
 

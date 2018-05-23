@@ -493,7 +493,7 @@
     }
     
     .dcontent{
-      padding:15px 15px 0 15px;
+      padding:15px 15px 0 0px;
       position:fixed;
       top:0;
       left:0;
@@ -501,6 +501,7 @@
       overflow:auto;
       .border-1px(@bline);
       .dtitle{
+        padding-left:15px;
         height:52px;
         font-family:PingFangSC-Semibold;
         font-size: 21px;
@@ -512,7 +513,7 @@
         display: flex;
         height:50px;
         width:100%;
-        padding:8px 0 15px 0;
+        padding:8px 0 15px 15px;
         .left{
           flex:0 0 35px;
           width:35px;
@@ -600,10 +601,12 @@
       }
     }
     .dcontents{
+      background:@bbg;
       position:fixed !important;
       top:168px;
       bottom:50px;
       width:100%;
+      padding-left:15px;
       padding-right:15px;
       padding-top:15px;
       .h1{

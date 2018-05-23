@@ -6,7 +6,7 @@
       <span class="search" ></span>
     </div>
     <div class="onews-list border-1px"  ref="newsColumn" >
-      <div class="otest">
+      
         <ul  v-if="localSubscribe.length">
         <router-link   v-for="(news,index) in localSubscribe"  :key="index" :to="{path:'/detail/'+news.id}" tag="li">
           <v-newlist :news="news"></v-newlist>
@@ -15,7 +15,7 @@
         <div class="ononono"v-else>
         空空如也，快去收藏
       </div>
-      </div>
+      
       
 
     </div>
@@ -154,22 +154,21 @@
     }
   }
   .onews-list{
+    
     width:100%;
-    padding:0px 0px 0px 15px ;
+    padding:0px 15px 0px 15px ;
     .border-1px(@line);
-    .otest{
+    width:100%;
+    position:fixed !important;
+    bottom:50px;
+    top:65px;
+    overflow:auto;
+    .ononono{
       width:100%;
-      padding-right:15px;
-      position:fixed;
-      bottom:50px;
-      top:65px;
-      overflow:auto;
-      .ononono{
-        width:100%;
-        padding-top:20px;
-        text-align:center;
-      }
+      padding-top:20px;
+      text-align:center;
     }
+    
     
   }
   .bottomB{
@@ -193,7 +192,7 @@
     }
   }
   .onews-list{
-
+    background:@bbg;
     .border-1px(@bline);
     .title1{
       height:115px;
@@ -281,7 +280,6 @@
       .right{
         float:left;
         flex:0 0 100px;
-        padding-right:15px;
       }
     }
 

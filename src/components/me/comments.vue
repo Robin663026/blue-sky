@@ -5,7 +5,7 @@
       <router-link to="/me"><div class="icon1"></div></router-link>
       <span class="text"><p>赞过的评论</p></span>
     </div>
-    <div class="contents ">
+    <div class="ccontents ">
       <div class="list border-1px">
         <span class="icon"><img src="../../assets/img/16_img_54X54.png" alt=""width="27" height="27"></span>
         <span class="content">
@@ -52,6 +52,7 @@
   position:fixed;
   top:0;
   left:0;
+  bottom:0;
   width:100%;
   height:667px;
   background: @bg;
@@ -87,48 +88,58 @@
       }
     }
   }
-  .list {
-    width: 100%;
-    display: inline-block;
-    vertical-align: top;
-    display:flex;
-    .icon{
-      float:left;
-      flex: 0 0 50px;
-      width:50px;
-      padding:16px 7px 0 16px;
-    }
-    .content{
-      flex:1;
-      float:left;
-      .name{
-        height:38px;
-        padding-top:15px;
-        font-family: PingFangSC-Semibold;
-        font-size: 13px;
-        color: @33;
-      }
-      .text{
-        padding-right:14px;
-        font-family: PingFangSC-Regular;
-        font-size: 16px;
-        color: @33;
-        letter-spacing: 0.35px;
-        line-height: 25px;
-      }
-    }
-
-  }
-  .mention{
+  .ccontents{
+    position:fixed;
+    top:65px;
+    bottom:50px;
     width:100%;
-    padding-top:15px;
-    text-align:center;
-    p{
-      font-family: PingFangSC-Regular;
-      font-size: 14px;
-      color: @light;
+    overflow:auto;
+    background:@bbg;
+    .list {
+      width: 100%;
+      display: inline-block;
+      vertical-align: top;
+      display:flex;
+      .icon{
+        float:left;
+        flex: 0 0 50px;
+        width:50px;
+        padding:16px 7px 0 16px;
+      }
+      .content{
+        flex:1;
+        float:left;
+        .name{
+          height:38px;
+          padding-top:15px;
+          font-family: PingFangSC-Semibold;
+          font-size: 13px;
+          color: @33;
+        }
+        .text{
+          padding-right:14px;
+          font-family: PingFangSC-Regular;
+          font-size: 16px;
+          color: @33;
+          letter-spacing: 0.35px;
+          line-height: 25px;
+        }
+      }
+
     }
+    .mention{
+      background:@bbg;
+      width:100%;
+      padding-top:15px;
+      text-align:center;
+      p{
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: @light;
+      }
+    } 
   }
+
 
 
 }
@@ -136,6 +147,7 @@
   position:fixed;
   top:0;
   left:0;
+  bottom:0;
   width:100%;
   height:667px;
   background: @bbg;

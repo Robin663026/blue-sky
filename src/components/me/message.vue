@@ -5,7 +5,7 @@
       <router-link to="/me"><div class="icons"></div></router-link>
       <div class="text">消息通知</div>
     </div>
-    <div class="content">
+    <div class="mcontent">
       <div class="list">
         <span class="icon"><img src="../../assets/img/27-女头像.png" alt=""width="32" height="32"></span>
         <span class="middle">
@@ -44,6 +44,7 @@
     position:fixed;
     top:0;
     left:0;
+    bottom:0;
     width:100%;
     height:667px;
     z-index:100;
@@ -74,8 +75,10 @@
 
       }
     }
-    .content{
-      height:600px;
+    .mcontent{
+      position:fixed !important;
+      top:65px;
+      bottom:50px;
       width:100%;
       .list{
         display:flex;
@@ -154,8 +157,8 @@
 
       }
     }
-    .content{
-      height:600px;
+    .mcontent{
+      background:@bbg;
       width:100%;
       .list{
         display:flex;

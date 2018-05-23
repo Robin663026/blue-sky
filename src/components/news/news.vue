@@ -169,18 +169,17 @@
     }
   }
   .news-list{
+
     width:100%;
     padding:0px 0px 0px 15px ;
     .border-1px(@line);
-    .test{
-      width:100%;
-   
-      padding-right:15px;
-      position:fixed;
-      bottom:50px;
-      top:65px;
-      overflow:auto;
-    }
+    width:100%;
+    padding-right:15px;
+    position:fixed ! important;
+    bottom:50px;
+    top:65px;
+    overflow:auto;
+    
   }
   .bottomB{
     position:fixed;
@@ -204,7 +203,8 @@
     }
   }
   .news-list{
-
+    background:@bbg;
+    position:fixed !important;
     .border-1px(@bline );
     .title1{
       height:115px;
