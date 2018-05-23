@@ -70,9 +70,16 @@
       background:@bg2;
       padding:0 15px 14px 15px;
       .no{
-        height:431px;
+        position:fixed;
+        top:0;
+        bottom:221px;
+        width:100%;
+        background:@bg1;
       }
       .iconWrapper{
+        position:fixed;
+        bottom:0;
+        left:0;
         width:100%;
         height:221px;
         background: @bg;
